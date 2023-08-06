@@ -17,7 +17,7 @@ public class Movie {
 public String getMovieTitle() {
 	return title;
 }
-public void getMovieTitle(String title) {
+public void setMovieTitle(String title) {
 	this.title = title;
 }
 public int getMovieId() {
@@ -32,7 +32,7 @@ public int getMovieRating() {
 public void setMovieRating(int movieRating) {
 	this.movieRating = movieRating;
 }
-public String getMovieImg() {
+public String getMovieImgUrl() {
 	return imageUrl;
 }
 public void setMovieImg(String imageUrl) {

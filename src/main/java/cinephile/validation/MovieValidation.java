@@ -14,7 +14,7 @@ public class MovieValidation {
 
 		if (validateMovieTitle(movie.getMovieTitle())
 				&& validateMovieRating(movie.getMovieRating() )
-				&& validateMovieImageUrl(movie.getMovieImg() )) {
+				&& validateMovieImageUrl(movie.getMovieImgUrl() )) {
 			return true;
 		} else {
 			throw new InvalidUserException("Movie details not valid");

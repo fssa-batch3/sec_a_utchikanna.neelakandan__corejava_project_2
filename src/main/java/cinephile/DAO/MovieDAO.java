@@ -1,6 +1,6 @@
 package cinephile.DAO;
 
-import java.awt.print.Book;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -31,7 +31,7 @@ public class MovieDAO {
 				statement.setString(1, movie.getMovieTitle());
 				statement.setInt(2, movie.getMovieId());
 				statement.setInt(3, movie.getMovieRating());
-				statement.setString(4, movie.getMovieImg());
+				statement.setString(4, movie.getMovieImgUrl());
 				
 
 				// Execute the query
@@ -52,9 +52,9 @@ public class MovieDAO {
 		            setColumns.add("movie_title = ?");
 		            setValues.add(movie.getMovieTitle());
 		        }
-		        if (movie.getMovieImg() != null) {
+		        if (movie.getMovieImgUrl() != null) {
 		            setColumns.add("movie_image_url = ?");
-		            setValues.add(movie.getMovieImg());
+		            setValues.add(movie.getMovieImgUrl());
 		        }
 		        if (movie.getMovieId() != 0) {
 		            setColumns.add("movie_id = ?");

@@ -51,16 +51,55 @@ public class TestRegisterFeature {
 	}
  
 	@Test
-	public void testUserNull() {
+	public void testInvalidFirstName() {
 
 		UserService userService = new UserService();
-		User user1 = null;
+		User user1 = new User("na@gmail.com", "kanna@123", "k", "u", 1234567890);
 		try {
 			assertFalse(userService.registerUser(user1));
-		} catch (ServiceException e) {
+		} catch (ServiceException e) { 
 			e.printStackTrace();
-		}
 
+		}
 	}
+	
+	@Test
+	public void testInvalidLastName() {
+
+		UserService userService = new UserService();
+		User user1 = new User("na@gmail.com", "kanna@123", "k", "u", 1234567890);
+		try {
+			assertFalse(userService.registerUser(user1));
+		} catch (ServiceException e) { 
+			e.printStackTrace();
+
+		}
+	}
+	
+	@Test
+	public void testInvalidPhoneNo() {
+
+		UserService userService = new UserService();
+		User user1 = new User("na@gmail.com", "kanna@123", "kanna", "utchi", 12345);
+		try {
+			assertFalse(userService.registerUser(user1));
+		} catch (ServiceException e) { 
+			e.printStackTrace();
+
+		}
+	}
+	@Test
+	public void testInvalidEmailId() {
+
+		UserService userService = new UserService();
+		User user1 = new User("nagmail.com", "kanna@123", "kanna", "utchi", 1234567890);
+		try {
+			assertFalse(userService.registerUser(user1));
+		} catch (ServiceException e) { 
+			e.printStackTrace();
+
+		}
+	}
+	
 
 }
