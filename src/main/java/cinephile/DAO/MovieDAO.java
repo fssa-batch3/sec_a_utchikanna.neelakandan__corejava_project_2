@@ -4,6 +4,7 @@ package cinephile.DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,37 @@ public class MovieDAO {
 			return connection;
 		}
 		
+		  public static Movie getMovieByTitle(String title) throws DAOException {
+			  Movie movie = null;
+		       
+		        try {
+		        	// Get connection
+					Connection connection = getConnection();
+
+					// Prepare SQL statement
+                        String query = "SELECT * FROM movie WHERE movie_title = ? AND isActive = true ;";
+;
+					PreparedStatement statement = connection.prepareStatement(query);
+					statement.setString(1, title);
+
+		            try (ResultSet rs = statement.executeQuery()) {
+		                if (rs.next()) {
+		                     movie = new Movie();
+			            	movie.setMovieTitle(rs.getString("movie_title"));
+			            	movie.setMovieImgUrl(rs.getString("movie_image_url"));
+			            	movie.setMovieRating(rs.getInt("movie_rating"));
+			            	movie.setMovieId(rs.getInt("movie_id"));
+		                    
+		                }
+		            }
+
+		        } catch (SQLException e) {
+		            throw new DAOException(e);
+		        }
+		        return movie;
+		    }
+		  
+		  
 		public boolean Movie(Movie movie) throws DAOException {
 
 			try {
@@ -26,7 +58,7 @@ public class MovieDAO {
 				Connection connection = getConnection();
 
 				// Prepare SQL statement
-				String insertQuery = "Insert INTO Movie (movie_title,movie_id, movie_rating , movie_image) VALUES(?,?,?,?)";
+				String insertQuery = "Insert INTO Movie (movie_title,movie_id, movie_rating , movie_image_url) VALUES(?,?,?,?)";
 				PreparedStatement statement = connection.prepareStatement(insertQuery);
 				statement.setString(1, movie.getMovieTitle());
 				statement.setInt(2, movie.getMovieId());
@@ -43,8 +75,31 @@ public class MovieDAO {
 			}
 		}
 		
+		 public static List<Movie> getAllMovies() throws DAOException {
+		        List<Movie> movieList = new ArrayList<>();
+		       
+		        try  {
+		        	Connection connection = getConnection();
+		        	 String query = "SELECT * FROM movie WHERE isActive = true;;";
+					PreparedStatement statement = connection.prepareStatement(query);
+					 ResultSet rs = statement.executeQuery();
+		            while (rs.next()) {
+		            	Movie movie = new Movie();
+		            	movie.setMovieTitle(rs.getString("movie_title"));
+		            	movie.setMovieImgUrl(rs.getString("movie_image_url"));
+		            	movie.setMovieRating(rs.getInt("movie_rating"));
+		            	movie.setMovieId(rs.getInt("movie_id"));
+		                
+		            	movieList.add(movie);
+		            }
+		        } catch (SQLException e) {
+		            throw new DAOException(e);
+		        }
+		        return movieList;
+		    }
+		
 		 public static  Movie updateMovie(Movie movie) throws DAOException {
-		        StringBuilder queryBuilder = new StringBuilder("UPDATE books SET ");
+		        StringBuilder queryBuilder = new StringBuilder("UPDATE movie SET ");
 		        List<String> setColumns = new ArrayList<>();
 		        List<Object> setValues = new ArrayList<>();
 
@@ -91,7 +146,7 @@ public class MovieDAO {
 		    }
 
 		    public static boolean deleteMovie(String title) throws DAOException {
-		        String query = "UPDATE addmovie SET isActive = false WHERE title = ?;";
+		        String query = "UPDATE movie SET isActive = false WHERE title = ?;";
 		        try (Connection connection = getConnection();
 		             PreparedStatement pst = connection.prepareStatement(query)) {
 
@@ -103,5 +158,7 @@ public class MovieDAO {
 		            throw new DAOException(e);
 		        }
 		    }
+
+			
 
 }

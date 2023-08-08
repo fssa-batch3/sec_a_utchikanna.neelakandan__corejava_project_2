@@ -9,18 +9,17 @@ import cinephile.model.Movie;
 import cinephile.validation.exceptions.InvalidUserException;
 
 public class MovieValidation {
-	
-	public static boolean validateMovie(Movie movie ) throws InvalidUserException {
 
-		if (validateMovieTitle(movie.getMovieTitle())
-				&& validateMovieRating(movie.getMovieRating() )
-				&& validateMovieImageUrl(movie.getMovieImgUrl() )) {
+	public static boolean validateMovie(Movie movie) throws InvalidUserException {
+
+		if (validateMovieTitle(movie.getMovieTitle()) && validateMovieRating(movie.getMovieRating())
+				&& validateMovieImageUrl(movie.getMovieImgUrl())) {
 			return true;
 		} else {
 			throw new InvalidUserException("Movie details not valid");
 		}
 	}
-	
+
 	public static boolean validateMovieTitle(String title) {
 		boolean match = false;
 
@@ -39,21 +38,24 @@ public class MovieValidation {
 
 		return match;
 	}
-	
+
 	public static boolean validateMovieImageUrl(String imageUrl) throws InvalidUserException {
 
-		if (imageUrl == null || imageUrl.isEmpty()) {		
+		if (imageUrl == null || imageUrl.isEmpty()) {
 			throw new InvalidUserException("image is not found");
-		}		
+		}
 		try {
-			new URL(imageUrl);
+			URL val = new URL(imageUrl);
+			System.out.println(val + " image is found");
+			return true;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+			return false;
 		}
 
-		return true;
+		
 	}
-	
+
 	public static boolean validateMovieRating(int rating) {
 		boolean isMatch = false;
 

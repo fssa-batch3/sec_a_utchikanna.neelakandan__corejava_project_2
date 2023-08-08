@@ -14,6 +14,11 @@ public class Movie {
 		this.movieRating = movieRating;
 		this.imageUrl = imageUrl;
 	}
+public Movie() {
+	// TODO Auto-generated constructor stub
+}
+
+
 public String getMovieTitle() {
 	return title;
 }
@@ -35,7 +40,7 @@ public void setMovieRating(int movieRating) {
 public String getMovieImgUrl() {
 	return imageUrl;
 }
-public void setMovieImg(String imageUrl) {
+public void setMovieImgUrl(String imageUrl) {
 	this.imageUrl = imageUrl;
 }
 
