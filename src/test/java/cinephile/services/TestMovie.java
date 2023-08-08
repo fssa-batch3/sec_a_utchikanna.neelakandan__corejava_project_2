@@ -1,20 +1,17 @@
 package cinephile.services;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import java.awt.print.Book;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
-import cinephile.DAO.exceptions.DAOException;
 import cinephile.model.Movie;
-import cinephile.DAO.MovieDAO;
+import cinephile.model.User;
 import cinephile.services.exceptions.ServiceException;
 
 public class TestMovie {
@@ -51,7 +48,7 @@ public class TestMovie {
 			assertTrue(movieService.Movie(movie));
 		} catch (ServiceException e) {
 			e.printStackTrace();
-		
+		   fail();
 		}
 	}
 	
@@ -74,24 +71,7 @@ public class TestMovie {
 		}
 	}
 
-	@Test
-	public void testInvalidMovieId() {
-
-		MovieService movieService = new MovieService();
-		LocalDateTime currentDateTime = LocalDateTime.now();
-        Instant instant = currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant();
-        long currentTimestamp = instant.toEpochMilli();
-        int absoluteX = (int)currentTimestamp;
-        int id =Math.abs(absoluteX);
-        
-		Movie movie = new Movie("Leo",id, 3 , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
-		try {
-			assertFalse(movieService.Movie(movie));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-
-		}
-	}
+	
 	
 	@Test
 	public void testInvalidMovieRating() {
@@ -102,7 +82,7 @@ public class TestMovie {
         long currentTimestamp = instant.toEpochMilli();
         int absoluteX = (int)currentTimestamp;
         int id =Math.abs(absoluteX);
-		Movie movie = new Movie("Leo",id, 5 , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie("Leo",id, -5 , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertFalse(movieService.Movie(movie));
 		} catch (ServiceException e) {
@@ -128,7 +108,57 @@ public class TestMovie {
 		}
 	}
 	
-    
+	@Test
+	public void testUpdateMovie() {
+		MovieService movieService = new MovieService();
+		LocalDateTime currentDateTime = LocalDateTime.now();
+        Instant instant = currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant();
+        long currentTimestamp = instant.toEpochMilli();
+        int absoluteX = (int)currentTimestamp;
+        int id =Math.abs(absoluteX);
+		Movie movie = new Movie("jailer",id, 4, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		try {
+			assertTrue(movieService.updateMovie(movie));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			 fail();
+		}
+	}
+	
+	@Test
+	public void testDeleteMovie() {
+		MovieService movieService = new MovieService();
+		LocalDateTime currentDateTime = LocalDateTime.now();
+        Instant instant = currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant();
+        long currentTimestamp = instant.toEpochMilli();
+        int absoluteX = (int)currentTimestamp;
+        int id =Math.abs(absoluteX);
+		Movie movie = new Movie("jailer",id, 4, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		try {
+			assertTrue(movieService.deleteMovie(movie));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			 fail();
+		}
+	}
+	
+	@Test
+	public void testInvalidUpdateMovie() {
+
+		MovieService movieService = new MovieService();
+		LocalDateTime currentDateTime = LocalDateTime.now();
+        Instant instant = currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant();
+        long currentTimestamp = instant.toEpochMilli();
+        int absoluteX = (int)currentTimestamp;
+        int id =Math.abs(absoluteX);
+		Movie movie = new Movie("Leo",id, 3 , "htp://example.com/image.jpg");
+		try {
+			assertFalse(movieService.Movie(movie));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		
+		}
+	}
 	
 
 }

@@ -11,7 +11,10 @@ public class UserValidator {
 	public static boolean validateUser(User user) throws InvalidUserException {
 
 		if (validatePassword(user.getPassword())
-				&& validateEmail(user.getEmail())) {
+				&& validateEmail(user.getEmail())
+				&& validateFirstName(user.getFirstName())
+				&& validateLastName(user.getLastName())
+				&& validatePhoneNo(user.getPhoneNo())) {
 			return true;
 		} else {
 			throw new InvalidUserException("User details not valid");
@@ -25,7 +28,7 @@ public class UserValidator {
 		if (firstName == null)
 			return false;
 
-		String regex = "^[A-Za-z]\\w{2,29}$";
+		String regex = "^[A-Za-z'’ -]{1,50}$";
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(firstName);
 		match = m.matches();
@@ -44,7 +47,7 @@ public class UserValidator {
 		if (lastName == null)
 			return false;
 
-		String regex = "^[A-Za-z]\\w{2,29}$";
+		String regex = "^[A-Za-z'’ -]{1,50}$";
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(lastName);
 		match = m.matches();
@@ -98,7 +101,7 @@ public class UserValidator {
 		if (phoneNo == 0)
 			return false;
 		String strNumber = String.valueOf(phoneNo);
-		String regex = "^\\+(?:[0-9] ?){6,14}[0-9]$";
+		String regex = "^\\d{10}$";
 		isMatch = Pattern.matches(regex, strNumber);
 		if (isMatch) {
 			System.out.println("The phone number is: Valid");

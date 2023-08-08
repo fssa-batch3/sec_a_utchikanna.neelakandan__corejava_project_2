@@ -8,12 +8,35 @@ import java.sql.SQLException;
 
 import cinephile.DAO.exceptions.DAOException;
 import cinephile.model.User;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class UserDAO {
 
 	// Connect to database
-	public Connection getConnection() throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinephile", "root", "123456");
+	
+	
+	public static Connection getConnection() throws SQLException {
+		
+		String DB_URL;
+		String DB_USER;
+		String DB_PASSWORD;
+		Connection connection = null;
+		if (System.getenv("CI") != null) {
+			DB_URL = System.getenv("DB_URL");
+			DB_USER = System.getenv("DB_USER");
+			DB_PASSWORD = System.getenv("DB_PASSWORD");
+		} else {
+			Dotenv env = Dotenv.load();
+			DB_URL = env.get("DB_URL");
+			DB_USER = env.get("DB_USER");
+			DB_PASSWORD = env.get("DB_PASSWORD");
+		}
+		try {
+	  connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Unable to connect");
+		}
 		return connection;
 
 	}

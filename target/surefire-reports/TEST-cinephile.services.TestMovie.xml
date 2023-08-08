@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="2" name="cinephile.services.TestMovie" time="0.122" errors="0" skipped="0">
+<testsuite tests="5" failures="2" name="cinephile.services.TestMovie" time="0.114" errors="0" skipped="0">
   <properties>
     <property name="jansi.mode" value="force"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -26,7 +26,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\UtchikannaNeelakanda\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf10806983635391002899.tmp"/>
+    <property name="classworlds.conf" value="C:\Users\UtchikannaNeelakanda\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8692856132943322484.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Users\UtchikannaNeelakanda\Downloads\eclipse-jee-2023-03-R-win32-x86_64\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.6.v20230204-1729\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/UtchikannaNeelakanda/Documents/eclipse//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.6.v20230204-1729/jre/bin/server;C:/Users/UtchikannaNeelakanda/Documents/eclipse//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.6.v20230204-1729/jre/bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\UtchikannaNeelakanda\AppData\Local\Microsoft\WindowsApps;C:\Users\UtchikannaNeelakanda\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\UtchikannaNeelakanda\AppData\Local\GitHubDesktop\bin;C:\Users\UtchikannaNeelakanda\Documents\eclipse;;."/>
     <property name="jdk.debug" value="release"/>
@@ -58,29 +58,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="java.vendor.version" value="Temurin-17.0.6+10"/>
-    <property name="m2e.build.project.data.socket.port" value="58198"/>
+    <property name="m2e.build.project.data.socket.port" value="51734"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testInvalidMovieTitle" time="0.001"/>
-  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testInvalidMovieImageUrl" time="0.004"/>
-  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testInvalidMovieRating" time="0.053">
-    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;false&gt; but was: &lt;true&gt;
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
-	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:228)
-	at cinephile.services.TestMovie.testInvalidMovieRating(TestMovie.java:107)
-</failure>
-    <system-out>The movie title is valid.
-The movie rating is: Valid
-https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&amp;name=large image is found
-747072929 added
-</system-out>
-  </testcase>
-  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testAddMovieSuccess" time="0.033"/>
-  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testInvalidMovieId" time="0.031">
+  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testInvalidMovieId" time="0.034">
     <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;false&gt; but was: &lt;true&gt;
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -93,7 +74,26 @@ https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&amp;name=large image is f
     <system-out>The movie title is valid.
 The movie rating is: Valid
 https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&amp;name=large image is found
-747072840 added
+744109787 added
+</system-out>
+  </testcase>
+  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testAddMovieSuccess" time="0.032"/>
+  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testInvalidMovieImageUrl" time="0.006"/>
+  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testInvalidMovieTitle" time="0.005"/>
+  <testcase classname="cinephile.services.TestMovie" name="cinephile.services.TestMovie.testInvalidMovieRating" time="0.037">
+    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;false&gt; but was: &lt;true&gt;
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
+	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:228)
+	at cinephile.services.TestMovie.testInvalidMovieRating(TestMovie.java:107)
+</failure>
+    <system-out>The movie title is valid.
+The movie rating is: Valid
+https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&amp;name=large image is found
+744109697 added
 </system-out>
   </testcase>
 </testsuite>
