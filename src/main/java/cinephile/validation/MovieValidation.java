@@ -6,17 +6,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cinephile.model.Movie;
-import cinephile.validation.exceptions.InvalidUserException;
+import cinephile.validation.exceptions.ValidationException;
 
 public class MovieValidation {
 
-	public static boolean validateMovie(Movie movie) throws InvalidUserException {
+	public static boolean validateMovie(Movie movie) throws ValidationException {
 
 		if (validateMovieTitle(movie.getMovieTitle()) && validateMovieRating(movie.getMovieRating())
 				&& validateMovieImageUrl(movie.getMovieImgUrl())) {
 			return true;
 		} else {
-			throw new InvalidUserException("Movie details not valid");
+			throw new ValidationException("Movie details not valid");
 		}
 	}
 
@@ -39,10 +39,10 @@ public class MovieValidation {
 		return match;
 	}
 
-	public static boolean validateMovieImageUrl(String imageUrl) throws InvalidUserException {
+	public static boolean validateMovieImageUrl(String imageUrl) throws ValidationException {
 
 		if (imageUrl == null || imageUrl.isEmpty()) {
-			throw new InvalidUserException("image is not found");
+			throw new ValidationException("image is not found");
 		}
 		try {
 			URL val = new URL(imageUrl);

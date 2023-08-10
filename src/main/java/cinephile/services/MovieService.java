@@ -7,7 +7,7 @@ import cinephile.DAO.exceptions.DAOException;
 import cinephile.model.Movie;
 import cinephile.services.exceptions.ServiceException;
 import cinephile.validation.MovieValidation;
-import cinephile.validation.exceptions.InvalidUserException;
+import cinephile.validation.exceptions.ValidationException;
 
 public class MovieService {
 
@@ -22,7 +22,7 @@ public class MovieService {
 				return false;
 			}
 
-		} catch (DAOException | InvalidUserException e) { 
+		} catch (DAOException | ValidationException e) { 
 			throw new ServiceException(e);
 		}
 
@@ -61,7 +61,7 @@ public class MovieService {
 				return false;
 			}
 
-		} catch (DAOException | InvalidUserException e) { 
+		} catch (DAOException | ValidationException e) { 
 			throw new ServiceException(e);
 		}
 
@@ -78,7 +78,7 @@ public class MovieService {
 				return false;
 			}
 
-		} catch (DAOException | InvalidUserException e) { 
+		} catch (DAOException | ValidationException e) { 
 			throw new ServiceException(e);
 		}
 
@@ -95,7 +95,7 @@ public class MovieService {
 				return false;
 			}
 
-		} catch (DAOException | InvalidUserException e) { 
+		} catch (DAOException | ValidationException e) { 
 			throw new ServiceException(e);
 		}
 

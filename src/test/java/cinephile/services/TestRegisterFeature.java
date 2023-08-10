@@ -13,7 +13,7 @@ public class TestRegisterFeature {
 
 	public static void main(String[] args) {
 
-		User user1 = new User("naveen@gmail.com", "Kanna@123", "kanna", "utchi", 1234567890);
+		User user1 = new User("naveeeeeeeeeeen@gmail.com", "Kanna@123", "kanna", "utchi", 1234567890);
 		UserService userService = new UserService();
 
 		try {
@@ -23,7 +23,7 @@ public class TestRegisterFeature {
 			e.printStackTrace();
 
 		}
-
+  
 	}
 
 	@Test
@@ -31,8 +31,10 @@ public class TestRegisterFeature {
 		UserService userService = new UserService();
 		User user1 = new User("utchi@gmail.com", "Kanna@3108", "Jonh snow", "Kan na", 1234567890);
 		try {
+			
 			assertTrue(userService.registerUser(user1));
 		} catch (ServiceException e) {
+			System.out.println("testRegistrationSuccess");
 			e.printStackTrace();
 			 fail();
 		}

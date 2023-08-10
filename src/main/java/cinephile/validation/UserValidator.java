@@ -4,11 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cinephile.model.User;
-import cinephile.validation.exceptions.InvalidUserException;
+import cinephile.validation.exceptions.ValidationException;
 
 public class UserValidator {
 
-	public static boolean validateUser(User user) throws InvalidUserException {
+	public static boolean validateUser(User user) throws ValidationException {
 
 		if (validatePassword(user.getPassword())
 				&& validateEmail(user.getEmail())
@@ -17,7 +17,7 @@ public class UserValidator {
 				&& validatePhoneNo(user.getPhoneNo())) {
 			return true;
 		} else {
-			throw new InvalidUserException("User details not valid");
+			throw new ValidationException("User details not valid");
 		}
 	}
 
@@ -114,11 +114,11 @@ public class UserValidator {
 	
 	// Checking the loginUser present or not
 
-		public static boolean validateLogIn(User user) throws InvalidUserException {
+		public static boolean validateLogIn(User user) throws ValidationException {
 			if (user != null && validateEmail(user.getEmail()) && validatePassword(user.getPassword())) {
 				return true;
 			} else {
-				throw new InvalidUserException("User details not valid");
+				throw new ValidationException("User details not valid");
 
 			}
 		}

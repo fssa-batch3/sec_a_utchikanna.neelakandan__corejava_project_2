@@ -116,7 +116,7 @@ public class TestMovie {
         long currentTimestamp = instant.toEpochMilli();
         int absoluteX = (int)currentTimestamp;
         int id =Math.abs(absoluteX);
-		Movie movie = new Movie("jailer",id, 4, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie("jailer",id, 5, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.updateMovie(movie));
 		} catch (ServiceException e) {

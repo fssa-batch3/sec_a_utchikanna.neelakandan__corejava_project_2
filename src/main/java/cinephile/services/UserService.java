@@ -7,7 +7,7 @@ import cinephile.DAO.exceptions.DAOException;
 import cinephile.model.User;
 import cinephile.services.exceptions.ServiceException;
 import cinephile.validation.UserValidator;
-import cinephile.validation.exceptions.InvalidUserException;
+import cinephile.validation.exceptions.ValidationException;
 
 public class UserService {
 	public boolean registerUser(User user) throws ServiceException {
@@ -20,8 +20,7 @@ public class UserService {
 			} else {
 				return false;
 			}
-
-		} catch (DAOException | InvalidUserException e) { 
+		} catch (DAOException | ValidationException e) { 
 			throw new ServiceException(e);
 		}
 
@@ -38,7 +37,7 @@ public class UserService {
 				return false;
 			}
 
-		} catch (DAOException | InvalidUserException e) {
+		} catch (DAOException | ValidationException e) {
 			throw new ServiceException(e);
 		}
 

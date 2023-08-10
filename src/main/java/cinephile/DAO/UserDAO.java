@@ -81,7 +81,7 @@ public class UserDAO {
 			Connection connection = getConnection();
 
 			// Prepare SQL statement
-			String insertQuery = "Insert INTO user (email, password, firstName , lastName , phoneNo) VALUES(?,?,?,?,?)";
+			String insertQuery = "Insert INTO user (email, password, first_name , last_name , phone_no) VALUES(?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insertQuery);
 			statement.setString(1, user.getEmail());
 			statement.setString(2, user.getPassword());

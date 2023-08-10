@@ -1,7 +1,5 @@
 package cinephile.services;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -26,6 +24,7 @@ public class TestLoginFeature {
 		}
 
 	}
+
 	@Test
 	public void testLoginSuccess() {
 		UserService userService = new UserService();
@@ -33,11 +32,11 @@ public class TestLoginFeature {
 		try {
 			assertTrue(userService.logInUser(user1));
 		} catch (ServiceException e) {
+			System.out.println("testLoginSuccess");
 			e.printStackTrace();
 			fail();
 		}
 	}
-
 
 	@Test
 	public void testEmailPasswordNull() {
@@ -77,7 +76,3 @@ public class TestLoginFeature {
 	}
 
 }
-
-
-
-
