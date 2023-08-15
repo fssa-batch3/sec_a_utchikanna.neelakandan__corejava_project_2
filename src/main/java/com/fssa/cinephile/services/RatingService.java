@@ -11,11 +11,11 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 
 public class RatingService {
 
-	public boolean Rating(Rating rating) throws ServiceException {
+	public boolean giveRating(Rating rating) throws ServiceException {
 		RatingDAO ratingDAO = new RatingDAO();
 		try { 
 			RatingValidation.validateRatingDetails(rating);
-			if (ratingDAO.rating(rating)) {
+			if (ratingDAO.addRating(rating)) {
 				System.out.println(rating.getRatingId()+" added");
 				return true;
 			} else {
@@ -43,7 +43,7 @@ public class RatingService {
 		RatingDAO ratingDAO = new RatingDAO();
 		try { 
 			RatingValidation.validateRatingDetails(rating);
-			if (ratingDAO.rating(rating)) {
+			if (ratingDAO.addRating(rating)) {
 				System.out.println(rating.getRatingId()+" successfully updated");
 				return true;
 			} else {
@@ -64,7 +64,7 @@ public class RatingService {
 		RatingDAO ratingDAO = new RatingDAO();
 		try { 
 			RatingValidation.validateRatingDetails(rating);
-			if (ratingDAO.rating(rating)) {
+			if (ratingDAO.addRating(rating)) {
 				System.out.println(rating.getRatingId()+" ratings are read!");
 				return true;
 			} else {

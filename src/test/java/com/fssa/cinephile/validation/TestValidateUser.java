@@ -1,79 +1,104 @@
 package com.fssa.cinephile.validation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.cinephile.validation.exceptions.ValidationException;
  class TestValidateUser {
 
-	
-	@Test
-    void testValidEmail() throws ValidationException {
-        String validEmail = "kanna@gmail.com";
-        boolean result = UserValidator.validateEmail(validEmail);
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    void testInvalidEmail() {
-        String invalidEmail = "";
-        Assertions.assertThrows(ValidationException.class, () -> UserValidator.validateEmail(invalidEmail));
-    }
-
-   
-    @Test
-    void testValidPassword() throws ValidationException {
-        String validPassword = "kanna@123K";
-        boolean result = UserValidator.validatePassword(validPassword);
-        Assertions.assertTrue(result);
-    }
-
-    @Test
-    void testInvalidPassword() {
-        String invalidPassword = "";
-        Assertions.assertThrows(ValidationException.class, () -> UserValidator.validatePassword(invalidPassword));
-    }
     
     @Test
-    void testValidFirstName() throws ValidationException {
-        String validFirstName = "kanna";
-        boolean result = UserValidator.validateFirstName(validFirstName);
-        Assertions.assertTrue(result);
+    void testValidUserFirstname() {
+        try {
+            assertTrue(UserValidator.validateFirstName("Kanna"));
+            System.out.println("firstname is valid");
+        } catch (ValidationException e) {
+            System.out.println(e.getMessage());
+            fail();
+        }
     }
 
     @Test
     void testInvalidFirstName() {
-        String invalidFirstName = "";
-        Assertions.assertThrows(ValidationException.class, () -> UserValidator.validateFirstName(invalidFirstName));
+    	ValidationException result = assertThrows(ValidationException.class, () -> UserValidator.validateFirstName("3kanna"));
+           assertEquals("The first name is not valid", result.getMessage());
     }
     
     
+   
     @Test
-    void testValidLastName() throws ValidationException {
-        String validLastName = "kanna";
-        boolean result = UserValidator.validateLastName(validLastName);
-        Assertions.assertTrue(result);
+    void testValidUserLastname() {
+        try {
+            assertTrue(UserValidator.validateLastName("Utchi"));
+            System.out.println("lastname is valid");
+        } catch (ValidationException e) {
+            System.out.println(e.getMessage());
+            fail();
+        }
     }
 
     @Test
     void testInvalidLastName() {
-        String invalidLastName = "";
-        Assertions.assertThrows(ValidationException.class, () -> UserValidator.validateLastName(invalidLastName));
+    	ValidationException result = assertThrows(ValidationException.class, () -> UserValidator.validateLastName("utchi7"));
+           assertEquals("The last name is not valid", result.getMessage());
     }
     
     @Test
-    void testValidPhoneNo() throws ValidationException {
-        int validPhoneNo = 1548824945;
-        boolean result = UserValidator.validatePhoneNo(validPhoneNo);
-        Assertions.assertTrue(result);
+    void testValidUserEmail() {
+        try {
+            assertTrue(UserValidator.validateEmail("utchi@gmail.com"));
+            System.out.println("email is valid");
+        } catch (ValidationException e) {
+            System.out.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    void testInvalidEmail() {
+    	ValidationException result = assertThrows(ValidationException.class, () -> UserValidator.validateEmail("utchi.com"));
+           assertEquals("The email address is: Invalid", result.getMessage());
+    }
+    
+    
+    @Test
+    void testValidUserPhoneNo() {
+        try {
+            assertTrue(UserValidator.validatePhoneNo(1234567890));
+            System.out.println("phone no is valid");
+        } catch (ValidationException e) {
+            System.out.println(e.getMessage());
+            fail();
+        }
     }
 
     @Test
     void testInvalidPhoneNo() {
-        int invalidPhoneNo = -3;
-        Assertions.assertThrows(ValidationException.class, () -> UserValidator.validatePhoneNo(invalidPhoneNo));
+    	ValidationException result = assertThrows(ValidationException.class, () -> UserValidator.validatePhoneNo(1223));
+           assertEquals("The phone number is: Invalid", result.getMessage());
+    }
+    
+    @Test
+    void testValidUserPassword() {
+        try {
+            assertTrue(UserValidator.validatePassword("Kanna@3108"));
+            System.out.println("password is valid");
+        } catch (ValidationException e) {
+            System.out.println(e.getMessage());
+            fail();
+        }
     }
 
+    @Test
+    void testInvalidPassword() {
+    	ValidationException result = assertThrows(ValidationException.class, () -> UserValidator.validatePassword("kanna"));
+           assertEquals("Invalid password.", result.getMessage());
+    }
 	
 
 }

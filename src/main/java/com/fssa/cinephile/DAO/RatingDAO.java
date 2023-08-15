@@ -42,14 +42,14 @@ public static Connection getConnection() throws SQLException {
 
 	}
 		   
-		public boolean rating(Rating rating) throws DAOException {
+		public boolean addRating(Rating rating) throws DAOException {
 			  
 			try {
 				// Get connection
 				Connection connection = getConnection();
 
 				// Prepare SQL statement
-				String insertQuery = "Insert INTO rating (rating_id, rating, movie_id, user_id) VALUES(?,?,?,?)";
+				String insertQuery = "Insert INTO rating (rating_id,movie_id, user_id,rating) VALUES(?,?,?,?)";
 				PreparedStatement statement = connection.prepareStatement(insertQuery);
 				statement.setInt(1, rating.getRatingId());
 				statement.setInt(3, rating.getRating());

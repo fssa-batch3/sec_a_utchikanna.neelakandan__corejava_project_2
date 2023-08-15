@@ -74,7 +74,7 @@ public static Connection getConnection() throws SQLException {
 		  
 		  
 		public boolean addMovie(Movie movie) throws DAOException {
-			String insertQuery = "Insert INTO Movie (movie_title,movie_id, movie_rating , movie_image_url) VALUES(?,?,?,?)";
+			String insertQuery = "Insert INTO movie (movie_title,movie_id, movie_rating , movie_image_url) VALUES(?,?,?,?)";
 			try (
 				// Get connection
 				Connection connection = getConnection();

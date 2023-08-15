@@ -22,11 +22,11 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
         long currentTimestamp = instant.toEpochMilli();
         int absoluteX = (int)currentTimestamp;
         int id =Math.abs(absoluteX);
-		Rating rating = new Rating( id,1 ,654321, 678901);
+		Rating rating = new Rating( id,10,2, 3);
 		RatingService ratingService = new RatingService();
 
 		try {
-			ratingService.Rating(rating);
+			ratingService.giveRating(rating);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,6 +36,22 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	}
 	
 	@Test
+	 void testRatingUpdate() {
+		RatingService ratingService = new RatingService();
+		LocalDateTime currentDateTime = LocalDateTime.now();
+       Instant instant = currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant();
+       long currentTimestamp = instant.toEpochMilli();
+       int absoluteX = (int)currentTimestamp;
+       int id =Math.abs(absoluteX); 
+       Rating rating = new Rating(id,10,1,4);
+		try {
+			assertTrue(ratingService.updateRating(rating));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			 fail();
+ 	      }
+	}
+	@Test
  void testInvalidRating() {
 
 		RatingService ratingService = new RatingService();
@@ -44,30 +60,15 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
         long currentTimestamp = instant.toEpochMilli();
         int absoluteX = (int)currentTimestamp;
         int id =Math.abs(absoluteX);
-        Rating rating = new Rating( id,-1 ,654321231, 678901231);
+        Rating rating = new Rating( id,10 ,2, -1);
 		try {
-			assertFalse(ratingService.Rating(rating));
+			assertFalse(ratingService.giveRating(rating));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		
 		}
 	}
 	
-	@Test
-	 void testRatingUpdate() {
-		RatingService ratingService = new RatingService();
-		LocalDateTime currentDateTime = LocalDateTime.now();
-        Instant instant = currentDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant();
-        long currentTimestamp = instant.toEpochMilli();
-        int absoluteX = (int)currentTimestamp;
-        int id =Math.abs(absoluteX); 
-        Rating rating = new Rating(id,65432132,67890123,4);
-		try {
-			assertTrue(ratingService.updateRating(rating));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-			 fail();
-  	}
-	}
+	
 
 }

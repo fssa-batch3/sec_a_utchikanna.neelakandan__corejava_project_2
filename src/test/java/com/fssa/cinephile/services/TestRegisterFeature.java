@@ -30,7 +30,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	@Test
 	 void testRegistrationSuccess() {
 		UserService userService = new UserService();
-		User user1 = new User("utchi@gmail.com", "Kanna@3108", "Jonh snow", "Kan na", 1234567890);
+		User user1 = new User("kumar@gmail.com", "Kanna@3108", "Jonh snow", "Kan na", 1234567890);
 		try {
 			
 			assertTrue(userService.registerUser(user1));

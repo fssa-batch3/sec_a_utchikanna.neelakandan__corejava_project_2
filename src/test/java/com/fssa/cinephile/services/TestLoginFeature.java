@@ -13,7 +13,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
  class TestLoginFeature {
 
 	public static void main(String[] args) {
-		User user1 = new User("kanna@gmail.com", "kanna123@K");
+		User user1 = new User("utchi@gmail.com", "Kanna@3108");
 		UserService userService = new UserService();
 
 		try {
@@ -29,7 +29,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	@Test
 	 void testLoginSuccess() {
 		UserService userService = new UserService();
-		User user1 = new User("kanna@gmail.com", "kanna123@K");
+		User user1 = new User("kumar@gmail.com", "Kanna@3108");
 		try {
 			assertTrue(userService.logInUser(user1));
 		} catch (ServiceException e) {

@@ -1,6 +1,10 @@
 package com.fssa.cinephile.validation;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
 
 import com.fssa.cinephile.validation.exceptions.ValidationException;
@@ -8,42 +12,53 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
  class TestValidateMovie {
 
 	 @Test
-	    void testValidMovieTitle() throws ValidationException {
-	        String validTitle = "Sample Title";
-	        boolean result = MovieValidation.validateMovieTitle(validTitle);
-	        Assertions.assertTrue(result);
+	    void testValidMovieTitle() {
+	        try {
+	            assertTrue(MovieValidation.validateMovieTitle("Leo"));
+	            System.out.println("movie title is valid");
+	        } catch (ValidationException e) {
+	            System.out.println(e.getMessage());
+	            fail();
+	        }
 	    }
 
 	    @Test
 	    void testInvalidMovieTitle() {
-	        String invalidTitle = "";
-	        Assertions.assertThrows(ValidationException.class, () -> MovieValidation.validateMovieTitle(invalidTitle));
+	    	ValidationException result = assertThrows(ValidationException.class, () -> MovieValidation.validateMovieTitle("e"));
+	           assertEquals("The movie title is not valid", result.getMessage());
 	    }
 	    
 	    @Test
-	    void testValidateMovieImageUrl() throws ValidationException {
-	        String validImageUrl = "https://example.com";
-	        boolean result = MovieValidation.validateMovieImageUrl(validImageUrl);
-	        Assertions.assertTrue(result);
+	    void testValidMovieImageUrl() {
+	        try {
+	            assertTrue(MovieValidation.validateMovieImageUrl("https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large"));
+	            System.out.println("movie image is valid");
+	        } catch (ValidationException e) {
+	            System.out.println(e.getMessage());
+	            fail();
+	        }
 	    }
 
 	    @Test
 	    void testInvalidMovieImageUrl() {
-	        String invalidImageUrl = "";
-	        Assertions.assertThrows(ValidationException.class, () -> MovieValidation.validateMovieImageUrl(invalidImageUrl));
+	    	ValidationException result = assertThrows(ValidationException.class, () -> MovieValidation.validateMovieImageUrl("httpspbs.twimg.com/media/FoDdg2WXEAomzQX"));
+	           assertEquals("image is not found", result.getMessage());
 	    }
 	    
 	    @Test
-	    void testValidMovieRating() throws ValidationException {
-	        int validRating = 3;
-	        boolean result = MovieValidation.validateMovieRating(validRating);
-	        Assertions.assertTrue(result);
+	    void testValidMovieRating() {
+	        try {
+	            assertTrue(MovieValidation.validateMovieRating(1));
+	            System.out.println("rating is valid");
+	        } catch (ValidationException e) {
+	            System.out.println(e.getMessage());
+	            fail();
+	        }
 	    }
 
 	    @Test
 	    void testInvalidMovieRating() {
-	        int invalidRating = 10;
-	        Assertions.assertThrows(ValidationException.class, () -> MovieValidation.validateMovieRating(invalidRating));
+	    	ValidationException result = assertThrows(ValidationException.class, () -> MovieValidation.validateMovieRating(10));
+	           assertEquals("The movie rating is: Invalid", result.getMessage());
 	    }
-
 }
