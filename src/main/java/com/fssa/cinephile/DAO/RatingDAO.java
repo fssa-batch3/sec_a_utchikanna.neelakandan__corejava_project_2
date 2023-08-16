@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fssa.cinephile.DAO.exceptions.DAOException;
+import com.fssa.cinephile.model.Movie;
 import com.fssa.cinephile.model.Rating;
 
 import io.github.cdimascio.dotenv.Dotenv;
@@ -43,14 +44,15 @@ public static Connection getConnection() throws SQLException {
 	}
 		   
 		public boolean addRating(Rating rating) throws DAOException {
-			  
-			try {
+			String insertQuery = "Insert INTO rating (rating_id,movie_id, user_id,rating) VALUES(?,?,?,?)";
+			try (
 				// Get connection
 				Connection connection = getConnection();
 
 				// Prepare SQL statement
-				String insertQuery = "Insert INTO rating (rating_id,movie_id, user_id,rating) VALUES(?,?,?,?)";
+				
 				PreparedStatement statement = connection.prepareStatement(insertQuery);
+				){
 				statement.setInt(1, rating.getRatingId());
 				statement.setInt(3, rating.getRating());
 				statement.setInt(2, rating.getMovieId());
@@ -68,11 +70,12 @@ public static Connection getConnection() throws SQLException {
 		
 		 public static List<Rating> getAllRatings() throws DAOException {
 		        List<Rating> ratingList = new ArrayList<>();
-		       
-		        try  {
+		        String query = "SELECT * FROM rating WHERE isActive = true;;";
+		        try  (
 		        	Connection connection = getConnection();
-		        	 String query = "SELECT * FROM rating WHERE isActive = true;;";
+		        	
 					PreparedStatement statement = connection.prepareStatement(query);
+		        		){
 					 ResultSet rs = statement.executeQuery();
 		            while (rs.next()) {
 		            	Rating rating = new Rating();
@@ -89,51 +92,25 @@ public static Connection getConnection() throws SQLException {
 		        return ratingList;
 		    }
 		
-		 public static  Rating updateRating(Rating rating) throws DAOException {
-		        StringBuilder queryBuilder = new StringBuilder("UPDATE rating SET ");
-		        List<String> setColumns = new ArrayList<>();
-		        List<Object> setValues = new ArrayList<>();
+		 public boolean updateRating(Rating rating) throws DAOException{
+			    String updateQuery = "UPDATE rating SET  rating = ? WHERE rating_id = ?";
+			    try (
+			        // Get connection
+			        Connection connection = getConnection();
+			        // Prepare SQL statement
+			        PreparedStatement statement = connection.prepareStatement(updateQuery);
+			    ){
+			        
+			        statement.setInt(1, rating.getRating());
+			        
 
-		        if (rating.getRatingId() != 0) {
-		            setColumns.add("rating_id = ?");
-		            setValues.add(rating.getRatingId());
-		        }
-		        if (rating.getRating() != 0) {
-		            setColumns.add("rating = ?");
-		            setValues.add(rating.getRating());
-		        }
-		        if (rating.getMovieId() != 0) {
-		            setColumns.add("movie_id = ?");
-		            setValues.add(rating.getMovieId());
-		        }
-		        if (rating.getUserId() != 0) {
-		            setColumns.add("user_id = ?");
-		            setValues.add(rating.getUserId());
-		        }
-
-
-		        if (setColumns.isEmpty()) {
-		            return rating;
-		        }
-		        queryBuilder.append(String.join(", ", setColumns));
-		        queryBuilder.append(" WHERE rating_id = ?;");
-		        try (Connection connection = getConnection();
-		             PreparedStatement pst = connection.prepareStatement(queryBuilder.toString())) {
-
-		            int index = 1;
-		            for (Object value : setValues) {
-		                pst.setObject(index++, value);
-		            }
-		            pst.setInt(index, rating.getRatingId());
-
-		            int rowsAffected = pst.executeUpdate();
-		            if (rowsAffected > 0) {
-		                return rating;
-		            }
-		        } catch (SQLException e) {
-		            throw new DAOException(e);
-		        }
-				return rating;
+			        // Execute the query
+			        int rows = statement.executeUpdate();
+			        // Return successful or not
+			        return (rows > 0);
+			    } catch (SQLException e) {
+			        throw new DAOException(e);
+			    }
 		    }
 			
 
