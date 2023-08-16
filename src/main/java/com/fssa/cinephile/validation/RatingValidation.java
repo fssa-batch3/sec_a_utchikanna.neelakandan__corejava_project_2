@@ -9,12 +9,11 @@ public class RatingValidation {
 
 	public static boolean validateRatingDetails(Rating rating) throws ValidationException {
 
-		if ( validateRating(rating.getRating())) {
-			return true;
-		} else {
+		if (!validateRating(rating.getRating())) {
+			
 			throw new ValidationException("Rating details not valid");
 		}
-		
+		return true;
 	}
 	
 

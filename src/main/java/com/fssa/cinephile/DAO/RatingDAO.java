@@ -2,7 +2,6 @@ package com.fssa.cinephile.DAO;
 
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,44 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fssa.cinephile.DAO.exceptions.DAOException;
-import com.fssa.cinephile.model.Movie;
 import com.fssa.cinephile.model.Rating;
-
-import io.github.cdimascio.dotenv.Dotenv;
+import com.fssa.cinephile.util.ConnectionUtil;
 
 public class RatingDAO {
 
-public static Connection getConnection() throws SQLException {
-		
-		String DB_URL;
-		String DB_USER;
-		String DB_PASSWORD;
-		Connection connection = null;
-		if (System.getenv("CI") != null) {
-			DB_URL = System.getenv("DB_URL");
-			DB_USER = System.getenv("DB_USER");
-			DB_PASSWORD = System.getenv("DB_PASSWORD");
-		} else {
-			Dotenv env = Dotenv.load();
-			DB_URL = env.get("DB_URL");
-			DB_USER = env.get("DB_USER");
-			DB_PASSWORD = env.get("DB_PASSWORD");
-		}
-		try {
-	  connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException("Unable to connect");
-		}
-		return connection;
 
-	}
 		   
 		public boolean addRating(Rating rating) throws DAOException {
 			String insertQuery = "Insert INTO rating (rating_id,movie_id, user_id,rating) VALUES(?,?,?,?)";
 			try (
 				// Get connection
-				Connection connection = getConnection();
+				Connection connection = ConnectionUtil.getConnection();
 
 				// Prepare SQL statement
 				
@@ -72,7 +45,7 @@ public static Connection getConnection() throws SQLException {
 		        List<Rating> ratingList = new ArrayList<>();
 		        String query = "SELECT * FROM rating WHERE isActive = true;;";
 		        try  (
-		        	Connection connection = getConnection();
+		        	Connection connection = ConnectionUtil.getConnection();
 		        	
 					PreparedStatement statement = connection.prepareStatement(query);
 		        		){
@@ -96,7 +69,7 @@ public static Connection getConnection() throws SQLException {
 			    String updateQuery = "UPDATE rating SET  rating = ? WHERE rating_id = ?";
 			    try (
 			        // Get connection
-			        Connection connection = getConnection();
+			        Connection connection = ConnectionUtil.getConnection();
 			        // Prepare SQL statement
 			        PreparedStatement statement = connection.prepareStatement(updateQuery);
 			    ){
