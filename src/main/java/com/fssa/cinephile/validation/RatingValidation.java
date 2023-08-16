@@ -10,10 +10,10 @@ public class RatingValidation {
 	public static boolean validateRatingDetails(Rating rating) throws ValidationException {
 
 		if (!validateRating(rating.getRating())) {
-			
 			throw new ValidationException("Rating details not valid");
-		}
+		}else {	
 		return true;
+		}
 	}
 	
 
