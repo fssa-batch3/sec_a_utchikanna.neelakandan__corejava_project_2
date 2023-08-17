@@ -1,5 +1,5 @@
 ## CINEPHILE
-[Milestone](https://github.com/fssa-batch3/sec_a_utchikanna.neelakandan__corejava_project_2/milestones) 
+[Milestones](https://github.com/fssa-batch3/sec_a_utchikanna.neelakandan__corejava_project_2/milestones) 
 
 
 
