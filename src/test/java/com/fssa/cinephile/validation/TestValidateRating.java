@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
+import com.fssa.cinephile.model.Rating;
 import com.fssa.cinephile.validation.exceptions.ValidationException;
 
  class TestValidateRating {
@@ -14,7 +15,9 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 	 @Test
 	    void testValidRating() {
 	        try {
-	            assertTrue(RatingValidation.validateRating(5));
+	        	Rating rating = new Rating();
+	        	rating.setRating(3);
+	            assertTrue(RatingValidation.validateRating(rating));
 	            System.out.println("rating is valid");
 	        } catch (ValidationException e) {
 	            System.out.println(e.getMessage());
@@ -24,7 +27,9 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 
 	    @Test
 	    void testInvalidRating() {
-	    	ValidationException result = assertThrows(ValidationException.class, () -> RatingValidation.validateRating(10));
+	    	Rating rating = new Rating();
+        	rating.setRating(10);
+	    	ValidationException result = assertThrows(ValidationException.class, () -> RatingValidation.validateRating(rating));
 	           assertEquals("The rating is: Invalid", result.getMessage());
 	    }
 

@@ -7,27 +7,11 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 
 public class RatingValidation {
 
-	public static boolean validateRatingDetails(Rating rating) throws ValidationException {
-
-		if (!validateRating(rating.getRating())) {
-			throw new ValidationException("Rating details not valid");
-		}else {	
-		return true;
-		}
-	}
-	
-
-	public static boolean validateRating(int rating)throws ValidationException {
-	
-	
-		if (rating >= 1 && rating <=5) {
-			System.out.println("The rating is: Valid");
-			return true ;
-		} else {
+	public static boolean validateRating(Rating rating)throws ValidationException {
+		if (rating.getRating() <= 1 && rating.getRating() >=5) {
 			throw new ValidationException("The rating is: Invalid");
-			
-		}
-		
+		} 
+		return true ;
 	}
 
 }

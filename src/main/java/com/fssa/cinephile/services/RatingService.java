@@ -14,7 +14,7 @@ public class RatingService {
 	public boolean giveRating(Rating rating) throws ServiceException {
 		RatingDAO ratingDAO = new RatingDAO();
 		try { 
-			RatingValidation.validateRatingDetails(rating);
+			RatingValidation.validateRating(rating);
 			if (ratingDAO.addRating(rating)) {
 				System.out.println(rating.getRatingId()+" added");
 				return true;
@@ -42,7 +42,7 @@ public class RatingService {
 	public boolean updateRating(Rating rating) throws ServiceException {
 		RatingDAO ratingDAO = new RatingDAO();
 		try { 
-			RatingValidation.validateRatingDetails(rating);
+			RatingValidation.validateRating(rating);
 			if (ratingDAO.addRating(rating)) {
 				System.out.println(rating.getRatingId()+" successfully updated");
 				return true;
@@ -63,7 +63,7 @@ public class RatingService {
 	public boolean readRating(Rating rating) throws ServiceException {
 		RatingDAO ratingDAO = new RatingDAO();
 		try { 
-			RatingValidation.validateRatingDetails(rating);
+			RatingValidation.validateRating(rating);
 			if (ratingDAO.addRating(rating)) {
 				System.out.println(rating.getRatingId()+" ratings are read!");
 				return true;
