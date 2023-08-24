@@ -1,0 +1,9 @@
+com.fssa.cinephile
+com.fssa.cinephile.DAO
+com.fssa.cinephile.DAO.exceptions
+com.fssa.cinephile.model
+com.fssa.cinephile.services
+com.fssa.cinephile.services.exceptions
+com.fssa.cinephile.util
+com.fssa.cinephile.validation
+com.fssa.cinephile.validation.exceptions

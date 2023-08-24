@@ -1,7 +1,5 @@
 package com.fssa.cinephile.services;
 
-import java.util.List;
-
 import com.fssa.cinephile.DAO.MovieDAO;
 import com.fssa.cinephile.DAO.exceptions.DAOException;
 import com.fssa.cinephile.model.Movie;
@@ -9,8 +7,22 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 import com.fssa.cinephile.validation.MovieValidation;
 import com.fssa.cinephile.validation.exceptions.ValidationException;
 
-public class MovieService {
+/**
+ * This class provides services related to movie management, such as adding, reading, updating, and deleting books.
+ *
+ * @author UtchikannaNeelakandan
+ */
 
+public class MovieService {
+	
+	
+	/**
+	 * Add a new movie.
+	 *
+	 * @param movie The movie object to be added.
+	 * @return A success message if the movie is added successfully, or an error message if not.
+	 * @throws ServiceException If there's a problem with the service.
+	 */
 	public boolean createMovie(Movie movie) throws ServiceException {
 		MovieDAO movieDAO = new MovieDAO();
 		try { 
@@ -28,7 +40,13 @@ public class MovieService {
 	}
 	
 
-	  
+	/**
+	 * Get a list of all movies.
+	 *
+	 * @return A list of movie objects.
+	 * @throws ServiceException If there's a problem with the service.
+	 */
+
 	 public boolean readMovie(Movie movie) throws ServiceException {
 
 		 MovieDAO movieDAO = new MovieDAO();
@@ -40,6 +58,14 @@ public class MovieService {
 	            throw new ServiceException(e);
 	        }
 	    }
+	 
+	 /**
+		 * Update a movie's information.
+		 *
+		 * @param book The movie object containing updated information.
+		 * @return The updated movie object.
+		 * @throws ServiceException If the movie is not found or if there's a problem with the service.
+		 */
 	    
 	public boolean updateMovie(Movie movie) throws ServiceException {
 		MovieDAO movieDAO = new MovieDAO();
@@ -56,6 +82,14 @@ public class MovieService {
 		}
 
 	}
+	
+	/**
+	 * Delete a movie by its name (title).
+	 *
+	 * @param movieName The name (title) of the movie to be deleted.
+	 * @return True if the movie is deleted successfully, false otherwise.
+	 * @throws ServiceException If the movie is not found or if there's a problem with the service.
+	 */
 	
 	public boolean deleteMovie(Movie movie) throws ServiceException {
 		try { 

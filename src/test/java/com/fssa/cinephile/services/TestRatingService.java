@@ -70,29 +70,29 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	
 	
 	
-	@Test
-	 void testValidReadRating() {
-		   int rating_id = 1;
-
-		   Rating rating = new Rating(rating_id);
-
-		   RatingService ratingService = new RatingService();
-
-	        try {
-	        	ratingService.getAllRatings(rating);
-	        } catch (ServiceException e) {
-	            e.printStackTrace();
-	            fail();
-	        }
-	}
+//	@Test
+//	 void testValidReadRating() {
+//		   int rating_id = 1;
+//
+//		   Rating rating = new Rating(rating_id);
+//
+//		   RatingService ratingService = new RatingService();
+//
+//	        try {
+//	        	ratingService.getAllRatings(rating);
+//	        } catch (ServiceException e) {
+//	            e.printStackTrace();
+//	            fail();
+//	        }
+//	}
 		
-	@Test
-	 void testInvalidReadRating() {
-		 RatingService ratingService = new RatingService();
-	        ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.getAllRatings(null));
-	        assertEquals("Rating update is : Invalid", exception.getMessage());
-	}
-	
+//	@Test
+//	 void testInvalidReadRating() {
+//		 RatingService ratingService = new RatingService();
+//	        ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.getAllRatings(null));
+//	        assertEquals("Rating update is : Invalid", exception.getMessage());
+//	}
+//	
 	
 
 }

@@ -1,6 +1,8 @@
 package com.fssa.cinephile.validation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -9,6 +11,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.cinephile.validation.exceptions.ValidationException;
+
+/**
+ * Test class for the UserValidator methods.
+ * 
+ *  @author UtchikannaNeelakandan
+ */
  class TestValidateUser {
 
     

@@ -1,6 +1,7 @@
 package com.fssa.cinephile.services;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -9,6 +10,13 @@ import org.junit.jupiter.api.Test;
 import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.services.UserService;
 import com.fssa.cinephile.services.exceptions.ServiceException;
+
+
+/**
+ * Test class for the UserService methods.
+ * 
+ *   @author UtchikannaNeelakandan
+ */
 
  class TestUserService {
 
