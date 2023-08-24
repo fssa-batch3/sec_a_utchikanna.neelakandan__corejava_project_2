@@ -13,5 +13,35 @@ public class RatingValidation {
 		} 
 		return true ;
 	}
+	
+	 public static boolean validateUpdateRating(Rating Rating) throws ValidationException {
+
+	        if (Rating != null) {
+	            return true;
+	        } else {
+	            throw new ValidationException("Rating update is : Invalid");
+	        }
+
+	    }
+	 
+	 public static boolean validateGiveRating(Rating Rating) throws ValidationException {
+
+	        if (Rating != null) {
+	            return true;
+	        } else {
+	            throw new ValidationException("Rating update is : Invalid");
+	        }
+
+	    }
+	 
+	 public static boolean validateReadRating(Rating Rating) throws ValidationException {
+
+	        if (Rating != null) {
+	            return true;
+	        } else {
+	            throw new ValidationException("Rating update is : Invalid");
+	        }
+
+	    }
 
 }

@@ -9,7 +9,6 @@ public class User {
 	private int phoneNo;
 
 	public User(String email, String password, String firstName , String lastName , int phoneNo) {
-		super();
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
@@ -17,7 +16,6 @@ public class User {
 		this.phoneNo = phoneNo;
 	}
 	public User(String email, String password) {
-		super();
 		this.email = email;
 		this.password = password;
 	}

@@ -6,13 +6,19 @@ public class Movie {
   private int movieId;
   private int movieRating;
   private String imageUrl;
-  
-  public Movie(String title, int movieId, int movieRating, String imageUrl) {
-		super();
+//  add movie constructor
+  public Movie(String title, int movieRating, String imageUrl) {
+		
 		this.title = title;
-		this.movieId = movieId;
 		this.movieRating = movieRating;
 		this.imageUrl = imageUrl;
+	}
+//  update movie constructor
+  public Movie(String title ,int movieId, int movieRating, String imageUrl) {
+		this.title = title;
+		this.movieRating = movieRating;
+		this.imageUrl = imageUrl;
+		this.movieId = movieId;
 	}
 public Movie() {
 	// TODO Auto-generated constructor stub

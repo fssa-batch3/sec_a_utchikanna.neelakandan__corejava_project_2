@@ -31,7 +31,8 @@ public class UserDAO {
 			boolean userExits = rs.next();
 			if(userExits) {
 				System.out.println("User is there.");
-				String storedPassword = rs.getString("Password");
+				String storedPassword = rs.getString("password");
+				System.out.println(storedPassword);
 				
 				if(storedPassword.equals(password)) {
 					System.out.println("Log in successfully");

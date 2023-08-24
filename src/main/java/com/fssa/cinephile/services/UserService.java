@@ -15,7 +15,6 @@ public class UserService {
 		try {
 			UserValidator.validateUser(user);
 			if (userDAO.createUser(user)) {
-				System.out.println(user.getEmail() + "Successfully registered!");
 				return true;
 			} else {
 				return false;
@@ -31,7 +30,6 @@ public class UserService {
 		try {
 			UserValidator.validateLogIn(user);
 			if (userDAO.checkUserLogin(user.getEmail(), user.getPassword())) {
-				System.out.println(user.getEmail() + " Successfully Logged In!");
 				return true;
 			} else {
 				return false;

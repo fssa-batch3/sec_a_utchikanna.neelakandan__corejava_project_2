@@ -16,7 +16,6 @@ public class MovieService {
 		try { 
 			MovieValidation.validateMovie(movie);
 			if (movieDAO.addMovie(movie)) {
-				System.out.println(movie.getMovieId()+" added");
 				return true;
 			} else {
 				return false;
@@ -28,34 +27,25 @@ public class MovieService {
 
 	}
 	
-	  public Movie getMovieByName(String title) throws ServiceException {
-	        try {
-	        	Movie movie = MovieDAO.getMovieByTitle(title);
-	            if (movie == null) {
-	                throw new ServiceException(title);
-	            }
-	            return movie;
-	        } catch (DAOException e) {
-	            throw new ServiceException(e);
-	        }
-	    }
 
 	  
-	    public List<Movie> getAllMovies() throws ServiceException {
+	 public boolean readMovie(Movie movie) throws ServiceException {
+
+		 MovieDAO movieDAO = new MovieDAO();
 	        try {
-	            return MovieDAO.readMovies();
-	        } catch (DAOException e) {
+	        	MovieValidation.validateMovie(movie);
+	            return movieDAO.readMovie(movie);
+
+	        } catch (DAOException | ValidationException e) {
 	            throw new ServiceException(e);
 	        }
 	    }
-	    
 	    
 	public boolean updateMovie(Movie movie) throws ServiceException {
 		MovieDAO movieDAO = new MovieDAO();
 		try { 
 			MovieValidation.validateMovie(movie);
-			if (movieDAO.addMovie(movie)) {
-				System.out.println(movie.getMovieId()+" successfully updated");
+			if (movieDAO.updateMovie(movie)) {
 				return true;
 			} else {
 				return false;
@@ -68,11 +58,9 @@ public class MovieService {
 	}
 	
 	public boolean deleteMovie(Movie movie) throws ServiceException {
-		MovieDAO movieDAO = new MovieDAO();
 		try { 
 			MovieValidation.validateMovie(movie);
-			if (movieDAO.addMovie(movie)) {
-				System.out.println(movie.getMovieId()+" deleted");
+			if (MovieDAO.deleteMovie(movie)) {
 				return true;
 			} else {
 				return false;
@@ -84,21 +72,6 @@ public class MovieService {
 
 	}
 	
-	public boolean readMovie(Movie movie) throws ServiceException {
-		MovieDAO movieDAO = new MovieDAO();
-		try { 
-			MovieValidation.validateMovie(movie);
-			if (movieDAO.addMovie(movie)) {
-				System.out.println(movie.getMovieId()+" movies are read!");
-				return true;
-			} else {
-				return false;
-			}
-
-		} catch (DAOException | ValidationException e) { 
-			throw new ServiceException(e);
-		}
-
-	}
+	
 
 }

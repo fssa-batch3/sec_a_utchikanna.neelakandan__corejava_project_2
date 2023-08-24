@@ -7,13 +7,25 @@ public class Rating {
   private int userId;
   private int rating;
   
-  public Rating(int ratingId ,int movieId,int userId, int rating) {
-		super();
-		this.ratingId = ratingId;
+//  give rating constructor
+  public Rating(int rating,int movieId,int userId) {
 		this.movieId = movieId;
 		this.userId = userId;
 		this.rating = rating;
 	}
+  
+  // read rating constructor
+  public Rating(int ratingId) {
+      this.ratingId = ratingId;
+  }
+//  update rating constructor
+  public Rating( int ratingId , int rating,int movieId,int userId) {
+		this.movieId = movieId;
+		this.ratingId = ratingId;
+		this.userId = userId;
+		this.rating = rating;
+	}
+  
 public Rating() {
 	
 }

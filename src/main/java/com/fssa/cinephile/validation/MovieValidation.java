@@ -31,7 +31,7 @@ public class MovieValidation {
 		Matcher m = p.matcher(title);
 		match = m.matches();
 		if (match) {
-			System.out.println("The movie title is valid.");
+			System.out.println("The movie title is valid");
 		} else {
 			throw new ValidationException("The movie title is not valid");
 			

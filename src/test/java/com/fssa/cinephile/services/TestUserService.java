@@ -10,22 +10,8 @@ import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.services.UserService;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 
- class TestRegisterFeature {
+ class TestUserService {
 
-	public static void main(String[] args) {
-
-		User user1 = new User("naveeeeeeeeeeen@gmail.com", "Kanna@123", "kanna", "utchi", 1234567890);
-		UserService userService = new UserService();
-
-		try {
-			userService.registerUser(user1);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-  
-	}
 
 	@Test
 	 void testRegistrationSuccess() {
@@ -104,5 +90,66 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 		}
 	}
 	
+
+	@Test
+	 void testLoginSuccess() {
+		UserService userService = new UserService();
+		User user1 = new User("kumar@gmail.com", "Kanna@3108");
+		try {
+			assertTrue(userService.logInUser(user1));
+		} catch (ServiceException e) {
+			System.out.println("testLoginSuccess");
+			e.printStackTrace();
+			fail();
+		}
+	}
+	
+	@Test
+    void testLoginFail() {
+		UserService userService = new UserService();
+		User user1 = new User("kanna.com", "kanna");
+		try {
+			assertFalse(userService.logInUser(user1));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	 void testLoginEmailPasswordNull() {
+		UserService userService = new UserService();
+		User user1 = null;
+		try {
+			assertFalse(userService.logInUser(user1));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+
+		}
+
+	}
+
+	@Test
+     void testInvalidLoginPassword() {
+		UserService userService = new UserService();
+		User user1 = new User("kanna@gmail.com", "kanna123@");
+		try {
+			assertFalse(userService.logInUser(user1));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+
+		}
+	}
+
+	@Test
+	 void testInvalidLoginEmail() {
+		UserService userService = new UserService();
+		User user1 = new User("kannagmail.com", "kanna123@K");
+		try {
+			assertFalse(userService.logInUser(user1));
+		} catch (ServiceException e) {
+			e.printStackTrace();
+
+		}
+	}
 
 }
