@@ -1,8 +1,12 @@
 package com.fssa.cinephile.services;
 
+import java.util.List;
+
 import com.fssa.cinephile.DAO.MovieDAO;
+import com.fssa.cinephile.DAO.RatingDAO;
 import com.fssa.cinephile.DAO.exceptions.DAOException;
 import com.fssa.cinephile.model.Movie;
+import com.fssa.cinephile.model.Rating;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 import com.fssa.cinephile.validation.MovieValidation;
 import com.fssa.cinephile.validation.exceptions.ValidationException;
@@ -27,7 +31,7 @@ public class MovieService {
 		MovieDAO movieDAO = new MovieDAO();
 		try { 
 			if(movie == null) {
-				throw new ServiceException("Movie cannot be null");
+				throw new ServiceException("An error occurred while attempting to create movie");
 			}
 			MovieValidation.validateMovie(movie);
 			if (movieDAO.addMovie(movie)) {
@@ -55,7 +59,7 @@ public class MovieService {
 		 MovieDAO movieDAO = new MovieDAO();
 	        try {
 	        	if(movie == null) {
-					throw new ServiceException("Movie cannot be null");
+					throw new ServiceException("An error occurred while attempting to raed movie");
 				}
 	        	MovieValidation.validateMovie(movie);
 	            return movieDAO.readMovie(movie);
@@ -64,6 +68,27 @@ public class MovieService {
 	            throw new ServiceException(e);
 	        }
 	    }
+	 
+	 /**
+	  * Retrieves a list of all movies from the database.
+	 * @param movie 
+	  *
+	  * @return A list of Movie objects representing all the movies in the database.
+	  * @throws ServiceException If there is an issue while attempting to retrieve the movies.
+	  *                        This exception encapsulates any underlying {@link DAOException}.
+	  */
+	 public List<Movie> listAllMovies(Movie movie) throws ServiceException {
+	     try {
+	    	 if(movie == null) {
+	    		 throw new ServiceException("An error occurred while attempting to list all movies"); 
+	    	 }
+	         // Retrieve all movies from the database using the MovieDAO
+	         return MovieDAO.getAllMovies();
+	     } catch (DAOException e) {
+	         throw new ServiceException("An error occurred while attempting to list all movies");
+	     }
+	 }
+
 	 
 	 /**
 		 * Update a movie's information.
@@ -77,7 +102,7 @@ public class MovieService {
 		MovieDAO movieDAO = new MovieDAO();
 		try { 
 			if(movie == null) {
-				throw new ServiceException("Movie cannot be null");
+				throw new ServiceException("An error occurred while attempting to update movie");
 			}
 			MovieValidation.validateMovie(movie);
 			if (movieDAO.updateMovie(movie)) {
@@ -103,7 +128,7 @@ public class MovieService {
 	public boolean deleteMovie(Movie movie) throws ServiceException {
 		try { 
 			if(movie == null) {
-				throw new ServiceException("Movie cannot be null");
+				throw new ServiceException("An error occurred while attempting to delete movie");
 			}
 			MovieValidation.validateMovie(movie);
 			if (MovieDAO.deleteMovie(movie)) {

@@ -20,7 +20,7 @@ public class Movie {
      * @param movieRating The rating of the movie.
      * @param imageUrl    The URL of the movie's image.
      */
-    public Movie(String title, int movieRating, String imageUrl) {
+    public Movie(int movieRating,String title, String imageUrl) {
         this.title = title;
         this.movieRating = movieRating;
         this.imageUrl = imageUrl;

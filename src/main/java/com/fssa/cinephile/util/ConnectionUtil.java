@@ -23,7 +23,7 @@ public class ConnectionUtil {
      * @return A database connection.
      * @throws SQLException If a database access error occurs.
      */
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection(){
         // Database URL and credentials
         final String dbUrl;
         final String dbUser;
@@ -35,7 +35,17 @@ public class ConnectionUtil {
             dbPassword = System.getenv("DB_PASSWORD");
        
           
-            return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+            try {
+            	Class.forName("com.mysql.cj.jdbc.Driver");
+				return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new RuntimeException("Unable to connect data base",e);
+			}
+            catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				throw new RuntimeException("data base Driver class not found",e);
+			}
        
     }
 }

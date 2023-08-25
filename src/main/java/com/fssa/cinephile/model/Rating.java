@@ -3,14 +3,14 @@ package com.fssa.cinephile.model;
 public class Rating {
 
   private int ratingId;
-  private int movieId;
-  private int userId;
+  private Movie movie;
   private int rating;
+  private User user;
   
 //  give rating constructor
-  public Rating(int rating,int movieId,int userId) {
-		this.movieId = movieId;
-		this.userId = userId;
+  public Rating(int rating,Movie movie,User user) {
+		this.movie = movie;
+		this.user = user;
 		this.rating = rating;
 	}
   
@@ -19,10 +19,10 @@ public class Rating {
       this.ratingId = ratingId;
   }
 //  update rating constructor
-  public Rating( int ratingId , int rating,int movieId,int userId) {
-		this.movieId = movieId;
+  public Rating( int ratingId , int rating,Movie movie,User user) {
+		this.movie = movie;
 		this.ratingId = ratingId;
-		this.userId = userId;
+		this.user = user;
 		this.rating = rating;
 	}
   
@@ -35,17 +35,17 @@ public int getRatingId() {
 public void setRatingId(int ratingId) {
 	this.ratingId = ratingId;
 }
-public int getMovieId() {
-	return movieId;
+public Movie getMovie() {
+	return movie;
 }
-public void setMovieId(int movieId) {
-	this.movieId = movieId;
+public void setMovie(Movie movie) {
+	this.movie = movie;
 }
-public int getUserId() {
-	return userId;
+public User getUser() {
+	return user;
 }
-public void setUserId(int userId) {
-	this.userId = userId;
+public void setUser(User user) {
+	this.user = user;
 }
 public int getRating() {
 	return rating;

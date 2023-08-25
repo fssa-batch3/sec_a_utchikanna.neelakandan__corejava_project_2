@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
+
 import com.fssa.cinephile.model.Movie;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 
@@ -21,7 +23,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	 void testAddMovieSuccess() {
 		MovieService movieService = new MovieService();
 		
-		Movie movie = new Movie("Leo", 3, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.createMovie(movie));
 		} catch (ServiceException e) {
@@ -34,12 +36,12 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
     void testAddMovieFail() {
 		MovieService movieService = new MovieService();
         ServiceException exception = assertThrows(ServiceException.class, () -> movieService.createMovie(null));
-        assertEquals("Movie cannot be null", exception.getMessage());
+        assertEquals("An error occurred while attempting to create movie", exception.getMessage());
 	}
 	
 	
 	@Test
-	 void testUpdateMovie() {
+	 void testUpdateMovieSuccess() {
 		MovieService movieService = new MovieService();
 
 		Movie movie = new Movie("Leo", 3, 2,"https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
@@ -55,16 +57,16 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
     void testUpdateMovieFail() {
 		MovieService movieService = new MovieService();
         ServiceException exception = assertThrows(ServiceException.class, () -> movieService.updateMovie(null));
-        assertEquals("Movie cannot be null", exception.getMessage());
+        assertEquals("An error occurred while attempting to update movie", exception.getMessage());
 	}
 	
 	
 	@Test
-    void testReadMovie() {
+    void testReadMovieSuccess() {
 
 		MovieService movieService = new MovieService();
 		
-		Movie movie = new Movie("Leo", 3 , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie(3, "Leo" , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.readMovie(movie));
 		} catch (ServiceException e) {
@@ -77,14 +79,35 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
     void testReadMovieFail() {
 		MovieService movieService = new MovieService();
         ServiceException exception = assertThrows(ServiceException.class, () -> movieService.readMovie(null));
-        assertEquals("Movie cannot be null", exception.getMessage());
+        assertEquals("An error occurred while attempting to raed movie", exception.getMessage());
 	}
 	
 	@Test
-     void testDeleteMovie() {
+    void testGetAllMovieSuccess() {
+
 		MovieService movieService = new MovieService();
 		
-		Movie movie = new Movie("Leo", 3, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie(3, "Leo" , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		try {
+			movieService.listAllMovies(movie);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		fail();
+		}
+	}
+	
+	@Test
+    void testGetAllMovieFail() {
+		MovieService movieService = new MovieService();
+        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.listAllMovies(null));
+        assertEquals("An error occurred while attempting to list all movies", exception.getMessage());
+	}
+	 
+	@Test
+     void testDeleteMovieSuccess() {
+		MovieService movieService = new MovieService();
+		
+		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.deleteMovie(movie));
 		} catch (ServiceException e) {
@@ -97,7 +120,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
     void testDeleteMovieFail() {
 		MovieService movieService = new MovieService();
         ServiceException exception = assertThrows(ServiceException.class, () -> movieService.deleteMovie(null));
-        assertEquals("Movie cannot be null", exception.getMessage());
+        assertEquals("An error occurred while attempting to delete movie", exception.getMessage());
 	}
 	
 	

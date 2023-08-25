@@ -13,6 +13,7 @@ public class User {
     private String firstName;
     private String lastName;
     private int phoneNo;
+    private int user_id;
 
     /**
      * Constructs a new {@code User} object with the provided information.
@@ -42,7 +43,11 @@ public class User {
         this.password = password;
     }
 
-    /**
+    public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
      * Retrieves the first name of the user.
      *
      * @return The first name of the user.
@@ -136,4 +141,12 @@ public class User {
     public String toString() {
         return "User [email=" + email + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNo=" + phoneNo + "]";
     }
+
+	public int getUserId() {
+		return user_id;
+	}
+
+	public void setUserId(int user_id) {
+		this.user_id = user_id;
+	}
 }

@@ -4,9 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fssa.cinephile.DAO.exceptions.DAOException;
 import com.fssa.cinephile.model.Movie;
+import com.fssa.cinephile.model.Rating;
+import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.util.ConnectionUtil;
 
 /**
@@ -24,24 +29,53 @@ public class MovieDAO {
      * @throws DAOException If a database access error occurs.
      */
     public boolean addMovie(Movie movie) throws DAOException {
-        String insertQuery = "INSERT INTO movie (movie_title, movie_rating, movie_image_url) VALUES (?, ?, ?)";
+        String insertQuery = "INSERT INTO movie ( movie_rating,movie_title, movie_image_url) VALUES (?, ?, ?)";
         try (
             // Get connection
             Connection connection = ConnectionUtil.getConnection();
             // Prepare SQL statement
             PreparedStatement statement = connection.prepareStatement(insertQuery);
         ) {
-            statement.setString(1, movie.getMovieTitle());
-            statement.setInt(2, movie.getMovieRating());
+            statement.setInt(1, movie.getMovieRating());
+            statement.setString(2, movie.getMovieTitle());
             statement.setString(3, movie.getMovieImgUrl());
 
             // Execute the query
             int rows = statement.executeUpdate();
             // Return successful or not
-            return (rows == 1);
+            return (rows > 0);
         } catch (SQLException e) {
             throw new DAOException(e);
         }
+    }
+    
+    /**
+     * Retrieves a list of all active movies from the database.
+     *
+     * @return A list of Movie objects representing all active movies in the database.
+     * @throws DAOException If there is an issue while attempting to retrieve the movies from the database.
+     *                     This exception wraps any underlying {@link SQLException}.
+     */
+    public static List<Movie> getAllMovies() throws DAOException {
+        List<Movie> movieList = new ArrayList<>();
+        String query = "SELECT * FROM movie WHERE isActive = true";
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet rs = preparedStatement.executeQuery()) {
+
+            // Iterate through the result set and populate the movieList
+            while (rs.next()) {
+                Movie movie = new Movie();
+                movie.setMovieRating(rs.getInt("movie_rating"));
+                movie.setMovieTitle(rs.getString("movie_title"));   
+                movie.setMovieImgUrl(rs.getString("movie_image_url"));
+                
+                movieList.add(movie);
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return movieList;
     }
 
     /**

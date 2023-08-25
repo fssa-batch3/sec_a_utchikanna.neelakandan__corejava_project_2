@@ -1,4 +1,6 @@
-C:\Users\UtchikannaNeelakanda\eclipse-workspace\utchikanna.neelakandan__corejava_project_2\src\test\java\cinephile\services\TestRegisterFeature.java
-C:\Users\UtchikannaNeelakanda\eclipse-workspace\utchikanna.neelakandan__corejava_project_2\src\test\java\cinephile\services\TestLoginFeature.java
-C:\Users\UtchikannaNeelakanda\eclipse-workspace\utchikanna.neelakandan__corejava_project_2\src\test\java\cinephile\validation\TestValidateUser.java
-C:\Users\UtchikannaNeelakanda\eclipse-workspace\utchikanna.neelakandan__corejava_project_2\src\test\java\cinephile\services\TestMovie.java
+C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\test\java\com\fssa\cinephile\validation\TestValidateRating.java
+C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\test\java\com\fssa\cinephile\services\TestMovieService.java
+C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\test\java\com\fssa\cinephile\services\TestRatingService.java
+C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\test\java\com\fssa\cinephile\validation\TestValidateMovie.java
+C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\test\java\com\fssa\cinephile\services\TestUserService.java
+C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\test\java\com\fssa\cinephile\validation\TestValidateUser.java
