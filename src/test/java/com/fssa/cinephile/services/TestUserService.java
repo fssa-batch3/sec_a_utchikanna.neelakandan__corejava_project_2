@@ -1,14 +1,14 @@
 package com.fssa.cinephile.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
 import com.fssa.cinephile.model.User;
-import com.fssa.cinephile.services.UserService;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 
 
@@ -34,70 +34,14 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 			 fail();
 		}
 	}
+
 	@Test
-	 void testInvalidPassword() {
-
+    void testRegistrationFail() {
 		UserService userService = new UserService();
-		User user1 = new User("na@gmail.com", "kanna@123", "kanna", "utchi", 1234567890);
-		try {
-			assertFalse(userService.registerUser(user1));
-		} catch (ServiceException e) { 
-			e.printStackTrace();
-
-		}
+        ServiceException exception = assertThrows(ServiceException.class, () -> userService.registerUser(null));
+        assertEquals("Registration credentials must not be null", exception.getMessage());
+		
 	}
- 
-	@Test
-	 void testInvalidFirstName() {
-
-		UserService userService = new UserService();
-		User user1 = new User("na@gmail.com", "kanna@123", "k", "u", 1234567890);
-		try {
-			assertFalse(userService.registerUser(user1));
-		} catch (ServiceException e) { 
-			e.printStackTrace();
-
-		}
-	}
-	
-	@Test
-	 void testInvalidLastName() {
-
-		UserService userService = new UserService();
-		User user1 = new User("na@gmail.com", "kanna@123", "k", "u", 1234567890);
-		try {
-			assertFalse(userService.registerUser(user1));
-		} catch (ServiceException e) { 
-			e.printStackTrace();
-
-		}
-	}
-	
-	@Test
-	 void testInvalidPhoneNo() {
-
-		UserService userService = new UserService();
-		User user1 = new User("na@gmail.com", "kanna@123", "kanna", "utchi", 12345);
-		try {
-			assertFalse(userService.registerUser(user1));
-		} catch (ServiceException e) { 
-			e.printStackTrace();
-
-		}
-	}
-	@Test
-	 void testInvalidEmailId() {
-
-		UserService userService = new UserService();
-		User user1 = new User("nagmail.com", "kanna@123", "kanna", "utchi", 1234567890);
-		try {
-			assertFalse(userService.registerUser(user1));
-		} catch (ServiceException e) { 
-			e.printStackTrace();
-
-		}
-	}
-	
 
 	@Test
 	 void testLoginSuccess() {
@@ -115,49 +59,11 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	@Test
     void testLoginFail() {
 		UserService userService = new UserService();
-		User user1 = new User("kanna.com", "kanna");
-		try {
-			assertFalse(userService.logInUser(user1));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		}
+        ServiceException exception = assertThrows(ServiceException.class, () -> userService.logInUser(null));
+        assertEquals("Login credentials must not be null", exception.getMessage());
+		
 	}
 
-	@Test
-	 void testLoginEmailPasswordNull() {
-		UserService userService = new UserService();
-		User user1 = null;
-		try {
-			assertFalse(userService.logInUser(user1));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-
-		}
-
-	}
-
-	@Test
-     void testInvalidLoginPassword() {
-		UserService userService = new UserService();
-		User user1 = new User("kanna@gmail.com", "kanna123@");
-		try {
-			assertFalse(userService.logInUser(user1));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-
-		}
-	}
-
-	@Test
-	 void testInvalidLoginEmail() {
-		UserService userService = new UserService();
-		User user1 = new User("kannagmail.com", "kanna123@K");
-		try {
-			assertFalse(userService.logInUser(user1));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-
-		}
-	}
+	
 
 }

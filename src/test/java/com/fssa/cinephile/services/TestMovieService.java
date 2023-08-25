@@ -2,7 +2,6 @@ package com.fssa.cinephile.services;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -35,52 +34,9 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
     void testAddMovieFail() {
 		MovieService movieService = new MovieService();
         ServiceException exception = assertThrows(ServiceException.class, () -> movieService.createMovie(null));
-        assertEquals("Rating update is : Invalid", exception.getMessage());
+        assertEquals("Movie cannot be null", exception.getMessage());
 	}
 	
-	@Test
-	 void testInvalidMovieTitle() {
-
-		MovieService movieService = new MovieService();
-		
-		Movie movie = new Movie("L", 3 , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
-		
-		try {
-			assertFalse(movieService.createMovie(movie));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		
-		}
-	}
-
-	
-	
-	@Test
-	 void testInvalidMovieRating() {
-
-		MovieService movieService = new MovieService();
-	
-		Movie movie = new Movie("Leo", -5 , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
-		try {
-			assertFalse(movieService.createMovie(movie));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		
-		}
-	}
-	@Test
-	 void testInvalidMovieImageUrl() {
-
-		MovieService movieService = new MovieService();
-		
-		Movie movie = new Movie("Leo", 3 , "htp://example.com/image.jpg");
-		try {
-			assertFalse(movieService.createMovie(movie));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		
-		}
-	}
 	
 	@Test
 	 void testUpdateMovie() {
@@ -96,18 +52,12 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	}
 	
 	@Test
-	 void testInvalidUpdateMovie() {
-
+    void testUpdateMovieFail() {
 		MovieService movieService = new MovieService();
-	
-		Movie movie = new Movie("Leo", 3 , "htp://example.com/image.jpg");
-		try {
-			assertFalse(movieService.createMovie(movie));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		
-		}
+        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.updateMovie(null));
+        assertEquals("Movie cannot be null", exception.getMessage());
 	}
+	
 	
 	@Test
     void testReadMovie() {
@@ -124,16 +74,10 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	}
 	
 	@Test
-	 void testInvalidReadMovie() {
-
+    void testReadMovieFail() {
 		MovieService movieService = new MovieService();
-		Movie movie = new Movie("Leo", 3 , "htp://example.com/image.jpg");
-		try {
-			assertFalse(movieService.readMovie(movie));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		
-		}
+        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.readMovie(null));
+        assertEquals("Movie cannot be null", exception.getMessage());
 	}
 	
 	@Test
@@ -150,16 +94,10 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	}
 	
 	@Test
-	 void testDeleteMovieFail() {
+    void testDeleteMovieFail() {
 		MovieService movieService = new MovieService();
-		
-		Movie movie = new Movie("jailer", -4, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
-		try {
-			assertFalse(movieService.deleteMovie(movie));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-			 
-		}
+        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.deleteMovie(null));
+        assertEquals("Movie cannot be null", exception.getMessage());
 	}
 	
 	

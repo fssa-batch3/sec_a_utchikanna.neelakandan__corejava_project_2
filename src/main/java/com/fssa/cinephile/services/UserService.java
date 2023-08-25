@@ -24,6 +24,9 @@ public class UserService {
     public boolean registerUser(User user) throws ServiceException {
         UserDAO userDAO = new UserDAO();
         try {
+        	if(user == null) {
+        		throw new ServiceException("Registration credentials must not be null");
+        	}
             UserValidator.validateUser(user);
             if (userDAO.createUser(user)) {
                 return true;
@@ -45,6 +48,9 @@ public class UserService {
     public boolean logInUser(User user) throws ServiceException {
         UserDAO userDAO = new UserDAO();
         try {
+        	if(user == null) {
+        		throw new ServiceException("Login credentials must not be null");
+        	}
             UserValidator.validateLogIn(user);
             return userDAO.checkUserLogin(user.getEmail(), user.getPassword());
         } catch (DAOException | ValidationException e) {

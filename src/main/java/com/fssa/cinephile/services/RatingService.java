@@ -14,6 +14,9 @@ public class RatingService {
 	public boolean giveRating(Rating rating) throws ServiceException {
 		RatingDAO ratingDAO = new RatingDAO();
 		try { 
+			if(rating == null) {
+				throw new ServiceException("Rating is cannot be null");
+			}
 			RatingValidation.validateGiveRating(rating);
 			if (ratingDAO.addRating(rating)) {
 				return true;
@@ -35,6 +38,9 @@ public class RatingService {
 	public boolean updateRating(Rating rating) throws ServiceException {
 		RatingDAO ratingDAO = new RatingDAO();
 		try { 
+			if(rating == null) {
+				throw new ServiceException("Rating update is cannot be null");
+			}
 			RatingValidation.validateUpdateRating(rating);
 			if (ratingDAO.updateRating(rating)) {
 				return true;

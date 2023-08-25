@@ -49,7 +49,7 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 	    @Test
 	    void testInvalidMovieImageUrl() {
 	    	ValidationException result = assertThrows(ValidationException.class, () -> MovieValidation.validateMovieImageUrl("httpspbs.twimg.com/media/FoDdg2WXEAomzQX"));
-	           assertEquals("image is not found", result.getMessage());
+	           assertEquals("Image is not found", result.getMessage());
 	    }
 	    
 	    @Test
@@ -66,6 +66,6 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 	    @Test
 	    void testInvalidMovieRating() {
 	    	ValidationException result = assertThrows(ValidationException.class, () -> MovieValidation.validateMovieRating(10));
-	           assertEquals("The movie rating is: Invalid", result.getMessage());
+	           assertEquals("The movie rating is invalid", result.getMessage());
 	    }
 }

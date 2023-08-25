@@ -19,13 +19,6 @@
 
 	<dependencies>
 
-
-		<!-- https://mvnrepository.com/artifact/io.github.cdimascio/java-dotenv -->
-		<dependency>
-			<groupId>io.github.cdimascio</groupId>
-			<artifactId>java-dotenv</artifactId>
-			<version>5.2.2</version>
-		</dependency>
 		<!-- MySQL connect -->
 		<dependency>
 			<groupId>mysql</groupId>

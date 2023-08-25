@@ -26,6 +26,9 @@ public class MovieService {
 	public boolean createMovie(Movie movie) throws ServiceException {
 		MovieDAO movieDAO = new MovieDAO();
 		try { 
+			if(movie == null) {
+				throw new ServiceException("Movie cannot be null");
+			}
 			MovieValidation.validateMovie(movie);
 			if (movieDAO.addMovie(movie)) {
 				return true;
@@ -51,6 +54,9 @@ public class MovieService {
 
 		 MovieDAO movieDAO = new MovieDAO();
 	        try {
+	        	if(movie == null) {
+					throw new ServiceException("Movie cannot be null");
+				}
 	        	MovieValidation.validateMovie(movie);
 	            return movieDAO.readMovie(movie);
 
@@ -70,6 +76,9 @@ public class MovieService {
 	public boolean updateMovie(Movie movie) throws ServiceException {
 		MovieDAO movieDAO = new MovieDAO();
 		try { 
+			if(movie == null) {
+				throw new ServiceException("Movie cannot be null");
+			}
 			MovieValidation.validateMovie(movie);
 			if (movieDAO.updateMovie(movie)) {
 				return true;
@@ -93,6 +102,9 @@ public class MovieService {
 	
 	public boolean deleteMovie(Movie movie) throws ServiceException {
 		try { 
+			if(movie == null) {
+				throw new ServiceException("Movie cannot be null");
+			}
 			MovieValidation.validateMovie(movie);
 			if (MovieDAO.deleteMovie(movie)) {
 				return true;
