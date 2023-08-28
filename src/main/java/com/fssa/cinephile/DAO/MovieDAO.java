@@ -56,7 +56,7 @@ public class MovieDAO {
      * @throws DAOException If there is an issue while attempting to retrieve the movies from the database.
      *                     This exception wraps any underlying {@link SQLException}.
      */
-    public static List<Movie> getAllMovies() throws DAOException {
+    public List<Movie> getAllMovies() throws DAOException {
         List<Movie> movieList = new ArrayList<>();
         String query = "SELECT * FROM movie WHERE isActive = true";
         try (Connection connection = ConnectionUtil.getConnection();

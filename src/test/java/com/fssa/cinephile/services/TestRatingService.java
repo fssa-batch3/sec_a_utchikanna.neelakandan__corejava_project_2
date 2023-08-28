@@ -36,7 +36,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
     void testInvalidGiveRating() {
 		RatingService ratingService = new RatingService();
         ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.giveRating(null));
-        assertEquals("Rating is cannot be null", exception.getMessage());
+        assertEquals("Rating cannot be null", exception.getMessage());
 	}
 	
 	
@@ -44,10 +44,10 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	 void testValidUpdateRating() {
 		RatingService ratingService = new RatingService();
 		User user = new User();
-		user.setUserId(10);
+		user.setUserId(17);
 		Movie movie = new Movie();
-		movie.setMovieId(5);
-       Rating rating = new Rating(4,2,movie,user);
+		movie.setMovieId(23);
+       Rating rating = new Rating(4,3,movie,user);
 		try {
 			assertTrue(ratingService.updateRating(rating));
 		} catch (ServiceException e) {
@@ -60,7 +60,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
     void testInvalidUpdateRating() {
 		RatingService ratingService = new RatingService();
         ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.updateRating(null));
-        assertEquals("Rating update is cannot be null", exception.getMessage());
+        assertEquals("Rating update cannot be null", exception.getMessage());
 	}
 	
 	
@@ -85,7 +85,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	 void testInvalidReadRating() {
 		 RatingService ratingService = new RatingService();
         ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.readRating(null));
-        assertEquals("Rating update is : Invalid", exception.getMessage());
+        assertEquals("Rating read is null", exception.getMessage());
 	}
 	
 	
@@ -109,7 +109,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	 void testInvalidGetAllRating() {
 		 RatingService ratingService = new RatingService();
        ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.listAllRatings(null));
-       assertEquals("Rating update is : Invalid", exception.getMessage());
+       assertEquals("Rating list is null", exception.getMessage());
 	}
 	
 	

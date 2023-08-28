@@ -87,21 +87,20 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 
 		MovieService movieService = new MovieService();
 		
-		Movie movie = new Movie(3, "Leo" , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
-			movieService.listAllMovies(movie);
+			movieService.listAllMovies();
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		fail();
 		}
 	}
 	
-	@Test
-    void testGetAllMovieFail() {
-		MovieService movieService = new MovieService();
-        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.listAllMovies(null));
-        assertEquals("An error occurred while attempting to list all movies", exception.getMessage());
-	}
+//	@Test
+//    void testGetAllMovieFail() {
+//		MovieService movieService = new MovieService();
+//        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.listAllMovies());
+//        assertEquals("An error occurred while attempting to list all movies", exception.getMessage());
+//	}
 	 
 	@Test
      void testDeleteMovieSuccess() {

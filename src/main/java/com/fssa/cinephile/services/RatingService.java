@@ -55,7 +55,7 @@ public class RatingService {
         RatingDAO ratingDAO = new RatingDAO();
         try {
             if (rating == null) {
-                throw new ServiceException("Rating is null");
+                throw new ServiceException("Rating read is null");
             }
             RatingValidation.validateRating(rating);
             return ratingDAO.readRating(rating);
@@ -77,6 +77,9 @@ public class RatingService {
      */
     public List<Rating> listAllRatings(Rating rating) throws ServiceException {
         try {
+        	if (rating == null) {
+                throw new ServiceException("Rating list is null");
+            }
             // Retrieve all ratings from the database using the RatingDAO
             return RatingDAO.getAllRatings();
         } catch (DAOException e) {
@@ -102,7 +105,6 @@ public class RatingService {
             if (ratingDAO.updateRating(rating)) {
                 return true;
             } else {
-            	System.out.println("Utchi");
                 return false;
             }
 
