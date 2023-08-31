@@ -12,81 +12,111 @@ import com.fssa.cinephile.util.ConnectionUtil;
 /**
  * Data Access Object for interacting with User entities in the database.
  * 
- *   @author UtchikannaNeelakandan
+ * @author UtchikannaNeelakandan
  */
 public class UserDAO {
 
-    // Connect to database
+	// Connect to database
 
-    /**
-     * Checks if a user with the given email and password exists in the database.
-     *
-     * @param email    The email of the user to be checked.
-     * @param password The password of the user to be checked.
-     * @return True if the user exists and the provided password is correct, false otherwise.
-     * @throws DAOException If a database access error occurs.
-     */
-    public boolean checkUserLogin(String email, String password) throws DAOException {
-        try {
-            // Get connection
-            Connection connection = ConnectionUtil.getConnection();
+	/**
+	 * Checks if a user with the given email and password exists in the database.
+	 *
+	 * @param email    The email of the user to be checked.
+	 * @param password The password of the user to be checked.
+	 * @return True if the user exists and the provided password is correct, false
+	 *         otherwise.
+	 * @throws DAOException If a database access error occurs.
+	 */
+	public User checkUserLogin(String email, String password) throws DAOException {
+	    User user = null;
+	    String selectQuery = "SELECT * FROM user WHERE email = ?";
+	    try (Connection connection = ConnectionUtil.getConnection();
+	         PreparedStatement statement = connection.prepareStatement(selectQuery)) {
+	        statement.setString(1, email);
 
-            // Prepare SQL statement
-            String selectQuery = "SELECT * FROM user WHERE email = ?";
-            PreparedStatement statement = connection.prepareStatement(selectQuery);
-            statement.setString(1, email);
+	        try (ResultSet rs = statement.executeQuery()) {
+	            if (rs.next()) {  // Move the cursor to the first row
+	                user = new User();
+	                user.setEmail(rs.getString("email"));
+	                user.setPassword(rs.getString("password"));
+	            }
+	        }
 
-            ResultSet rs = statement.executeQuery();
+	    } catch (SQLException e) {
+	        throw new DAOException(e);
+	    }
+	    return user;
+	}
 
-            boolean userExists = rs.next();
-            if (userExists) {
-                System.out.println("User is there.");
-                String storedPassword = rs.getString("password");
-                System.out.println(storedPassword);
+	
+	/**
+	 * Retrieves a user by their email.
+	 *
+	 * @param searchValue The email of the user to retrieve
+	 * @return The User object if found, otherwise null
+	 * @throws DAOException If an error occurs during database operation
+	 */
+	public User getUser(String searchEmail) throws DAOException {
+		User user1 = null;
+		String query = "SELECT user_id,password,phone_no,email,first_name,last_name FROM user WHERE email = ?";
+		try (Connection connection = ConnectionUtil.getConnection();
+		     PreparedStatement pst = connection.prepareStatement(query)) {
 
-                if (storedPassword.equals(password)) {
-                    System.out.println("Log in successfully");
-                } else {
-                    System.out.println("Bad credentials");
-                }
-            } else {
-                System.out.println("User credentials are not there");
-            }
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
+			pst.setString(1, searchEmail);
 
-        return true;
-    }
+			try (ResultSet rs = pst.executeQuery()) {
+				if (rs.next()) {
+					User user = new User();
+					user.setUserId(rs.getInt("user_id"));
+					user.setPassword(rs.getString("password"));
+					user.setPhoneNo(rs.getLong("phone_no"));
+					user.setEmail(rs.getString("email"));
+					user.setFirstName(rs.getString("first_name"));
+					user.setLastName(rs.getString("last_name"));
+					
+				    user1 = user;
+				}
+			}
 
-    /**
-     * Creates a new user in the database.
-     *
-     * @param user The User object representing the user to be created.
-     * @return True if the user creation was successful, false otherwise.
-     * @throws DAOException If a database access error occurs.
-     */
-    public boolean createUser(User user) throws DAOException {
-        try {
-            // Get connection
-            Connection connection = ConnectionUtil.getConnection();
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return user1;
+	}
 
-            // Prepare SQL statement
-            String insertQuery = "INSERT INTO user (email, password, first_name, last_name, phone_no) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(insertQuery);
-            statement.setString(1, user.getEmail());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getFirstName());
-            statement.setString(4, user.getLastName());
-            statement.setInt(5, user.getPhoneNo());
+	/**
+	 * Creates a new user in the database.
+	 *
+	 * @param user The User object representing the user to be created.
+	 * @return True if the user creation was successful, false otherwise.
+	 * @throws DAOException If a database access error occurs.
+	 */
+	public boolean createUser(User user) throws DAOException {
+		String insertQuery = "INSERT INTO user (email, password, first_name, last_name, phone_no) VALUES (?, ?, ?, ?, ?)";
 
-            // Execute the query
-            int rows = statement.executeUpdate();
+		try (
+				// Get connection
+				Connection connection = ConnectionUtil.getConnection();
 
-            // Return successful or not
-            return (rows == 1);
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-    }
+				// Prepare SQL statement
+				PreparedStatement statement = connection.prepareStatement(insertQuery)) {
+			statement.setString(1, user.getEmail());
+			statement.setString(2, user.getPassword());
+			statement.setString(3, user.getFirstName());
+			statement.setString(4, user.getLastName());
+			statement.setLong(5, user.getPhoneNo());
+
+			// Execute the query
+			int rows = statement.executeUpdate();
+
+			// Return successful or not
+			return (rows == 1);
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		
+		
+	}
+	
+	
 }

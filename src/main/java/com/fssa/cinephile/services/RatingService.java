@@ -102,12 +102,8 @@ public class RatingService {
                 throw new ServiceException("Rating update cannot be null");
             }
             RatingValidation.validateUpdateRating(rating);
-            if (ratingDAO.updateRating(rating)) {
-                return true;
-            } else {
-                return false;
-            }
-
+           return ratingDAO.updateRating(rating);
+            
         } catch (DAOException | ValidationException e) { 
             throw new ServiceException(e);
         }

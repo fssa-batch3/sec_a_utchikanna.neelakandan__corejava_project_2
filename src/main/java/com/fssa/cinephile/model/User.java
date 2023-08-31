@@ -12,7 +12,7 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private int phoneNo;
+    private long phoneNo;
     private int user_id;
 
     /**
@@ -24,7 +24,7 @@ public class User {
      * @param lastName  The last name of the user.
      * @param phoneNo   The phone number of the user.
      */
-    public User(String email, String password, String firstName, String lastName, int phoneNo) {
+    public User(String email, String password, String firstName, String lastName, long phoneNo) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -88,7 +88,7 @@ public class User {
      *
      * @return The phone number of the user.
      */
-    public int getPhoneNo() {
+    public long getPhoneNo() {
         return phoneNo;
     }
 
@@ -97,7 +97,7 @@ public class User {
      *
      * @param phoneNo The phone number of the user.
      */
-    public void setPhoneNo(int phoneNo) {
+    public void setPhoneNo(long phoneNo) {
         this.phoneNo = phoneNo;
     }
 

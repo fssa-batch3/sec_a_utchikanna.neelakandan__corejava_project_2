@@ -136,7 +136,7 @@ public class UserValidator {
      * @return True if the phone number is valid, false otherwise.
      * @throws ValidationException If the phone number is not valid.
      */
-    public static boolean validatePhoneNo(int phoneNo) throws ValidationException {
+    public static boolean validatePhoneNo(long phoneNo) throws ValidationException {
         boolean isMatch = false;
 
         if (phoneNo == 0)

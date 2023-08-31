@@ -8,10 +8,12 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 public class RatingValidation {
 
 	public static boolean validateRating(Rating rating)throws ValidationException {
-		if (rating.getRating() <= 1 && rating.getRating() >=5) {
+		if (rating.getRating() >= 1 && rating.getRating() <=5) {
+			return true ;
+		}else {
 			throw new ValidationException("The rating is: Invalid");
-		} 
-		return true ;
+		}
+		
 	}
 	
 	 public static boolean validateUpdateRating(Rating Rating) throws ValidationException {

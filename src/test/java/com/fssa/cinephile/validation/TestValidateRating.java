@@ -28,8 +28,8 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 	    @Test
 	    void testInvalidRating() {
 	    	Rating rating = new Rating();
-        	rating.setRating(10);
+        	rating.setRating(10000);
 	    	ValidationException result = assertThrows(ValidationException.class, () -> RatingValidation.validateRating(rating));
-	           assertEquals("Rating update is : Invalid", result.getMessage());
+	           assertEquals("The rating is: Invalid", result.getMessage());
 	    }
 }

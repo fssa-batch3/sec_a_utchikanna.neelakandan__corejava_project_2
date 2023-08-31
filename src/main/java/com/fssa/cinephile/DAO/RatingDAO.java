@@ -136,11 +136,9 @@ public class RatingDAO {
 			int rows = statement.executeUpdate();
 			// Return successful or not
 
-			if (rows > 0) {
-				return true;
-			} else {
-				throw new DAOException("Details is not valid");
-			}
+			
+				return (rows == 1);
+			
 
 		} catch (SQLException e) {
 			throw new DAOException(e);

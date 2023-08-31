@@ -44,9 +44,9 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	 void testValidUpdateRating() {
 		RatingService ratingService = new RatingService();
 		User user = new User();
-		user.setUserId(17);
+		user.setUserId(8);
 		Movie movie = new Movie();
-		movie.setMovieId(23);
+		movie.setMovieId(3);
        Rating rating = new Rating(4,3,movie,user);
 		try {
 			assertTrue(ratingService.updateRating(rating));
@@ -67,7 +67,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	
 	@Test
 	 void testValidReadRating() {
-		   int rating_id = 1;
+		   int rating_id = 5;
 
 		   Rating rating = new Rating(rating_id);
 
@@ -91,7 +91,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	
 	@Test
 	 void testValidGetAllRating() {
-		   int rating_id = 1;
+		   int rating_id = 4;
 
 		   Rating rating = new Rating(rating_id);
 
