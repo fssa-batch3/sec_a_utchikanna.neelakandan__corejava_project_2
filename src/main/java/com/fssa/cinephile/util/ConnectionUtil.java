@@ -47,11 +47,11 @@ public class ConnectionUtil {
             	Class.forName("com.mysql.cj.jdbc.Driver");
 				return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 			} catch (SQLException e) {
-				e.printStackTrace();
+			
 				throw new RuntimeException("Unable to connect data base",e);
 			}
             catch (ClassNotFoundException e) {
-				e.printStackTrace();
+		
 				throw new RuntimeException("data base Driver class not found",e);
 			}
        

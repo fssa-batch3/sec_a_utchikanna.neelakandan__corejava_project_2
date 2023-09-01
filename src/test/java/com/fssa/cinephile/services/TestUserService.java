@@ -24,7 +24,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	@Test
 	 void testRegistrationSuccess() {
 		UserService userService = new UserService();
-		User user1 = new User("kumar@gmail.com", "Kanna@3108", "Jonh snow", "Kan na", 1234567890);
+		User user1 = new User("susi@gmail.com", "Kanna@3108", "Jonh snow", "Kan na", 1234567890);
 		try {
 			
 			assertTrue(userService.registerUser(user1));
@@ -60,7 +60,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
     void testLoginFail() {
 		UserService userService = new UserService();
         ServiceException exception = assertThrows(ServiceException.class, () -> userService.logInUser(null));
-        assertEquals("Login credentials must not be null", exception.getMessage());
+        assertEquals("User details not valid", exception.getMessage());
 		
 	}
 

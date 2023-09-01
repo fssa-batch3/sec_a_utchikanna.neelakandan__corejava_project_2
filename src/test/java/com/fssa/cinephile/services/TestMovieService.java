@@ -1,4 +1,4 @@
-package com.fssa.cinephile.services;
+ package com.fssa.cinephile.services;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -44,7 +44,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	 void testUpdateMovieSuccess() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie("Leo", 3, 2,"https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie("Leo", 11, 2,"https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.updateMovie(movie));
 		} catch (ServiceException e) {

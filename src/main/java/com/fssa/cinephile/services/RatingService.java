@@ -38,7 +38,7 @@ public class RatingService {
             }
 
         } catch (DAOException | ValidationException e) { 
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
     
@@ -61,7 +61,7 @@ public class RatingService {
             return ratingDAO.readRating(rating);
 
         } catch (DAOException | ValidationException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ public class RatingService {
             // Retrieve all ratings from the database using the RatingDAO
             return RatingDAO.getAllRatings();
         } catch (DAOException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -105,7 +105,7 @@ public class RatingService {
            return ratingDAO.updateRating(rating);
             
         } catch (DAOException | ValidationException e) { 
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 }

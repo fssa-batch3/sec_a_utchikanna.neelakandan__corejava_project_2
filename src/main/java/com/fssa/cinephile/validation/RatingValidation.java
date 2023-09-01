@@ -31,7 +31,7 @@ public class RatingValidation {
 	        if (Rating != null) {
 	            return true;
 	        } else {
-	            throw new ValidationException("Rating update is : Invalid");
+	            throw new ValidationException("Rating add is : Invalid");
 	        }
 
 	    }
@@ -41,7 +41,7 @@ public class RatingValidation {
 	        if (Rating != null) {
 	            return true;
 	        } else {
-	            throw new ValidationException("Rating update is : Invalid");
+	            throw new ValidationException("Rating read is : Invalid");
 	        }
 
 	    }

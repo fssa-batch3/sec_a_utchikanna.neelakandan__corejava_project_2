@@ -40,7 +40,7 @@ public class UserService {
 				return false;
 			}
 		} catch (DAOException | ValidationException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -63,7 +63,7 @@ public class UserService {
 			}
 			return true;
 		} catch (DAOException | ValidationException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage());
 		}
 	}
 }

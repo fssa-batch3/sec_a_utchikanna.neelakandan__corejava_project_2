@@ -40,7 +40,7 @@ public class MovieService {
 			}
 
 		} catch (DAOException | ValidationException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
@@ -63,7 +63,7 @@ public class MovieService {
 			return movieDAO.readMovie(movie);
 
 		} catch (DAOException | ValidationException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -83,7 +83,7 @@ public class MovieService {
 			// Retrieve all movies from the database using the MovieDAO
 			return movieDAO.getAllMovies();
 		} catch (DAOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 			throw new ServiceException("An error occurred while attempting to list all movies");
 		}
 	}
@@ -111,7 +111,7 @@ public class MovieService {
 			}
 
 		} catch (DAOException | ValidationException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
@@ -138,7 +138,7 @@ public class MovieService {
 			}
 
 		} catch (DAOException | ValidationException e) {
-			throw new ServiceException(e);
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
