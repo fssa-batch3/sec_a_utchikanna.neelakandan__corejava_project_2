@@ -36,7 +36,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
     void testInvalidGiveRating() {
 		RatingService ratingService = new RatingService();
         ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.giveRating(null));
-        assertEquals("Rating cannot be null", exception.getMessage());
+        assertEquals("Rating object cannot be null", exception.getMessage());
 	}
 	
 	
@@ -85,10 +85,10 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	 void testInvalidReadRating() {
 		 RatingService ratingService = new RatingService();
         ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.readRating(null));
-        assertEquals("Rating read is null", exception.getMessage());
+        assertEquals("Rating object is null", exception.getMessage());
 	}
 	
-	
+
 	@Test
 	 void testValidGetAllRating() {
 		   int rating_id = 4;

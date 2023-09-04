@@ -2,6 +2,7 @@
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -33,12 +34,12 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	}
 	
 	@Test
-    void testAddMovieFail() {
+    void testAddMovieNullDetails() {
 		MovieService movieService = new MovieService();
         ServiceException exception = assertThrows(ServiceException.class, () -> movieService.createMovie(null));
         assertEquals("An error occurred while attempting to create movie", exception.getMessage());
 	}
-	
+
 	
 	@Test
 	 void testUpdateMovieSuccess() {
@@ -54,7 +55,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	}
 	
 	@Test
-    void testUpdateMovieFail() {
+    void testUpdateMovieNullDetails() {
 		MovieService movieService = new MovieService();
         ServiceException exception = assertThrows(ServiceException.class, () -> movieService.updateMovie(null));
         assertEquals("An error occurred while attempting to update movie", exception.getMessage());
@@ -76,7 +77,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	}
 	
 	@Test
-    void testReadMovieFail() {
+    void testReadMovieNullDetails() {
 		MovieService movieService = new MovieService();
         ServiceException exception = assertThrows(ServiceException.class, () -> movieService.readMovie(null));
         assertEquals("An error occurred while attempting to raed movie", exception.getMessage());
@@ -95,20 +96,15 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 		}
 	}
 	
-//	@Test
-//    void testGetAllMovieFail() {
-//		MovieService movieService = new MovieService();
-//        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.listAllMovies());
-//        assertEquals("An error occurred while attempting to list all movies", exception.getMessage());
-//	}
 	 
 	@Test
      void testDeleteMovieSuccess() {
 		MovieService movieService = new MovieService();
 		
-		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie	(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
-			assertTrue(movieService.deleteMovie(movie));
+		  boolean isDelete = movieService.deleteMovie(movie.getMovieId());
+			assertTrue(isDelete);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			 fail();
@@ -116,11 +112,36 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 	}
 	
 	@Test
-    void testDeleteMovieFail() {
+    void testDeleteMovieNullDetails() {
 		MovieService movieService = new MovieService();
-        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.deleteMovie(null));
+        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.deleteMovie(0));
         assertEquals("An error occurred while attempting to delete movie", exception.getMessage());
 	}
+	 @Test
+	  
+	  void testValidGetMovieById() {
+	        MovieService movieService = new MovieService();
+	      
+	        Movie movie = new Movie("Leo",1, 4, "https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Leo_%282023_Indian_film%29.jpg/330px-Leo_%282023_Indian_film%29.jpg");
+	        try {
+	            movieService.createMovie(movie);
+	            Movie retrievedMovie = movieService.getMovieById(movie.getMovieId());
+	            assertNotNull(retrievedMovie);
+	            assertEquals(movie.getMovieTitle(), retrievedMovie.getMovieTitle());
+	        } catch (ServiceException e) {
+	            e.printStackTrace();
+	            fail();
+	        }
+	    }
+
+	    @Test
+	  
+	    void testInvalidGetMovieById() {
+	        MovieService movieService = new MovieService();
+	        int invalidMovieId = 4321;
+	        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.getMovieById(invalidMovieId));
+	        assertEquals("Movie not found", exception.getMessage());
+	    }
 	
 	
 

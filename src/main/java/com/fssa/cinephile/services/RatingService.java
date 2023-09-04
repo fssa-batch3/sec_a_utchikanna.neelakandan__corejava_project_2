@@ -28,7 +28,7 @@ public class RatingService {
         RatingDAO ratingDAO = new RatingDAO();
         try { 
             if (rating == null) {
-                throw new ServiceException("Rating cannot be null");
+                throw new ServiceException("Rating object cannot be null");
             }
             RatingValidation.validateGiveRating(rating);
             if (ratingDAO.addRating(rating)) {
@@ -38,10 +38,10 @@ public class RatingService {
             }
 
         } catch (DAOException | ValidationException e) { 
-            throw new ServiceException(e.getMessage());
+            throw new ServiceException("Error while attempting to give a rating: " + e.getMessage());
         }
     }
-    
+   
 
     /**
      * Retrieves the specified rating from the database.
@@ -55,17 +55,15 @@ public class RatingService {
         RatingDAO ratingDAO = new RatingDAO();
         try {
             if (rating == null) {
-                throw new ServiceException("Rating read is null");
+                throw new ServiceException("Rating object is null");
             }
             RatingValidation.validateRating(rating);
             return ratingDAO.readRating(rating);
 
         } catch (DAOException | ValidationException e) {
-            throw new ServiceException(e.getMessage());
+            throw new ServiceException("Error while attempting to retrieve a rating: " + e.getMessage());
         }
     }
-
-	 
 
     /**
      * Retrieves a list of all ratings from the database.
@@ -77,13 +75,13 @@ public class RatingService {
      */
     public List<Rating> listAllRatings(Rating rating) throws ServiceException {
         try {
-        	if (rating == null) {
+            if (rating == null) {
                 throw new ServiceException("Rating list is null");
             }
             // Retrieve all ratings from the database using the RatingDAO
             return RatingDAO.getAllRatings();
         } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
+            throw new ServiceException("Error while attempting to retrieve all ratings: " + e.getMessage());
         }
     }
 
@@ -99,13 +97,13 @@ public class RatingService {
         RatingDAO ratingDAO = new RatingDAO();
         try { 
             if (rating == null) {
-                throw new ServiceException("Rating update cannot be null");
+                throw new ServiceException("Rating update object cannot be null");
             }
             RatingValidation.validateUpdateRating(rating);
-           return ratingDAO.updateRating(rating);
+            return ratingDAO.updateRating(rating);
             
         } catch (DAOException | ValidationException e) { 
-            throw new ServiceException(e.getMessage());
+            throw new ServiceException("Error while attempting to update a rating: " + e.getMessage());
         }
     }
 }

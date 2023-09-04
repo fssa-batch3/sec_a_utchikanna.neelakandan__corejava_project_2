@@ -4,14 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fssa.cinephile.DAO.exceptions.DAOException;
 import com.fssa.cinephile.model.Movie;
-import com.fssa.cinephile.model.Rating;
-import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.util.ConnectionUtil;
 
 /**
@@ -20,7 +17,6 @@ import com.fssa.cinephile.util.ConnectionUtil;
  *   @author UtchikannaNeelakandan
  */
 public class MovieDAO {
-
     /**
      * Adds a new Movie to the database.
      *
@@ -58,7 +54,7 @@ public class MovieDAO {
      */
     public List<Movie> getAllMovies() throws DAOException {
         List<Movie> movieList = new ArrayList<>();
-        String query = "SELECT * FROM movie WHERE isActive = true";
+        String query = "SELECT * FROM movie WHERE isDelete = true";
         try (Connection connection = ConnectionUtil.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet rs = preparedStatement.executeQuery()) {
@@ -69,8 +65,9 @@ public class MovieDAO {
                 movie.setMovieRating(rs.getInt("movie_rating"));
                 movie.setMovieTitle(rs.getString("movie_title"));   
                 movie.setMovieImgUrl(rs.getString("movie_image_url"));
+                movie.setMovieId(rs.getInt("movie_id"));
                 
-                movieList.add(movie);
+                movieList.add(movie); 
             }
         } catch (SQLException e) {
             throw new DAOException(e);
@@ -129,6 +126,41 @@ public class MovieDAO {
             throw new DAOException(e);
         }
     }
+    
+    /**
+     * Retrieves a movie by its ID.
+     *
+     * @param movieId The ID of the movie
+     * @return The Movie object if found, otherwise null
+     * @throws DAOException If an error occurs during database operation
+     */
+   
+
+    public Movie getMovieById(int movieId) throws DAOException {
+        Movie movie = null;
+        String query = "SELECT * FROM movie WHERE movie_id = ? AND isDelete = true";
+
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, movieId);
+
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    movie = new Movie();
+                    movie.setMovieRating(rs.getInt("movie_rating"));
+                    movie.setMovieTitle(rs.getString("movie_title"));   
+                    movie.setMovieImgUrl(rs.getString("movie_image_url"));
+                    movie.setMovieId(rs.getInt("movie_id"));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return movie;
+    }
+
 
     /**
      * Marks a Movie as inactive in the database.
@@ -137,13 +169,13 @@ public class MovieDAO {
      * @return True if the operation was successful, false otherwise.
      * @throws DAOException If a database access error occurs.
      */
-    public static boolean deleteMovie(Movie movie) throws DAOException {
-        String query = "UPDATE movie SET isActive = false WHERE movie_title = ?;";
+    public boolean deleteMovie(int movieId) throws DAOException {
+        String query = "UPDATE movie SET isDelete = false WHERE movie_id = ?;";
         try (
             Connection connection = ConnectionUtil.getConnection();
             PreparedStatement pst = connection.prepareStatement(query);
         ) {
-            pst.setString(1, movie.getMovieTitle());
+            pst.setInt(1, movieId);
 
             int rowsAffected = pst.executeUpdate();
             return rowsAffected > 0;

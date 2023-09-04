@@ -31,7 +31,7 @@ public class MovieValidation {
             throw new ValidationException("Movie details not valid");
         }
     }
-
+    
     /**
      * Validates a movie title.
      *

@@ -9,7 +9,7 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 /**
  * Utility class for validating User objects and credentials.
  * 
- *   @author UtchikannaNeelakandan
+ * @author UtchikannaNeelakandan
  */
 public class UserValidator {
 
@@ -28,7 +28,7 @@ public class UserValidator {
                 && validatePhoneNo(user.getPhoneNo())) {
             return true;
         } else {
-            throw new ValidationException("User details not valid");
+            throw new ValidationException("User details are not valid");
         }
     }
 
@@ -99,9 +99,9 @@ public class UserValidator {
         match = Pattern.matches(patternString, password);
 
         if (match) {
-            System.out.println("Valid password.");
+            System.out.println("The password is valid.");
         } else {
-            throw new ValidationException("Invalid password.");
+            throw new ValidationException("The password is not valid");
         }
 
         return match;
@@ -122,9 +122,9 @@ public class UserValidator {
         String regex = "^.*@.*\\..*$";
         isMatch = Pattern.matches(regex, email);
         if (isMatch) {
-            System.out.println("The email address is: Valid");
+            System.out.println("The email address is valid.");
         } else {
-            throw new ValidationException("The email address is: Invalid");
+            throw new ValidationException("The email address is not valid");
         }
         return isMatch;
     }
@@ -145,9 +145,9 @@ public class UserValidator {
         String regex = "^\\d{10}$";
         isMatch = Pattern.matches(regex, strNumber);
         if (isMatch) {
-            System.out.println("The phone number is: Valid");
+            System.out.println("The phone number is valid.");
         } else {
-            throw new ValidationException("The phone number is: Invalid");
+            throw new ValidationException("The phone number is not valid");
         }
         return isMatch;
     }
@@ -163,7 +163,7 @@ public class UserValidator {
         if (user != null && validateEmail(user.getEmail()) && validatePassword(user.getPassword())) {
             return true;
         } else {
-            throw new ValidationException("User details not valid");
+            throw new ValidationException("Login credentials are not valid");
         }
     }
 }

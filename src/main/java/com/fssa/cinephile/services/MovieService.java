@@ -87,7 +87,7 @@ public class MovieService {
 			throw new ServiceException("An error occurred while attempting to list all movies");
 		}
 	}
-
+	
 	/**
 	 * Update a movie's information.
 	 *
@@ -115,6 +115,27 @@ public class MovieService {
 		}
 
 	}
+	
+	/**
+	 * Retrieve a movie by its ID.
+	 *
+	 * @param movieId The ID of the movie to retrieve.
+	 * @return The retrieved movie if found, or an error message if not.
+	 * @throws ServiceException If there's a problem with the service.
+	 */
+	public Movie getMovieById(int movieId) throws ServiceException {
+	    try {
+	    	MovieDAO movieDAO = new MovieDAO();
+	        Movie movie = movieDAO.getMovieById(movieId); // Retrieve the movie from Database
+	        if (movie == null) {
+	            throw new ServiceException("Movie not found");
+	        }
+	        return movie;
+	    } catch (DAOException e) {
+	        throw new ServiceException(e.getMessage());
+	    }
+	}
+
 
 	/**
 	 * Delete a movie by its name (title).
@@ -125,19 +146,15 @@ public class MovieService {
 	 *                          with the service.
 	 */
 
-	public boolean deleteMovie(Movie movie) throws ServiceException {
-		try {
-			if (movie == null) {
-				throw new ServiceException("An error occurred while attempting to delete movie");
-			}
-			MovieValidation.validateMovie(movie);
-			if (MovieDAO.deleteMovie(movie)) {
-				return true;
-			} else {
-				return false;
-			}
-
-		} catch (DAOException | ValidationException e) {
+	public boolean deleteMovie(int movieId) throws ServiceException {
+		 try {
+		    	MovieDAO movieDAO = new MovieDAO();
+		        boolean movie = movieDAO.deleteMovie(movieId); // Retrieve the movie from Database
+		        if (!movie) {
+		            throw new ServiceException("Movie not found");
+		        }
+		        return true; 
+		 }catch (DAOException e) {
 			throw new ServiceException(e.getMessage());
 		}
 

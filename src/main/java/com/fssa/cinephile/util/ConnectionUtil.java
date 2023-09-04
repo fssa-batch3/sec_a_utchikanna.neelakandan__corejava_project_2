@@ -40,7 +40,7 @@ public class ConnectionUtil {
 //            dbUrl = "jdbc:mysql://localhost:3306/cinephile";
 //            dbUser = "root";
 //            dbPassword = "123456";
-            
+           
        
           
             try {

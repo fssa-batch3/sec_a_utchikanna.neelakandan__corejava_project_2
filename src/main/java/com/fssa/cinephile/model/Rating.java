@@ -4,14 +4,14 @@ public class Rating {
 
   private int ratingId;
   private Movie movie;
-  private int rating;
+  private int movieRating;
   private User user;
-  
+ 
 //  give rating constructor
-  public Rating(int rating,Movie movie,User user) {
+  public Rating(int movieRating,Movie movie,User user) {
 		this.movie = movie;
 		this.user = user;
-		this.rating = rating;
+		this.movieRating = movieRating;
 	}
   
   // read rating constructor
@@ -19,13 +19,13 @@ public class Rating {
       this.ratingId = ratingId;
   }
 //  update rating constructor
-  public Rating( int ratingId , int rating,Movie movie,User user) {
+  public Rating( int ratingId , int movieRating,Movie movie,User user) {
 		this.movie = movie;
 		this.ratingId = ratingId;
 		this.user = user;
-		this.rating = rating;
+		this.movieRating = movieRating;
 	}
-  
+ 
 public Rating() {
 	
 }
@@ -48,10 +48,10 @@ public void setUser(User user) {
 	this.user = user;
 }
 public int getRating() {
-	return rating;
+	return movieRating;
 }
-public void setRating(int rating) {
-	this.rating = rating;
+public void setRating(int movieRating) {
+	this.movieRating = movieRating;
 }
 
 
