@@ -23,17 +23,17 @@ public class UserService {
 	 */
 	public boolean registerUser(User user) throws ServiceException {
 		UserDAO userDAO = new UserDAO();
-		
+
 		try {
 			if (user == null) {
 				throw new ServiceException("Registration credentials must not be null");
 			}
 			UserValidator.validateUser(user);
 			// Check if the user already exists and is Active
-						User existingUser = userDAO.getUser(user.getEmail());
-						if (existingUser != null) {
-							throw new ServiceException("User already exists.");
-						}
+			User existingUser = userDAO.getUser(user.getEmail());
+			if (existingUser != null) {
+				throw new ServiceException("User already exists.");
+			}
 			if (userDAO.createUser(user)) {
 				return true;
 			} else {

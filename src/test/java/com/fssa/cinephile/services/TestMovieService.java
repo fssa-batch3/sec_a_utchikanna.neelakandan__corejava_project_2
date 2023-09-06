@@ -1,5 +1,4 @@
- package com.fssa.cinephile.services;
-
+package com.fssa.cinephile.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -12,137 +11,134 @@ import org.junit.jupiter.api.Test;
 import com.fssa.cinephile.model.Movie;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 
-
 /**
  * Test class for the MovieService methods.
  * 
- *   @author UtchikannaNeelakandan
+ * @author UtchikannaNeelakandan
  */
- class TestMovieService {
+class TestMovieService {
 
 	@Test
-	 void testAddMovieSuccess() {
+	void testAddMovieSuccess() {
 		MovieService movieService = new MovieService();
-		
+
 		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.createMovie(movie));
 		} catch (ServiceException e) {
 			e.printStackTrace();
-		   fail();
+			fail();
 		}
 	}
-	
+
 	@Test
-    void testAddMovieNullDetails() {
+	void testAddMovieNullDetails() {
 		MovieService movieService = new MovieService();
-        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.createMovie(null));
-        assertEquals("An error occurred while attempting to create movie", exception.getMessage());
+		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.createMovie(null));
+		assertEquals("An error occurred while attempting to create movie", exception.getMessage());
 	}
 
-	
 	@Test
-	 void testUpdateMovieSuccess() {
+	void testUpdateMovieSuccess() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie("Leo", 11, 2,"https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie("Leo", 1, 2, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.updateMovie(movie));
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			 fail();
+			fail();
 		}
 	}
-	
+
 	@Test
-    void testUpdateMovieNullDetails() {
+	void testUpdateMovieNullDetails() {
 		MovieService movieService = new MovieService();
-        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.updateMovie(null));
-        assertEquals("An error occurred while attempting to update movie", exception.getMessage());
+		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.updateMovie(null));
+		assertEquals("An error occurred while attempting to update movie", exception.getMessage());
 	}
-	
-	
+
 	@Test
-    void testReadMovieSuccess() {
+	void testReadMovieSuccess() {
 
 		MovieService movieService = new MovieService();
-		
-		Movie movie = new Movie(3, "Leo" , "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+
+		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.readMovie(movie));
 		} catch (ServiceException e) {
 			e.printStackTrace();
-		fail();
+			fail();
 		}
 	}
-	
+
 	@Test
-    void testReadMovieNullDetails() {
+	void testReadMovieNullDetails() {
 		MovieService movieService = new MovieService();
-        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.readMovie(null));
-        assertEquals("An error occurred while attempting to raed movie", exception.getMessage());
+		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.readMovie(null));
+		assertEquals("An error occurred while attempting to raed movie", exception.getMessage());
 	}
-	
+
 	@Test
-    void testGetAllMovieSuccess() {
+	void testGetAllMovieSuccess() {
 
 		MovieService movieService = new MovieService();
-		
+
 		try {
 			movieService.listAllMovies();
 		} catch (ServiceException e) {
 			e.printStackTrace();
-		fail();
+			fail();
 		}
 	}
-	
-	 
+
 	@Test
-     void testDeleteMovieSuccess() {
+	void testDeleteMovieSuccess() {
 		MovieService movieService = new MovieService();
-		
-		Movie movie = new Movie	(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		int movieId = 3;
+
 		try {
-		  boolean isDelete = movieService.deleteMovie(movie.getMovieId());
+			boolean isDelete = movieService.deleteMovie(movieId);
 			assertTrue(isDelete);
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			 fail();
+			fail();
 		}
 	}
-	
-	@Test
-    void testDeleteMovieNullDetails() {
-		MovieService movieService = new MovieService();
-        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.deleteMovie(0));
-        assertEquals("An error occurred while attempting to delete movie", exception.getMessage());
-	}
-	 @Test
-	  
-	  void testValidGetMovieById() {
-	        MovieService movieService = new MovieService();
-	      
-	        Movie movie = new Movie("Leo",1, 4, "https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Leo_%282023_Indian_film%29.jpg/330px-Leo_%282023_Indian_film%29.jpg");
-	        try {
-	            movieService.createMovie(movie);
-	            Movie retrievedMovie = movieService.getMovieById(movie.getMovieId());
-	            assertNotNull(retrievedMovie);
-	            assertEquals(movie.getMovieTitle(), retrievedMovie.getMovieTitle());
-	        } catch (ServiceException e) {
-	            e.printStackTrace();
-	            fail();
-	        }
-	    }
 
-	    @Test
-	  
-	    void testInvalidGetMovieById() {
-	        MovieService movieService = new MovieService();
-	        int invalidMovieId = 4321;
-	        ServiceException exception = assertThrows(ServiceException.class, () -> movieService.getMovieById(invalidMovieId));
-	        assertEquals("Movie not found", exception.getMessage());
-	    }
-	
-	
+	@Test
+	void testDeleteMovieNullDetails() {
+		MovieService movieService = new MovieService();
+		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.deleteMovie(0));
+		assertEquals("An error occurred while attempting to delete movie", exception.getMessage());
+	}
+
+	@Test
+
+	void testValidGetMovieById() {
+		MovieService movieService = new MovieService();
+
+		Movie movie = new Movie("Leo", 1, 4,
+				"https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Leo_%282023_Indian_film%29.jpg/330px-Leo_%282023_Indian_film%29.jpg");
+		try {
+			movieService.createMovie(movie);
+			Movie retrievedMovie = movieService.getMovieById(movie.getMovieId());
+			assertNotNull(retrievedMovie);
+			assertEquals(movie.getMovieTitle(), retrievedMovie.getMovieTitle());
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	@Test
+
+	void testInvalidGetMovieById() {
+		MovieService movieService = new MovieService();
+		int invalidMovieId = 4321;
+		ServiceException exception = assertThrows(ServiceException.class,
+				() -> movieService.getMovieById(invalidMovieId));
+		assertEquals("Movie not found", exception.getMessage());
+	}
 
 }

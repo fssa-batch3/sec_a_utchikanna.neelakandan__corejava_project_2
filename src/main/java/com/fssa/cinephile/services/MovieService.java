@@ -17,7 +17,6 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
  */
 
 public class MovieService {
-
 	/**
 	 * Add a new movie.
 	 *
@@ -83,11 +82,11 @@ public class MovieService {
 			// Retrieve all movies from the database using the MovieDAO
 			return movieDAO.getAllMovies();
 		} catch (DAOException e) {
-			System.out.println(e.getMessage());
-			throw new ServiceException("An error occurred while attempting to list all movies");
+		
+			throw new ServiceException(e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Update a movie's information.
 	 *
@@ -115,7 +114,7 @@ public class MovieService {
 		}
 
 	}
-	
+
 	/**
 	 * Retrieve a movie by its ID.
 	 *
@@ -124,18 +123,17 @@ public class MovieService {
 	 * @throws ServiceException If there's a problem with the service.
 	 */
 	public Movie getMovieById(int movieId) throws ServiceException {
-	    try {
-	    	MovieDAO movieDAO = new MovieDAO();
-	        Movie movie = movieDAO.getMovieById(movieId); // Retrieve the movie from Database
-	        if (movie == null) {
-	            throw new ServiceException("Movie not found");
-	        }
-	        return movie;
-	    } catch (DAOException e) {
-	        throw new ServiceException(e.getMessage());
-	    }
+		try {
+			MovieDAO movieDAO = new MovieDAO();
+			Movie movie = movieDAO.getMovieById(movieId); // Retrieve the movie from Database
+			if (movie == null) {
+				throw new ServiceException("Movie not found");
+			}
+			return movie;
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage());
+		}
 	}
-
 
 	/**
 	 * Delete a movie by its name (title).
@@ -147,17 +145,16 @@ public class MovieService {
 	 */
 
 	public boolean deleteMovie(int movieId) throws ServiceException {
-		 try {
-		    	MovieDAO movieDAO = new MovieDAO();
-		        boolean movie = movieDAO.deleteMovie(movieId); // Retrieve the movie from Database
-		        if (!movie) {
-		            throw new ServiceException("Movie not found");
-		        }
-		        return true; 
-		 }catch (DAOException e) {
+		try {
+			MovieDAO movieDAO = new MovieDAO();
+			boolean movie = movieDAO.deleteMovie(movieId); // Retrieve the movie from Database
+			if (!movie) {
+				throw new ServiceException("An error occurred while attempting to delete movie");
+			}
+			return true;
+		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage());
 		}
-
 	}
 
 }

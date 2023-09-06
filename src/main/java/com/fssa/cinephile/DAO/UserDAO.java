@@ -28,27 +28,26 @@ public class UserDAO {
 	 * @throws DAOException If a database access error occurs.
 	 */
 	public User checkUserLogin(String email, String password) throws DAOException {
-	    User user = null;
-	    String selectQuery = "SELECT * FROM user WHERE email = ?";
-	    try (Connection connection = ConnectionUtil.getConnection();
-	         PreparedStatement statement = connection.prepareStatement(selectQuery)) {
-	        statement.setString(1, email);
+		User user = null;
+		String selectQuery = "SELECT * FROM user WHERE email = ?";
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement statement = connection.prepareStatement(selectQuery)) {
+			statement.setString(1, email);
 
-	        try (ResultSet rs = statement.executeQuery()) {
-	            if (rs.next()) {  // Move the cursor to the first row
-	                user = new User();
-	                user.setEmail(rs.getString("email"));
-	                user.setPassword(rs.getString("password"));
-	            }
-	        }
+			try (ResultSet rs = statement.executeQuery()) {
+				if (rs.next()) { // Move the cursor to the first row
+					user = new User();
+					user.setEmail(rs.getString("email"));
+					user.setPassword(rs.getString("password"));
+				}
+			}
 
-	    } catch (SQLException e) {
-	        throw new DAOException(e);
-	    }
-	    return user;
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return user;
 	}
 
-	
 	/**
 	 * Retrieves a user by their email.
 	 *
@@ -60,7 +59,7 @@ public class UserDAO {
 		User user1 = null;
 		String query = "SELECT user_id,password,phone_no,email,first_name,last_name FROM user WHERE email = ?";
 		try (Connection connection = ConnectionUtil.getConnection();
-		     PreparedStatement pst = connection.prepareStatement(query)) {
+				PreparedStatement pst = connection.prepareStatement(query)) {
 
 			pst.setString(1, searchEmail);
 
@@ -73,8 +72,8 @@ public class UserDAO {
 					user.setEmail(rs.getString("email"));
 					user.setFirstName(rs.getString("first_name"));
 					user.setLastName(rs.getString("last_name"));
-					
-				    user1 = user;
+
+					user1 = user;
 				}
 			}
 
@@ -114,9 +113,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
-		
-		
+
 	}
-	
-	
+
 }

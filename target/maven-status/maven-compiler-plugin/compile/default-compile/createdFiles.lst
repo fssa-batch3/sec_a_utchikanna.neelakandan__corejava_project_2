@@ -1,17 +1,3 @@
-com\fssa\cinephile\model\Movie.class
-com\fssa\cinephile\validation\MovieValidation.class
-com\fssa\cinephile\DAO\MovieDAO.class
 com\fssa\cinephile\DAO\exceptions\DAOException.class
-com\fssa\cinephile\services\MovieService.class
-com\fssa\cinephile\validation\RatingValidation.class
-com\fssa\cinephile\DAO\RatingDAO.class
-com\fssa\cinephile\DAO\UserDAO.class
 com\fssa\cinephile\validation\exceptions\ValidationException.class
-com\fssa\cinephile\App.class
-com\fssa\cinephile\services\RatingService.class
-com\fssa\cinephile\validation\UserValidator.class
-com\fssa\cinephile\util\ConnectionUtil.class
-com\fssa\cinephile\model\User.class
-com\fssa\cinephile\services\UserService.class
-com\fssa\cinephile\model\Rating.class
 com\fssa\cinephile\services\exceptions\ServiceException.class
