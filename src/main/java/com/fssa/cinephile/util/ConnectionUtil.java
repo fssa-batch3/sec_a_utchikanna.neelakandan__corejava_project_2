@@ -34,7 +34,11 @@ public class ConnectionUtil {
 		dbUser = System.getenv("DB_USER");
 		dbPassword = System.getenv("DB_PASSWORD");
 
-	
+//		Local Host
+
+//        dbUrl = "jdbc:mysql://localhost:3306/cinephile";
+//        dbUser = "root";
+//       dbPassword = "123456";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

@@ -21,7 +21,7 @@ class TestRatingService {
 		User user = new User();
 		user.setUserId(1);
 		Movie movie = new Movie();
-		movie.setMovieId(10);
+		movie.setMovieId(1);
 		Rating rating = new Rating( 2, movie, user);
 		try {
 			assertTrue(ratingService.giveRating(rating));
@@ -44,7 +44,7 @@ class TestRatingService {
 		User user = new User();
 		user.setUserId(1);
 		Movie movie = new Movie();
-		movie.setMovieId(10);
+		movie.setMovieId(1);
 		Rating rating = new Rating(3, movie, user);
 		try {
 			assertTrue(ratingService.updateRating(rating));
@@ -69,7 +69,7 @@ class TestRatingService {
 
 	@Test
 	void testValidReadRating() {
-		int ratingId = 15;
+		int ratingId = 1;
 
 		Rating rating = new Rating(ratingId);
 		RatingService ratingService = new RatingService();

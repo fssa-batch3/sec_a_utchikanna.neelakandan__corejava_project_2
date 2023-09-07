@@ -26,9 +26,6 @@ public class Movie {
 		this.imageUrl = imageUrl;
 	}
 
-	public Movie(int movieId) {
-		this.movieId = movieId;
-	}
 
 	/**
 	 * Constructs a new {@code Movie} object with the provided information.
@@ -51,6 +48,11 @@ public class Movie {
 	public Movie() {
 		// Empty constructor
 	}
+
+	public Movie(int movieId) {
+		this.movieId = movieId;
+	}
+
 
 	/**
 	 * Retrieves the title of the movie.

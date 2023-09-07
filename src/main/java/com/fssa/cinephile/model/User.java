@@ -138,11 +138,6 @@ public class User {
 		return password;
 	}
 
-	@Override
-	public String toString() {
-		return "User [email=" + email + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", phoneNo=" + phoneNo + "]";
-	}
 
 	public int getUserId() {
 		return userId;

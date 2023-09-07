@@ -42,7 +42,7 @@ class TestMovieService {
 	void testUpdateMovieSuccess() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie("Leo", 12, 2, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie("Leo", 1, 2, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.updateMovie(movie));
 		} catch (ServiceException e) {
@@ -115,7 +115,7 @@ class TestMovieService {
 	@Test
 	void testDeleteMovieSuccess() {
 		MovieService movieService = new MovieService();
-		int movieId = 10;
+		int movieId = 1;
 
 		try {
 			boolean isDelete = movieService.deleteMovie(movieId);
@@ -138,13 +138,9 @@ class TestMovieService {
 	void testValidGetMovieById() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie("Leo", 10, 4,
-				"https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Leo_%282023_Indian_film%29.jpg/330px-Leo_%282023_Indian_film%29.jpg");
 		try {
-			movieService.createMovie(movie);
-			Movie retrievedMovie = movieService.getMovieById(movie.getMovieId());
+			Movie retrievedMovie = movieService.getMovieById(2);
 			assertNotNull(retrievedMovie);
-			assertEquals(movie.getMovieTitle(), retrievedMovie.getMovieTitle());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();

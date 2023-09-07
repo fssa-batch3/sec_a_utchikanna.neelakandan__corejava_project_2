@@ -15,6 +15,8 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
  */
 public class UserService {
 
+	UserDAO userDAO = new UserDAO();
+	UserValidator userValidator = new UserValidator();
 	/**
 	 * Registers a new user.
 	 *
@@ -23,13 +25,15 @@ public class UserService {
 	 * @throws ServiceException If an error occurs during the registration process.
 	 */
 	public boolean registerUser(User user) throws ServiceException {
-		UserDAO userDAO = new UserDAO();
+		
 
 		try {
 			if (user == null) {
 				throw new ServiceException("Registration credentials must not be null");
 			}
-			UserValidator.validateUser(user);
+			
+			System.out.print(user.getEmail());
+			userValidator.validateUser(user);
 			
 			// Check if the user already exists and is Active
 			User existingUser = userDAO.getUser(user.getEmail());
@@ -45,6 +49,20 @@ public class UserService {
 		}
 	}
 	
+    /**
+     * Retrieves a user by their email.
+     *
+     * @param searchEmail The email of the user to retrieve
+     * @return The User object if found, otherwise null
+     * @throws ServiceException If an error occurs during the service operation
+     */
+    public User getUserByEmail(String searchEmail) throws ServiceException {
+        try {
+            return userDAO.getUser(searchEmail); 
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage());
+        }
+    }
 	/**
 	 * Attempts to log in a user.
 	 *
@@ -53,14 +71,11 @@ public class UserService {
 	 * @throws ServiceException If an error occurs during the login process.
 	 */
 	public boolean logInUser(User user) throws ServiceException {
-		UserDAO userDAO = new UserDAO();
 		try {
-			UserValidator.validateLogIn(user);
-			User fromDb = userDAO.checkUserLogin(user.getEmail(), user.getPassword());
-			if (fromDb.getPassword().equals(user.getPassword())) {
-				System.out.println("Log in successfully");
-			} else {
-				throw new DAOException("Bad credentials");
+			userValidator.validateLogIn(user);
+			User fromDb = userDAO.checkUserLogin(user.getEmail());
+			if (!PasswordUtil.checkPassword(user.getPassword(),fromDb.getPassword())) {
+				throw new DAOException("Bad credentials");	
 			}
 			return true;
 		} catch (DAOException | ValidationException e) {

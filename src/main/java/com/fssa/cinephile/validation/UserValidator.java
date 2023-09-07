@@ -12,6 +12,10 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
  * @author UtchikannaNeelakandan
  */
 public class UserValidator {
+	
+	public UserValidator(){
+		
+	}
 
 	/**
 	 * Validates a User object.
@@ -19,7 +23,7 @@ public class UserValidator {
 	 * @param user The User object to be validated.
 	 * @throws ValidationException If the User details are not valid.
 	 */
-	public static void validateUser(User user) throws ValidationException {
+	public void validateUser(User user) throws ValidationException {
 		if (validatePassword(user.getPassword()) && validateEmail(user.getEmail())
 				&& validateFirstName(user.getFirstName()) && validateLastName(user.getLastName())) {
 			validatePhoneNo(user.getPhoneNo());
@@ -33,7 +37,7 @@ public class UserValidator {
 	 * @return True if the first name is valid, false otherwise.
 	 * @throws ValidationException If the first name is not valid.
 	 */
-	public static boolean validateFirstName(String firstName) throws ValidationException {
+	public boolean validateFirstName(String firstName) throws ValidationException {
 		boolean match = false;
 		if (firstName == null)
 			throw new ValidationException("Name cannot be empty");
@@ -58,7 +62,7 @@ public class UserValidator {
 	 * @return True if the last name is valid, false otherwise.
 	 * @throws ValidationException If the last name is not valid.
 	 */
-	public static boolean validateLastName(String lastName) throws ValidationException {
+	public boolean validateLastName(String lastName) throws ValidationException {
 		boolean match = false;
 
 		if (lastName == null)
@@ -83,7 +87,7 @@ public class UserValidator {
 	 * @return True if the password is valid, false otherwise.
 	 * @throws ValidationException If the password is not valid.
 	 */
-	public static boolean validatePassword(String password) throws ValidationException {
+	public boolean validatePassword(String password) throws ValidationException {
 		boolean match = false;
 
 		if (password == null)
@@ -109,9 +113,9 @@ public class UserValidator {
 	 * @return True if the email address is valid, false otherwise.
 	 * @throws ValidationException If the email address is not valid.
 	 */
-	public static boolean validateEmail(String email) throws ValidationException {
+	public boolean validateEmail(String email) throws ValidationException {
 		boolean isMatch = false;
-
+		System.out.print(email);
 		if (email == null) {
 			throw new ValidationException("Email cannot be empty");			
 		}
@@ -134,7 +138,7 @@ public class UserValidator {
 	 * @return True if the phone number is valid, false otherwise.
 	 * @throws ValidationException If the phone number is not valid.
 	 */
-	public static boolean validatePhoneNo(long phoneNo) throws ValidationException {
+	public boolean validatePhoneNo(long phoneNo) throws ValidationException {
 		boolean isMatch = false;
 
 		if (phoneNo == 0)
@@ -158,9 +162,9 @@ public class UserValidator {
 	 * @return True if the User object is valid for login, false otherwise.
 	 * @throws ValidationException If the User object is not valid for login.
 	 */
-	public static boolean validateLogIn(User user) throws ValidationException {
+	public boolean validateLogIn(User user) throws ValidationException {
 		if (user != null && validateEmail(user.getEmail()) && validatePassword(user.getPassword())) {
-			return true;
+			return true; 
 		} else {
 			throw new ValidationException("Login credentials are not valid");
 		}

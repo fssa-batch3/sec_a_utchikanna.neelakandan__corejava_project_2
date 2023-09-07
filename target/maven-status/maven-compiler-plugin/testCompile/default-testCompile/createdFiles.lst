@@ -1,0 +1,6 @@
+com\fssa\cinephile\services\TestRatingService.class
+com\fssa\cinephile\services\TestUserService.class
+com\fssa\cinephile\validation\TestValidateMovie.class
+com\fssa\cinephile\validation\TestValidateUser.class
+com\fssa\cinephile\services\TestMovieService.class
+com\fssa\cinephile\validation\TestValidateRating.class

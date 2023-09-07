@@ -27,7 +27,7 @@ public class UserDAO {
 	 *         otherwise.
 	 * @throws DAOException If a database access error occurs.
 	 */
-	public User checkUserLogin(String email, String password) throws DAOException {
+	public User checkUserLogin(String email) throws DAOException {
 		User user = null;
 		String selectQuery = "SELECT * FROM user WHERE email = ?";
 		try (Connection connection = ConnectionUtil.getConnection();
@@ -56,8 +56,8 @@ public class UserDAO {
 	 * @throws DAOException If an error occurs during database operation
 	 */
 	public User getUser(String searchEmail) throws DAOException {
-		User user1 = null;
-		String query = "SELECT user_id,password,phone_no,email,first_name,last_name FROM user WHERE email = ?";
+		User user = null;
+		String query = "SELECT * FROM user WHERE email = ?";
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query)) {
 
@@ -65,22 +65,20 @@ public class UserDAO {
 
 			try (ResultSet rs = pst.executeQuery()) {
 				if (rs.next()) {
-					User user = new User();
+					user = new User();
 					user.setUserId(rs.getInt("user_id"));
 					user.setPassword(rs.getString("password"));
 					user.setPhoneNo(rs.getLong("phone_no"));
 					user.setEmail(rs.getString("email"));
 					user.setFirstName(rs.getString("first_name"));
 					user.setLastName(rs.getString("last_name"));
-
-					user1 = user;
 				}
 			}
 
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		}
-		return user1;
+		return user;
 	}
 
 	/**

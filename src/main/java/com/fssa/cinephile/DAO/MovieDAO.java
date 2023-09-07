@@ -135,7 +135,7 @@ public class MovieDAO {
 
 	public Movie getMovieById(int movieId) throws DAOException {
 		Movie movie = null;
-		String query = "SELECT * FROM movie WHERE movie_id = ? AND isActive = true";
+		String query = "SELECT * FROM movie WHERE movie_id = ? AND isActive = TRUE";
 
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
