@@ -19,13 +19,7 @@ public class Rating {
 		this.ratingId = ratingId;
 	}
 
-//  update rating constructor
-	public Rating(int ratingId, int movieRating, Movie movie, User user) {
-		this.movie = movie;
-		this.ratingId = ratingId;
-		this.user = user;
-		this.movieRating = movieRating;
-	}
+
 
 	public Rating() {
 

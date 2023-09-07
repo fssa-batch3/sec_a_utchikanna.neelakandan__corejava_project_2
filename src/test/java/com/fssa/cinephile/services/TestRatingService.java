@@ -21,8 +21,8 @@ class TestRatingService {
 		User user = new User();
 		user.setUserId(1);
 		Movie movie = new Movie();
-		movie.setMovieId(1);
-		Rating rating = new Rating(4, 2, movie, user);
+		movie.setMovieId(10);
+		Rating rating = new Rating( 2, movie, user);
 		try {
 			assertTrue(ratingService.giveRating(rating));
 		} catch (ServiceException e) {
@@ -44,8 +44,8 @@ class TestRatingService {
 		User user = new User();
 		user.setUserId(1);
 		Movie movie = new Movie();
-		movie.setMovieId(1);
-		Rating rating = new Rating(4, 3, movie, user);
+		movie.setMovieId(10);
+		Rating rating = new Rating(3, movie, user);
 		try {
 			assertTrue(ratingService.updateRating(rating));
 		} catch (ServiceException e) {
@@ -57,15 +57,19 @@ class TestRatingService {
 	@Test
 	void testInvalidUpdateRating() {
 		RatingService ratingService = new RatingService();
-		int id = 4;
-		Rating rating = new Rating(id);
+		int rate = 4;
+		Movie movie = new Movie();
+		movie.setMovieId(345);
+		User user = new User();
+		user.setUserId(432);
+		Rating rating = new Rating(rate,movie,user);
 		ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.updateRating(rating));
-		assertEquals("Rating update cannot be null", exception.getMessage());
+		assertEquals("Rating not found", exception.getMessage());
 	}
 
 	@Test
 	void testValidReadRating() {
-		int ratingId = 1;
+		int ratingId = 15;
 
 		Rating rating = new Rating(ratingId);
 		RatingService ratingService = new RatingService();
@@ -87,7 +91,7 @@ class TestRatingService {
 
 	@Test
 	void testValidGetAllRating() {
-		int ratingId = 4;
+		int ratingId = 15;
 
 		Rating rating = new Rating(ratingId);
 

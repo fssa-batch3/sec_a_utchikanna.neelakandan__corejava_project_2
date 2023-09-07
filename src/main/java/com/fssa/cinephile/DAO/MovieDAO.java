@@ -55,7 +55,7 @@ public class MovieDAO {
 	 */
 	public List<Movie> getAllMovies() throws DAOException {
 		List<Movie> movieList = new ArrayList<>();
-		String query = "SELECT * FROM movie WHERE isDelete = true";
+		String query = "SELECT * FROM movie WHERE isActive = true";
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				ResultSet rs = preparedStatement.executeQuery()) {
@@ -135,7 +135,7 @@ public class MovieDAO {
 
 	public Movie getMovieById(int movieId) throws DAOException {
 		Movie movie = null;
-		String query = "SELECT * FROM movie WHERE movie_id = ? AND isDelete = true";
+		String query = "SELECT * FROM movie WHERE movie_id = ? AND isActive = true";
 
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -166,7 +166,7 @@ public class MovieDAO {
 	 * @throws DAOException If a database access error occurs.
 	 */
 	public boolean deleteMovie(int movieId) throws DAOException {
-		String query = "UPDATE movie SET isDelete = false WHERE movie_id = ?;";
+		String query = "UPDATE movie SET isActive = false WHERE movie_id = ?;";
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query);) {
 			pst.setInt(1, movieId);

@@ -32,18 +32,15 @@ public class MovieService {
 				throw new ServiceException("An error occurred while attempting to create movie");
 			}
 			MovieValidation.validateMovie(movie);
-			if (movieDAO.addMovie(movie)) {
-				return true;
-			} else {
-				return false;
-			}
+			movieDAO.addMovie(movie);
+			return true;
 
 		} catch (DAOException | ValidationException e) {
 			throw new ServiceException(e.getMessage());
 		}
 
 	}
-
+	
 	/**
 	 * Get a list of all movies.
 	 *
@@ -103,11 +100,8 @@ public class MovieService {
 				throw new ServiceException("An error occurred while attempting to update movie");
 			}
 			MovieValidation.validateMovie(movie);
-			if (movieDAO.updateMovie(movie)) {
-				return true;
-			} else {
-				return false;
-			}
+			movieDAO.updateMovie(movie);
+			return true;
 
 		} catch (DAOException | ValidationException e) {
 			throw new ServiceException(e.getMessage());

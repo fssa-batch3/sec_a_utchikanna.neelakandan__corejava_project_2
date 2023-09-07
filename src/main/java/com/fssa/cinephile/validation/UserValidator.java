@@ -17,16 +17,12 @@ public class UserValidator {
 	 * Validates a User object.
 	 *
 	 * @param user The User object to be validated.
-	 * @return True if the User is valid, false otherwise.
 	 * @throws ValidationException If the User details are not valid.
 	 */
-	public static boolean validateUser(User user) throws ValidationException {
+	public static void validateUser(User user) throws ValidationException {
 		if (validatePassword(user.getPassword()) && validateEmail(user.getEmail())
-				&& validateFirstName(user.getFirstName()) && validateLastName(user.getLastName())
-				&& validatePhoneNo(user.getPhoneNo())) {
-			return true;
-		} else {
-			throw new ValidationException("User details are not valid");
+				&& validateFirstName(user.getFirstName()) && validateLastName(user.getLastName())) {
+			validatePhoneNo(user.getPhoneNo());
 		}
 	}
 
@@ -40,7 +36,7 @@ public class UserValidator {
 	public static boolean validateFirstName(String firstName) throws ValidationException {
 		boolean match = false;
 		if (firstName == null)
-			return false;
+			throw new ValidationException("Name cannot be empty");
 
 		String regex = "^[A-Za-z'’ -]{1,50}$";
 		Pattern p = Pattern.compile(regex);
@@ -116,8 +112,10 @@ public class UserValidator {
 	public static boolean validateEmail(String email) throws ValidationException {
 		boolean isMatch = false;
 
-		if (email == null)
-			return false;
+		if (email == null) {
+			throw new ValidationException("Email cannot be empty");			
+		}
+
 		String regex = "^.*@.*\\..*$";
 		isMatch = Pattern.matches(regex, email);
 		if (isMatch) {

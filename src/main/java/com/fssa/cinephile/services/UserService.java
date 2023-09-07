@@ -4,6 +4,7 @@ import com.fssa.cinephile.DAO.UserDAO;
 import com.fssa.cinephile.DAO.exceptions.DAOException;
 import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.services.exceptions.ServiceException;
+import com.fssa.cinephile.util.PasswordUtil;
 import com.fssa.cinephile.validation.UserValidator;
 import com.fssa.cinephile.validation.exceptions.ValidationException;
 
@@ -29,21 +30,21 @@ public class UserService {
 				throw new ServiceException("Registration credentials must not be null");
 			}
 			UserValidator.validateUser(user);
+			
 			// Check if the user already exists and is Active
 			User existingUser = userDAO.getUser(user.getEmail());
 			if (existingUser != null) {
 				throw new ServiceException("User already exists.");
 			}
-			if (userDAO.createUser(user)) {
-				return true;
-			} else {
-				return false;
-			}
+			String newPassword = PasswordUtil.hashPassword(user.getPassword());
+			user.setPassword(newPassword);
+			userDAO.createUser(user);
+			return true;
 		} catch (DAOException | ValidationException e) {
 			throw new ServiceException(e.getMessage());
 		}
 	}
-
+	
 	/**
 	 * Attempts to log in a user.
 	 *

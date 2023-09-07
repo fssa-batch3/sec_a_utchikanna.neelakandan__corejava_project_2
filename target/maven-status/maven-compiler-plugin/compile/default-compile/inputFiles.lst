@@ -3,7 +3,6 @@ C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java
 C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\validation\UserValidator.java
 C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\util\ConnectionUtil.java
 C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\model\Rating.java
-C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\App.java
 C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\DAO\MovieDAO.java
 C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\services\MovieService.java
 C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\services\RatingService.java
@@ -15,3 +14,4 @@ C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java
 C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\model\User.java
 C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\services\UserService.java
 C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\DAO\UserDAO.java
+C:\Users\UtchikannaNeelakanda\eclipse-workspace\com.fssa.cinephile\src\main\java\com\fssa\cinephile\util\PasswordUtil.java

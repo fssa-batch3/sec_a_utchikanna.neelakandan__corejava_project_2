@@ -21,7 +21,7 @@ class TestUserService {
 	@Test
 	void testRegistrationSuccess() {
 		UserService userService = new UserService();
-		User user1 = new User("susi2@gmail.com", "Kanna@3108", "Jonh snow", "Kan na", 1234567890);
+		User user1 = new User("saran"+System.nanoTime()+"@gmail.com", "Kanna@3108", "Jonh snow", "Kan na", 1234567890);
 		try {
 
 			assertTrue(userService.registerUser(user1));
@@ -38,6 +38,16 @@ class TestUserService {
 		ServiceException exception = assertThrows(ServiceException.class, () -> userService.registerUser(null));
 		assertEquals("Registration credentials must not be null", exception.getMessage());
 
+	}
+	@Test
+	void testRegistrationInvalidDetails() {
+		UserService userService = new UserService();
+		User user = new User();
+		user.setEmail(null);
+		user.setPassword(null);
+		ServiceException exception = assertThrows(ServiceException.class, () -> userService.registerUser(user));
+		assertEquals("Email cannot be empty", exception.getMessage());
+		
 	}
 
 	@Test

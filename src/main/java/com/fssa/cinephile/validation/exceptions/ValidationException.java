@@ -8,7 +8,5 @@ public class ValidationException extends Exception {
 		super(msg);
 	}
 
-	public ValidationException(Throwable e) {
-		super(e);
-	}
+
 }

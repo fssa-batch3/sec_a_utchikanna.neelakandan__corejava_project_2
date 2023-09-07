@@ -148,7 +148,7 @@ public class User {
 		return userId;
 	}
 
-	public void setUserId(int user_id) {
-		this.userId = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }

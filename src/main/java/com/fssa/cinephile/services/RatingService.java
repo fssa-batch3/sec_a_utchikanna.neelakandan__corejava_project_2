@@ -33,7 +33,7 @@ public class RatingService {
 			if (rating == null) {
 				throw new ServiceException("Rating object cannot be null");
 			}
-			RatingValidation.validateGiveRating(rating);
+			RatingValidation.validateRating(rating);
 			if (ratingDAO.addRating(rating)) {
 				return true;
 			} else {
@@ -41,7 +41,7 @@ public class RatingService {
 			}
 
 		} catch (DAOException | ValidationException e) {
-			throw new ServiceException("Error while attempting to give a rating: " + e.getMessage());
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -63,11 +63,10 @@ public class RatingService {
 			if (rating == null) {
 				throw new ServiceException("Rating object is null");
 			}
-			RatingValidation.validateRating(rating);
 			return ratingDAO.readRating(rating);
 
-		} catch (DAOException | ValidationException e) {
-			throw new ServiceException("Error while attempting to retrieve a rating: " + e.getMessage());
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -90,7 +89,7 @@ public class RatingService {
 			// Retrieve all ratings from the database using the RatingDAO
 			return RatingDAO.getAllRatings();
 		} catch (DAOException e) {
-			throw new ServiceException("Error while attempting to retrieve all ratings: " + e.getMessage());
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -110,11 +109,14 @@ public class RatingService {
 			if (rating == null) {
 				throw new ServiceException("Rating update object cannot be null");
 			}
-			RatingValidation.validateUpdateRating(rating);
-			return ratingDAO.updateRating(rating);
+			RatingValidation.validateRating(rating);
+			if(!ratingDAO.updateRating(rating)) {
+				throw new ServiceException("Rating not found");
+			}
+			return true;
 
 		} catch (DAOException | ValidationException e) {
-			throw new ServiceException("Error while attempting to update a rating: " + e.getMessage());
+			throw new ServiceException( e.getMessage());
 		}
 	}
 }

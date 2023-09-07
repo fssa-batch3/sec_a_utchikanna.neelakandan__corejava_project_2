@@ -42,7 +42,7 @@ class TestMovieService {
 	void testUpdateMovieSuccess() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie("Leo", 1, 2, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie("Leo", 12, 2, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		try {
 			assertTrue(movieService.updateMovie(movie));
 		} catch (ServiceException e) {
@@ -56,6 +56,16 @@ class TestMovieService {
 		MovieService movieService = new MovieService();
 		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.updateMovie(null));
 		assertEquals("An error occurred while attempting to update movie", exception.getMessage());
+	}
+	@Test
+	void testUpdateMovieInvalidDetails() {
+		Movie movie = new Movie();
+		movie.setMovieImgUrl(null);
+		movie.setMovieRating(0);
+		movie.setMovieTitle(null);
+		MovieService movieService = new MovieService();
+		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.updateMovie(movie));
+		assertEquals("The movie title cannot be empty", exception.getMessage());
 	}
 
 	@Test
@@ -78,12 +88,22 @@ class TestMovieService {
 		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.readMovie(null));
 		assertEquals("An error occurred while attempting to raed movie", exception.getMessage());
 	}
+	
+	@Test
+	void testReadMovieInvalidDetails() {
+		Movie movie = new Movie();
+		movie.setMovieImgUrl(null);
+		movie.setMovieRating(0);
+		movie.setMovieTitle(null);
+		MovieService movieService = new MovieService();
+		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.readMovie(movie));
+		assertEquals("The movie title cannot be empty", exception.getMessage());
+	}
 
 	@Test
 	void testGetAllMovieSuccess() {
 
 		MovieService movieService = new MovieService();
-
 		try {
 			movieService.listAllMovies();
 		} catch (ServiceException e) {
@@ -95,7 +115,7 @@ class TestMovieService {
 	@Test
 	void testDeleteMovieSuccess() {
 		MovieService movieService = new MovieService();
-		int movieId = 3;
+		int movieId = 10;
 
 		try {
 			boolean isDelete = movieService.deleteMovie(movieId);
@@ -118,7 +138,7 @@ class TestMovieService {
 	void testValidGetMovieById() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie("Leo", 1, 4,
+		Movie movie = new Movie("Leo", 10, 4,
 				"https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Leo_%282023_Indian_film%29.jpg/330px-Leo_%282023_Indian_film%29.jpg");
 		try {
 			movieService.createMovie(movie);

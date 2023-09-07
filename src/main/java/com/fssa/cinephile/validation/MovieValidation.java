@@ -19,15 +19,11 @@ public class MovieValidation {
 	 * Validates a Movie object.
 	 *
 	 * @param movie The Movie object to be validated.
-	 * @return True if the Movie is valid, false otherwise.
 	 * @throws ValidationException If the Movie details are not valid.
 	 */
-	public static boolean validateMovie(Movie movie) throws ValidationException {
-		if (validateMovieTitle(movie.getMovieTitle()) && validateMovieRating(movie.getMovieRating())
-				&& validateMovieImageUrl(movie.getMovieImgUrl())) {
-			return true;
-		} else {
-			throw new ValidationException("Movie details not valid");
+	public static void validateMovie(Movie movie) throws ValidationException {
+		if (validateMovieTitle(movie.getMovieTitle()) && validateMovieRating(movie.getMovieRating())) {
+			validateMovieImageUrl(movie.getMovieImgUrl());
 		}
 	}
 
@@ -42,7 +38,7 @@ public class MovieValidation {
 		boolean match = false;
 
 		if (title == null)
-			return false;
+			throw new ValidationException("The movie title cannot be empty");
 
 		String regex = "^[a-zA-Z\\s]{3,49}$";
 		Pattern p = Pattern.compile(regex);
