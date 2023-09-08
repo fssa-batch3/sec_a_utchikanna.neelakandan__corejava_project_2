@@ -47,10 +47,8 @@ public class UserValidator {
 		Matcher m = p.matcher(firstName);
 		match = m.matches();
 		if (match) {
-			System.out.println("The first name is valid.");
-		} else {
 			throw new ValidationException("The first name is not valid");
-		}
+		} 
 
 		return match;
 	}
@@ -71,9 +69,7 @@ public class UserValidator {
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(lastName);
 		match = m.matches();
-		if (match) {
-			System.out.println("The last name is valid.");
-		} else {
+		if (!match) {
 			throw new ValidationException("The last name is not valid");
 		}
 
@@ -96,9 +92,7 @@ public class UserValidator {
 		String patternString = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=.*[^\\s]).{8,}$";
 		match = Pattern.matches(patternString, password);
 
-		if (match) {
-			System.out.println("The password is valid.");
-		} else {
+		if (!match) {
 			throw new ValidationException(
 					"The provided password is invalid. Password should contain at least one uppercase letter, one lowercase letter, one symbol, one number, and have a minimum length of 8 characters.");
 		}
@@ -115,13 +109,13 @@ public class UserValidator {
 	 */
 	public boolean validateEmail(String email) throws ValidationException {
 		boolean isMatch = false;
-		System.out.print(email);
+		
 		if (email == null) {
 			throw new ValidationException("Email cannot be empty");			
 		}
 
 		String regex = "^.*@.*\\..*$";
-		isMatch = Pattern.matches(regex, email);
+		isMatch = Pattern.compile(regex).matcher(email).matches();
 		if (isMatch) {
 			System.out.println("The email address is valid.");
 		} else {
