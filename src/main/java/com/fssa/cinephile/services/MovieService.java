@@ -31,7 +31,8 @@ public class MovieService {
 			if (movie == null) {
 				throw new ServiceException("An error occurred while attempting to create movie");
 			}
-			MovieValidation.validateMovie(movie);
+			MovieValidation movieValidation = new MovieValidation();
+			movieValidation.validateMovie(movie);
 			movieDAO.addMovie(movie);
 			return true;
 
@@ -55,7 +56,8 @@ public class MovieService {
 			if (movie == null) {
 				throw new ServiceException("An error occurred while attempting to raed movie");
 			}
-			MovieValidation.validateMovie(movie);
+			MovieValidation movieValidation = new MovieValidation();
+			movieValidation.validateMovie(movie);
 			return movieDAO.readMovie(movie);
 
 		} catch (DAOException | ValidationException e) {
@@ -99,7 +101,8 @@ public class MovieService {
 			if (movie == null) {
 				throw new ServiceException("An error occurred while attempting to update movie");
 			}
-			MovieValidation.validateMovie(movie);
+			MovieValidation movieValidation = new MovieValidation();
+			movieValidation.validateMovie(movie);
 			movieDAO.updateMovie(movie);
 			return true;
 

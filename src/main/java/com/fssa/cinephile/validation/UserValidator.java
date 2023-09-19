@@ -2,7 +2,6 @@ package com.fssa.cinephile.validation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.validation.exceptions.ValidationException;
 
@@ -27,6 +26,22 @@ public class UserValidator {
 		if (validatePassword(user.getPassword()) && validateEmail(user.getEmail())
 				&& validateFirstName(user.getFirstName()) && validateLastName(user.getLastName())) {
 			validatePhoneNo(user.getPhoneNo());
+		}else {
+			throw new ValidationException("update failure");
+		}
+	}
+	
+	/**
+	 * Validates a User object.
+	 *
+	 * @param user The User object to be validated.
+	 * @throws ValidationException If the User details are not valid.
+	 */
+	public void validateUpdateUser(User user) throws ValidationException {
+		if (validateFirstName(user.getFirstName()) && validateLastName(user.getLastName())) {
+			validatePhoneNo(user.getPhoneNo());
+		}else {
+			throw new ValidationException("update failure");
 		}
 	}
 
@@ -46,7 +61,7 @@ public class UserValidator {
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(firstName);
 		match = m.matches();
-		if (match) {
+		if (!match) {
 			throw new ValidationException("The first name is not valid");
 		} 
 
@@ -75,6 +90,7 @@ public class UserValidator {
 
 		return match;
 	}
+	
 
 	/**
 	 * Validates a password.

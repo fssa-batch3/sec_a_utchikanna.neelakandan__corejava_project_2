@@ -9,12 +9,22 @@ package com.fssa.cinephile.model;
  */
 public class User {
 
+	
+
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNo=" + phoneNo
+				+ "]";
+	}
+
 	private String email;
 	private String password;
 	private String firstName;
 	private String lastName;
 	private long phoneNo;
 	private int userId;
+	
+	
 
 	/**
 	 * Constructs a new {@code User} object with the provided information.
@@ -31,7 +41,28 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNo = phoneNo;
+		
 	}
+	
+	/**
+	 * Constructs a new User object with the specified attributes.
+	 *
+	 * @param email The email address of the user.
+	 * @param password The password associated with the user's account.
+	 * @param firstName The first name of the user.
+	 * @param lastName The last name of the user.
+	 * @param phoneNo The phone number of the user.
+	 * @param userId The unique identifier of the user.
+	 */
+	public User(String email, String password, String firstName, String lastName, long phoneNo, int userId) {
+	    this.email = email;
+	    this.password = password;
+	    this.firstName = firstName;
+	    this.lastName = lastName;
+	    this.phoneNo = phoneNo;
+	    this.userId = userId;
+	}
+
 
 	/**
 	 * Constructs a new {@code User} object with the provided email and password.
@@ -47,6 +78,20 @@ public class User {
 	public User() {
 		
 	}
+
+	public User(long phoneNo ,int userId, String lastName, String firstName) {
+		this.firstName = firstName;
+	    this.lastName = lastName;
+	    this.phoneNo = phoneNo;	
+	    this.userId = userId;
+	}
+   public User(String email,String firstName,String lastName, long phoneNo) {
+	this.firstName = firstName;
+    this.lastName = lastName;
+    this.phoneNo = phoneNo;
+    this.email = email;
+   }
+
 
 	/**
 	 * Retrieves the first name of the user.
@@ -139,11 +184,23 @@ public class User {
 	}
 
 
+
+	/**
+	 * Retrieves the user's unique identifier.
+	 *
+	 * @return An integer representing the user's unique identifier.
+	 */
 	public int getUserId() {
-		return userId;
+	    return userId;
 	}
 
+	/**
+	 * Sets the user's unique identifier.
+	 *
+	 * @param userId An integer representing the unique identifier of the user to be set.
+	 */
 	public void setUserId(int userId) {
-		this.userId = userId;
+	    this.userId = userId;
 	}
+
 }

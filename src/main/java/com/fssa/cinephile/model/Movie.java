@@ -12,6 +12,8 @@ public class Movie {
 	private int movieId;
 	private int movieRating;
 	private String imageUrl;
+	private String movieTrailer;
+	private String movieType;
 
 	/**
 	 * Constructs a new {@code Movie} object with the provided information.
@@ -19,12 +21,54 @@ public class Movie {
 	 * @param title       The title of the movie.
 	 * @param movieRating The rating of the movie.
 	 * @param imageUrl    The URL of the movie's image.
+     * @param movieTrailer    The Trailer of the movie.
+	 * @param movieType    The Type of the movie.
 	 */
-	public Movie(int movieRating, String title, String imageUrl) {
+	public Movie(int movieRating, String title, String imageUrl ,String movieTrailer ,String movieType) {
 		this.title = title;
 		this.movieRating = movieRating;
 		this.imageUrl = imageUrl;
+		this.movieTrailer = movieTrailer;
+		this.movieType = movieType;
 	}
+
+
+	 /**
+     * Gets the URL of the movie's trailer.
+     *
+     * @return The URL of the movie's trailer.
+     */
+    public String getMovieTrailer() {
+        return movieTrailer;
+    }
+
+    /**
+     * Sets the URL of the movie's trailer.
+     *
+     * @param movieTrailer The URL of the movie's trailer.
+     */
+    public void setMovieTrailer(String movieTrailer) {
+        this.movieTrailer = movieTrailer;
+    }
+
+    /**
+     * Gets the type or category of the movie.
+     *
+     * @return The type or category of the movie.
+     */
+    public String getMovieType() {
+        return movieType;
+    }
+
+    /**
+     * Sets the type or category of the movie.
+     *
+     * @param movieType The type or category of the movie.
+     */
+    public void setMovieType(String movieType) {
+        this.movieType = movieType;
+    }
+
 
 
 	/**
@@ -34,12 +78,16 @@ public class Movie {
 	 * @param movieId     The ID of the movie.
 	 * @param movieRating The rating of the movie.
 	 * @param imageUrl    The URL of the movie's image.
+	 * @param movieTrailer    The Trailer of the movie.
+	 * @param movieType    The Type of the movie.
 	 */
-	public Movie(String title, int movieId, int movieRating, String imageUrl) {
+	public Movie(String title, int movieId, int movieRating, String imageUrl,String movieTrailer ,String movieType) {
 		this.title = title;
 		this.movieRating = movieRating;
 		this.imageUrl = imageUrl;
 		this.movieId = movieId;
+		this.movieTrailer = movieTrailer;
+		this.movieType = movieType;
 	}
 
 	/**

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.List;
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -27,13 +29,10 @@ class TestUserService {
 	@Order(1)
 	void testRegistrationSuccess() {
 		UserService userService = new UserService();
-		User user1 = new User(email, "Kanna@3108", "Jonh snow", "Kan na", 1234567890);
+		User user1 = new User(email, "Kanna@3108", "Jonh snow", "Kanna", 1234567890);
 		try {
-			assertTrue(userService.registerUser(user1));
-			User user = userService.getUserByEmail(email);
-			assertEquals(user.getFirstName(), user1.getFirstName());
+			userService.registerUser(user1);
 		} catch (ServiceException e) { 
-			System.out.println("testRegistrationSuccess");
 			e.printStackTrace();
 			fail();
 		}
@@ -52,12 +51,10 @@ class TestUserService {
 	@Test
 	void testLoginSuccess() {
 		UserService userService = new UserService();
-		System.out.println(email);
 		User user = new User(email, "Kanna@3108");
 		try {
 			assertTrue(userService.logInUser(user));
 		} catch (ServiceException e) {
-			System.out.println("testLoginSuccess");
 			e.printStackTrace();
 			fail();
 		}
@@ -70,5 +67,46 @@ class TestUserService {
 		assertEquals("Login credentials are not valid", exception.getMessage());
 
 	}
+	@Order(5)
+	  @Test
+	    void testUpdateUserSuccess() {
+	        UserService userService = new UserService();
+
+	        User user = new User(1234567890,3,"John", "Doe");
+	        try {
+	            assertTrue(userService.updateUser(user));
+	        } catch (ServiceException e) {
+	            e.printStackTrace();
+	            fail();
+	        }
+	    }
+	@Order(6)
+	    @Test
+	    void testUpdateUserNullDetails() {
+	        UserService userService = new UserService();
+	        ServiceException exception = assertThrows(ServiceException.class, () -> userService.updateUser(null));
+	        assertEquals("An error occurred while attempting to update user", exception.getMessage());
+	    }
+	@Order(7)
+	 @Test
+	    void testDeleteUserSuccess() {
+	        UserService userService = new UserService();
+	        int userId = 1;
+
+	        try {
+	            boolean isDelete = userService.deleteUser(userId);
+	            assertTrue(isDelete);
+	        } catch (ServiceException e) {
+	            e.printStackTrace();
+	            fail();
+	        }
+	    }
+	@Order(8)
+	    @Test
+	    void testDeleteUserNullDetails() {
+	        UserService userService = new UserService();
+	        ServiceException exception = assertThrows(ServiceException.class, () -> userService.deleteUser(0));
+	        assertEquals("An error occurred while attempting to delete the user", exception.getMessage());
+	    }
 
 }

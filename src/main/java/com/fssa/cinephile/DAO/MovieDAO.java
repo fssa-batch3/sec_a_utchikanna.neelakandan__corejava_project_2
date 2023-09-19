@@ -25,7 +25,7 @@ public class MovieDAO {
 	 * @throws DAOException If a database access error occurs.
 	 */
 	public boolean addMovie(Movie movie) throws DAOException {
-		String insertQuery = "INSERT INTO movie ( movie_rating,movie_title, movie_image_url) VALUES (?, ?, ?)";
+		String insertQuery = "INSERT INTO movies ( movie_rating,movie_title, movie_image_url,movie_trailer,movie_type) VALUES (?, ?, ?, ?, ?)";
 		try (
 				// Get connection
 				Connection connection = ConnectionUtil.getConnection();
@@ -34,6 +34,8 @@ public class MovieDAO {
 			statement.setInt(1, movie.getMovieRating());
 			statement.setString(2, movie.getMovieTitle());
 			statement.setString(3, movie.getMovieImgUrl());
+			statement.setString(4, movie.getMovieTrailer());
+			statement.setString(5, movie.getMovieType());
 
 			// Execute the query
 			int rows = statement.executeUpdate();
@@ -55,7 +57,7 @@ public class MovieDAO {
 	 */
 	public List<Movie> getAllMovies() throws DAOException {
 		List<Movie> movieList = new ArrayList<>();
-		String query = "SELECT * FROM movie WHERE isActive = true";
+		String query = "SELECT * FROM movies WHERE isActive = true";
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				ResultSet rs = preparedStatement.executeQuery()) {
@@ -67,6 +69,8 @@ public class MovieDAO {
 				movie.setMovieTitle(rs.getString("movie_title"));
 				movie.setMovieImgUrl(rs.getString("movie_image_url"));
 				movie.setMovieId(rs.getInt("movie_id"));
+				movie.setMovieTrailer(rs.getString("movie_trailer"));
+				movie.setMovieType(rs.getString("movie_type"));
 
 				movieList.add(movie);
 			}
@@ -84,7 +88,7 @@ public class MovieDAO {
 	 * @throws DAOException If a database access error occurs.
 	 */
 	public boolean readMovie(Movie movie) throws DAOException {
-		String selectQuery = "SELECT * FROM movie WHERE movie_title = ?";
+		String selectQuery = "SELECT * FROM movies WHERE movie_title = ?";
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement statement = connection.prepareStatement(selectQuery);) {
 			statement.setString(1, movie.getMovieTitle());
@@ -105,7 +109,7 @@ public class MovieDAO {
 	 * @throws DAOException If a database access error occurs.
 	 */
 	public boolean updateMovie(Movie movie) throws DAOException {
-		String updateQuery = "UPDATE movie SET movie_title = ?, movie_rating = ?, movie_image_url = ? WHERE movie_id = ?";
+		String updateQuery = "UPDATE movies SET movie_title = ?, movie_rating = ?, movie_image_url = ? , movie_trailer = ? , movie_type = ? WHERE movie_id = ?";
 		try (
 				// Get connection
 				Connection connection = ConnectionUtil.getConnection();
@@ -114,8 +118,9 @@ public class MovieDAO {
 			statement.setString(1, movie.getMovieTitle());
 			statement.setInt(2, movie.getMovieRating());
 			statement.setString(3, movie.getMovieImgUrl());
-			statement.setInt(4, movie.getMovieId());
-
+			statement.setString(4, movie.getMovieTrailer());
+			statement.setString(5, movie.getMovieType());
+			statement.setInt(6, movie.getMovieId());
 			// Execute the query
 			int rows = statement.executeUpdate();
 			// Return successful or not
@@ -135,7 +140,7 @@ public class MovieDAO {
 
 	public Movie getMovieById(int movieId) throws DAOException {
 		Movie movie = null;
-		String query = "SELECT * FROM movie WHERE movie_id = ? AND isActive = TRUE";
+		String query = "SELECT * FROM movies WHERE movie_id = ? AND isActive = TRUE";
 
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -149,6 +154,8 @@ public class MovieDAO {
 					movie.setMovieTitle(rs.getString("movie_title"));
 					movie.setMovieImgUrl(rs.getString("movie_image_url"));
 					movie.setMovieId(rs.getInt("movie_id"));
+					movie.setMovieTrailer(rs.getString("movie_trailer"));
+					movie.setMovieType(rs.getString("movie_type"));
 				}
 			}
 
@@ -166,7 +173,7 @@ public class MovieDAO {
 	 * @throws DAOException If a database access error occurs.
 	 */
 	public boolean deleteMovie(int movieId) throws DAOException {
-		String query = "UPDATE movie SET isActive = false WHERE movie_id = ?;";
+		String query = "UPDATE movies SET isActive = false WHERE movie_id = ?;";
 		try (Connection connection = ConnectionUtil.getConnection();
 				PreparedStatement pst = connection.prepareStatement(query);) {
 			pst.setInt(1, movieId);

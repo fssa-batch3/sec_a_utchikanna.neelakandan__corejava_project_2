@@ -21,8 +21,8 @@ public class MovieValidation {
 	 * @param movie The Movie object to be validated.
 	 * @throws ValidationException If the Movie details are not valid.
 	 */
-	public static void validateMovie(Movie movie) throws ValidationException {
-		if (validateMovieTitle(movie.getMovieTitle()) && validateMovieRating(movie.getMovieRating())) {
+	public void validateMovie(Movie movie) throws ValidationException {
+		if (validateMovieTitle(movie.getMovieTitle()) && validateMovieRating(movie.getMovieRating()) && validateMovieType(movie.getMovieType()) && validateMovieTrailer(movie.getMovieTrailer())) {
 			validateMovieImageUrl(movie.getMovieImgUrl());
 		}
 	}
@@ -34,7 +34,7 @@ public class MovieValidation {
 	 * @return True if the movie title is valid, false otherwise.
 	 * @throws ValidationException If the movie title is not valid.
 	 */
-	public static boolean validateMovieTitle(String title) throws ValidationException {
+	public boolean validateMovieTitle(String title) throws ValidationException {
 		boolean match = false;
 
 		if (title == null)
@@ -54,19 +54,62 @@ public class MovieValidation {
 	}
 
 	/**
+	 * Validates a movie Type.
+	 *
+	 * @param movieType The movie Type to be validated.
+	 * @return True if the movie Type is valid, false otherwise.
+	 * @throws ValidationException If the movie Type is not valid.
+	 */
+	public boolean validateMovieType(String movieType) throws ValidationException {
+		boolean match = false;
+
+		if (movieType == null)
+			throw new ValidationException("The movie Type cannot be empty");
+
+		String regex = "^[a-zA-Z\\s]{3,49}$";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(movieType);
+		match = m.matches();
+		if (match) {
+			System.out.println("The movie Type is valid");
+		} else {
+			throw new ValidationException("The movie Type is not valid");
+		}
+
+		return match;
+	}
+
+	/**
 	 * Validates a movie image URL.
 	 *
 	 * @param imageUrl The movie image URL to be validated.
 	 * @return True if the image URL is valid, false otherwise.
 	 * @throws ValidationException If the image URL is not valid.
 	 */
-	public static boolean validateMovieImageUrl(String imageUrl) throws ValidationException {
+	public boolean validateMovieImageUrl(String imageUrl) throws ValidationException {
 		try {
 			URL val = new URL(imageUrl);
 			System.out.println(val + " image is found");
 			return true;
 		} catch (MalformedURLException e) {
 			throw new ValidationException("Image is not found");
+		}
+	}
+	
+	/**
+	 * Validates a movie Trailer.
+	 *
+	 * @param movieTrailer The movie Trailer URL to be validated.
+	 * @return True if the Trailer URL is valid, false otherwise.
+	 * @throws ValidationException If the Trailer URL is not valid.
+	 */
+	public boolean validateMovieTrailer(String movieTrailer) throws ValidationException {
+		try {
+			URL val = new URL(movieTrailer);
+			System.out.println(val + " trailer is found");
+			return true;
+		} catch (MalformedURLException e) {
+			throw new ValidationException("trailer is not found");
 		}
 	}
 
@@ -77,7 +120,7 @@ public class MovieValidation {
 	 * @return True if the movie rating is valid, false otherwise.
 	 * @throws ValidationException If the movie rating is not valid.
 	 */
-	public static boolean validateMovieRating(int rating) throws ValidationException {
+	public boolean validateMovieRating(int rating) throws ValidationException {
 		boolean isMatch = false;
 
 		if (rating < 0)

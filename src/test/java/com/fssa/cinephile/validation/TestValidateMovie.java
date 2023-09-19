@@ -20,7 +20,8 @@ class TestValidateMovie {
 	@Test
 	void testValidMovieTitle() {
 		try {
-			assertTrue(MovieValidation.validateMovieTitle("Leo"));
+			MovieValidation movieValidation = new MovieValidation();
+			assertTrue(movieValidation.validateMovieTitle("Leo"));
 			System.out.println("movie title is valid");
 		} catch (ValidationException e) {
 			System.out.println(e.getMessage());
@@ -30,15 +31,38 @@ class TestValidateMovie {
 
 	@Test
 	void testInvalidMovieTitle() {
+		MovieValidation movieValidation = new MovieValidation();
 		ValidationException result = assertThrows(ValidationException.class,
-				() -> MovieValidation.validateMovieTitle("e"));
+				() -> movieValidation.validateMovieTitle("e"));
 		assertEquals("The movie title is not valid", result.getMessage());
 	}
+	
+	@Test
+	void testValidMovieType() {
+		try {
+			MovieValidation movieValidation = new MovieValidation();
+			assertTrue(movieValidation.validateMovieType("Kollywood"));
+			System.out.println("movie Type is valid");
+		} catch (ValidationException e) {
+			System.out.println(e.getMessage());
+			fail();
+		}
+	}
+
+	@Test
+	void testInvalidMovieType() {
+		MovieValidation movieValidation = new MovieValidation();
+		ValidationException result = assertThrows(ValidationException.class,
+				() -> movieValidation.validateMovieType("e"));
+		assertEquals("The movie Type is not valid", result.getMessage());
+	}
+	
 
 	@Test
 	void testValidMovieImageUrl() {
 		try {
-			assertTrue(MovieValidation
+			MovieValidation movieValidation = new MovieValidation();
+			assertTrue(movieValidation
 					.validateMovieImageUrl("https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large"));
 			System.out.println("movie image is valid");
 		} catch (ValidationException e) {
@@ -49,15 +73,38 @@ class TestValidateMovie {
 
 	@Test
 	void testInvalidMovieImageUrl() {
+		MovieValidation movieValidation = new MovieValidation();
 		ValidationException result = assertThrows(ValidationException.class,
-				() -> MovieValidation.validateMovieImageUrl("httpspbs.twimg.com/media/FoDdg2WXEAomzQX"));
+				() -> movieValidation.validateMovieImageUrl("httpspbs.twimg.com/media/FoDdg2WXEAomzQX"));
 		assertEquals("Image is not found", result.getMessage());
+	}
+	
+	@Test
+	void testValidMovieTrailer() {
+		try {
+			MovieValidation movieValidation = new MovieValidation();
+			assertTrue(movieValidation
+					.validateMovieTrailer("https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large"));
+			System.out.println("movie Trailer is valid");
+		} catch (ValidationException e) {
+			System.out.println(e.getMessage());
+			fail();
+		}
+	}
+
+	@Test
+	void testInvalidMovieTrailer() {
+		MovieValidation movieValidation = new MovieValidation();
+		ValidationException result = assertThrows(ValidationException.class,
+				() -> movieValidation.validateMovieTrailer("httpspbs.twimg.com/media/FoDdg2WXEAomzQX"));
+		assertEquals("trailer is not found", result.getMessage());
 	}
 
 	@Test
 	void testValidMovieRating() {
 		try {
-			assertTrue(MovieValidation.validateMovieRating(1));
+			MovieValidation movieValidation = new MovieValidation();
+			assertTrue(movieValidation.validateMovieRating(1));
 			System.out.println("rating is valid");
 		} catch (ValidationException e) {
 			System.out.println(e.getMessage());
@@ -67,8 +114,9 @@ class TestValidateMovie {
 
 	@Test
 	void testInvalidMovieRating() {
+		MovieValidation movieValidation = new MovieValidation();
 		ValidationException result = assertThrows(ValidationException.class,
-				() -> MovieValidation.validateMovieRating(10));
+				() -> movieValidation.validateMovieRating(10));
 		assertEquals("The movie rating is invalid", result.getMessage());
 	}
 }

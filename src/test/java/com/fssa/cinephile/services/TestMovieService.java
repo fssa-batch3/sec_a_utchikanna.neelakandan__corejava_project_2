@@ -22,7 +22,7 @@ class TestMovieService {
 	void testAddMovieSuccess() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
 		try {
 			assertTrue(movieService.createMovie(movie));
 		} catch (ServiceException e) {
@@ -42,7 +42,7 @@ class TestMovieService {
 	void testUpdateMovieSuccess() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie("Leo", 1, 2, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie("Leo", 7, 2, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
 		try {
 			assertTrue(movieService.updateMovie(movie));
 		} catch (ServiceException e) {
@@ -73,7 +73,7 @@ class TestMovieService {
 
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
+		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
 		try {
 			assertTrue(movieService.readMovie(movie));
 		} catch (ServiceException e) {
