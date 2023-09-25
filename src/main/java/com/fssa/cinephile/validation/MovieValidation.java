@@ -22,7 +22,7 @@ public class MovieValidation {
 	 * @throws ValidationException If the Movie details are not valid.
 	 */
 	public void validateMovie(Movie movie) throws ValidationException {
-		if (validateMovieTitle(movie.getMovieTitle()) && validateMovieRating(movie.getMovieRating()) && validateMovieType(movie.getMovieType()) && validateMovieTrailer(movie.getMovieTrailer())) {
+		if (validateMovieTitle(movie.getMovieTitle()) && validateMovieType(movie.getMovieType()) && validateMovieTrailer(movie.getMovieTrailer())) {
 			validateMovieImageUrl(movie.getMovieImgUrl());
 		}
 	}
@@ -44,9 +44,7 @@ public class MovieValidation {
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(title);
 		match = m.matches();
-		if (match) {
-			System.out.println("The movie title is valid");
-		} else {
+		if (!match) {
 			throw new ValidationException("The movie title is not valid");
 		}
 
@@ -113,27 +111,5 @@ public class MovieValidation {
 		}
 	}
 
-	/**
-	 * Validates a movie rating.
-	 *
-	 * @param rating The movie rating to be validated.
-	 * @return True if the movie rating is valid, false otherwise.
-	 * @throws ValidationException If the movie rating is not valid.
-	 */
-	public boolean validateMovieRating(int rating) throws ValidationException {
-		boolean isMatch = false;
-
-		if (rating < 0)
-			return false;
-
-		String strNumber = String.valueOf(rating);
-		String regex = "[0-5]";
-		isMatch = Pattern.matches(regex, strNumber);
-		if (isMatch) {
-			System.out.println("The movie rating is valid");
-		} else {
-			throw new ValidationException("The movie rating is invalid");
-		}
-		return isMatch;
-	}
+	
 }

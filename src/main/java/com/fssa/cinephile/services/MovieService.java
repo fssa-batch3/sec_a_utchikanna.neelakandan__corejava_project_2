@@ -42,6 +42,8 @@ public class MovieService {
 
 	}
 	
+	
+	
 	/**
 	 * Get a list of all movies.
 	 *
@@ -80,6 +82,17 @@ public class MovieService {
 			MovieDAO movieDAO = new MovieDAO();
 			// Retrieve all movies from the database using the MovieDAO
 			return movieDAO.getAllMovies();
+		} catch (DAOException e) {
+		
+			throw new ServiceException(e.getMessage());
+		}
+	}
+	
+	public List<Movie> movieFilter(String movieType) throws ServiceException {
+		try {
+			MovieDAO movieDAO = new MovieDAO();
+			// Retrieve all movies from the database using the MovieDAO
+			return movieDAO.movieFilter(movieType);
 		} catch (DAOException e) {
 		
 			throw new ServiceException(e.getMessage());

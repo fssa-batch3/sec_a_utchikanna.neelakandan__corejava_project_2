@@ -106,7 +106,7 @@ public class UserDAO {
 					user.setUserId(rs.getInt("user_id"));
 					user.setPhoneNo(rs.getLong("phone_no"));
 					userDetails = user;
-					System.out.println(user.toString());
+					
 				}
 			}
 

@@ -1,7 +1,5 @@
 package com.fssa.cinephile.services;
 
-import java.util.List;
-
 import com.fssa.cinephile.DAO.UserDAO;
 import com.fssa.cinephile.DAO.exceptions.DAOException;
 import com.fssa.cinephile.model.User;

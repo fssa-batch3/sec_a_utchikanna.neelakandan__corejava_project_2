@@ -18,13 +18,10 @@ class TestRatingService {
 	void testValidGiveRating() {
 		RatingService ratingService = new RatingService();
 
-		User user = new User();
-		user.setUserId(1);
-		Movie movie = new Movie();
-		movie.setMovieId(1);
-		Rating rating = new Rating( 2, movie, user);
+	
+		Rating rating = new Rating( 2, 1, 1);
 		try {
-			assertTrue(ratingService.giveRating(rating));
+			assertTrue(ratingService.submitRating(rating));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
@@ -34,48 +31,21 @@ class TestRatingService {
 	@Test
 	void testInvalidGiveRating() {
 		RatingService ratingService = new RatingService();
-		ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.giveRating(null));
+		ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.submitRating(null));
 		assertEquals("Rating object cannot be null", exception.getMessage());
 	}
 
-	@Test
-	void testValidUpdateRating() {
-		RatingService ratingService = new RatingService();
-		User user = new User();
-		user.setUserId(1);
-		Movie movie = new Movie();
-		movie.setMovieId(1);
-		Rating rating = new Rating(3, movie, user);
-		try {
-			assertTrue(ratingService.updateRating(rating));
-		} catch (ServiceException e) {
-			e.printStackTrace();
-			fail();
-		}
-	}
+	
 
 	@Test
-	void testInvalidUpdateRating() {
-		RatingService ratingService = new RatingService();
-		int rate = 4;
-		Movie movie = new Movie();
-		movie.setMovieId(345);
-		User user = new User();
-		user.setUserId(432);
-		Rating rating = new Rating(rate,movie,user);
-		ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.updateRating(rating));
-		assertEquals("Rating not found", exception.getMessage());
-	}
-
-	@Test
-	void testValidReadRating() {
+	void testValidGetMoviesRating() {
 		int ratingId = 1;
-
-		Rating rating = new Rating(ratingId);
+      int movieId = 2;
+		
 		RatingService ratingService = new RatingService();
 
 		try {
-			ratingService.readRating(rating);
+			ratingService.getRatingByMovieAndUser(ratingId,movieId);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
@@ -83,22 +53,22 @@ class TestRatingService {
 	}
 
 	@Test
-	void testInvalidReadRating() {
+	void testInvalidGetMoviesRating() {
 		RatingService ratingService = new RatingService();
-		ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.readRating(null));
+		ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.getRatingByMovieAndUser(0,0));
 		assertEquals("Rating object is null", exception.getMessage());
 	}
 
 	@Test
-	void testValidGetAllRating() {
+	void testValidGetAvgRating() {
 		int ratingId = 15;
 
-		Rating rating = new Rating(ratingId);
+	
 
 		RatingService ratingService = new RatingService();
 
 		try {
-			ratingService.listAllRatings(rating);
+			ratingService.getAverageRatingAndCountByMovie(ratingId);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
@@ -106,9 +76,9 @@ class TestRatingService {
 	}
 
 	@Test
-	void testInvalidGetAllRating() {
+	void testInvalidGetAvgRating() {
 		RatingService ratingService = new RatingService();
-		ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.listAllRatings(null));
+		ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.getAverageRatingAndCountByMovie(0));
 		assertEquals("Rating list is null", exception.getMessage());
 	}
 

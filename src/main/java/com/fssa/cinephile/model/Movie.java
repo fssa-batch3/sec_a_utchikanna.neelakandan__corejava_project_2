@@ -8,82 +8,93 @@ package com.fssa.cinephile.model;
  */
 public class Movie {
 
+	
+
+	@Override
+	public String toString() {
+		return "Movie [title=" + title + ", movieId=" + movieId + ", imageUrl=" + imageUrl + ", movieTrailer="
+				+ movieTrailer + ", movieType=" + movieType + ", watchlist_id=" + watchlist_id + "]";
+	}
+
 	private String title;
 	private int movieId;
-	private int movieRating;
 	private String imageUrl;
 	private String movieTrailer;
 	private String movieType;
+	private int watchlist_id;
+
+	public int getWatchlistId() {
+		return watchlist_id;
+	}
+
+	public void setWatchlistId(int watchlist_id) {
+		this.watchlist_id = watchlist_id;
+	}
 
 	/**
 	 * Constructs a new {@code Movie} object with the provided information.
 	 *
-	 * @param title       The title of the movie.
-	 * @param movieRating The rating of the movie.
-	 * @param imageUrl    The URL of the movie's image.
-     * @param movieTrailer    The Trailer of the movie.
+	 * @param title        The title of the movie.
+	 * @param movieRating  The rating of the movie.
+	 * @param imageUrl     The URL of the movie's image.
+	 * @param movieTrailer The Trailer of the movie.
 	 * @param movieType    The Type of the movie.
 	 */
-	public Movie(int movieRating, String title, String imageUrl ,String movieTrailer ,String movieType) {
+	public Movie(String title, String imageUrl, String movieTrailer, String movieType) {
 		this.title = title;
-		this.movieRating = movieRating;
 		this.imageUrl = imageUrl;
 		this.movieTrailer = movieTrailer;
 		this.movieType = movieType;
 	}
 
+	/**
+	 * Gets the URL of the movie's trailer.
+	 *
+	 * @return The URL of the movie's trailer.
+	 */
+	public String getMovieTrailer() {
+		return movieTrailer;
+	}
 
-	 /**
-     * Gets the URL of the movie's trailer.
-     *
-     * @return The URL of the movie's trailer.
-     */
-    public String getMovieTrailer() {
-        return movieTrailer;
-    }
+	/**
+	 * Sets the URL of the movie's trailer.
+	 *
+	 * @param movieTrailer The URL of the movie's trailer.
+	 */
+	public void setMovieTrailer(String movieTrailer) {
+		this.movieTrailer = movieTrailer;
+	}
 
-    /**
-     * Sets the URL of the movie's trailer.
-     *
-     * @param movieTrailer The URL of the movie's trailer.
-     */
-    public void setMovieTrailer(String movieTrailer) {
-        this.movieTrailer = movieTrailer;
-    }
+	/**
+	 * Gets the type or category of the movie.
+	 *
+	 * @return The type or category of the movie.
+	 */
+	public String getMovieType() {
+		return movieType;
+	}
 
-    /**
-     * Gets the type or category of the movie.
-     *
-     * @return The type or category of the movie.
-     */
-    public String getMovieType() {
-        return movieType;
-    }
-
-    /**
-     * Sets the type or category of the movie.
-     *
-     * @param movieType The type or category of the movie.
-     */
-    public void setMovieType(String movieType) {
-        this.movieType = movieType;
-    }
-
-
+	/**
+	 * Sets the type or category of the movie.
+	 *
+	 * @param movieType The type or category of the movie.
+	 */
+	public void setMovieType(String movieType) {
+		this.movieType = movieType;
+	}
 
 	/**
 	 * Constructs a new {@code Movie} object with the provided information.
 	 *
-	 * @param title       The title of the movie.
-	 * @param movieId     The ID of the movie.
-	 * @param movieRating The rating of the movie.
-	 * @param imageUrl    The URL of the movie's image.
-	 * @param movieTrailer    The Trailer of the movie.
+	 * @param title        The title of the movie.
+	 * @param movieId      The ID of the movie.
+	 * @param movieRating  The rating of the movie.
+	 * @param imageUrl     The URL of the movie's image.
+	 * @param movieTrailer The Trailer of the movie.
 	 * @param movieType    The Type of the movie.
 	 */
-	public Movie(String title, int movieId, int movieRating, String imageUrl,String movieTrailer ,String movieType) {
+	public Movie(String title, int movieId, String imageUrl, String movieTrailer, String movieType) {
 		this.title = title;
-		this.movieRating = movieRating;
 		this.imageUrl = imageUrl;
 		this.movieId = movieId;
 		this.movieTrailer = movieTrailer;
@@ -100,7 +111,6 @@ public class Movie {
 	public Movie(int movieId) {
 		this.movieId = movieId;
 	}
-
 
 	/**
 	 * Retrieves the title of the movie.
@@ -139,24 +149,6 @@ public class Movie {
 	}
 
 	/**
-	 * Retrieves the rating of the movie.
-	 *
-	 * @return The rating of the movie.
-	 */
-	public int getMovieRating() {
-		return movieRating;
-	}
-
-	/**
-	 * Sets the rating of the movie.
-	 *
-	 * @param movieRating The rating of the movie.
-	 */
-	public void setMovieRating(int movieRating) {
-		this.movieRating = movieRating;
-	}
-
-	/**
 	 * Retrieves the URL of the movie's image.
 	 *
 	 * @return The URL of the movie's image.
@@ -173,4 +165,5 @@ public class Movie {
 	public void setMovieImgUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+
 }

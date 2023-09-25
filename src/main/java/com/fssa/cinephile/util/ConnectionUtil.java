@@ -30,15 +30,15 @@ public class ConnectionUtil {
 
 //      Cloud DB
 
-//		dbUrl = System.getenv("DB_URL");
-//		dbUser = System.getenv("DB_USER");
-//		dbPassword = System.getenv("DB_PASSWORD");
+//     	dbUrl = System.getenv("DATABASE_HOST");
+//		dbUser = System.getenv("DATABASE_USERNAME");
+//		dbPassword = System.getenv("DATABASE_PASSWORD");
 
 //		Local Host
 
-        dbUrl = "jdbc:mysql://localhost:3306/cinephile";
-        dbUser = "root";
-       dbPassword = "123456";
+		dbUrl = "jdbc:mysql://localhost:3306/cinephile";
+		dbUser = "root";
+		dbPassword = "123456";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

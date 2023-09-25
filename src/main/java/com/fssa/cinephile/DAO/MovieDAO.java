@@ -25,17 +25,17 @@ public class MovieDAO {
 	 * @throws DAOException If a database access error occurs.
 	 */
 	public boolean addMovie(Movie movie) throws DAOException {
-		String insertQuery = "INSERT INTO movies ( movie_rating,movie_title, movie_image_url,movie_trailer,movie_type) VALUES (?, ?, ?, ?, ?)";
+		String insertQuery = "INSERT INTO movies (movie_title, movie_image_url,movie_trailer,movie_type) VALUES (?, ?, ?, ?)";
 		try (
 				// Get connection
 				Connection connection = ConnectionUtil.getConnection();
 				// Prepare SQL statement
 				PreparedStatement statement = connection.prepareStatement(insertQuery);) {
-			statement.setInt(1, movie.getMovieRating());
-			statement.setString(2, movie.getMovieTitle());
-			statement.setString(3, movie.getMovieImgUrl());
-			statement.setString(4, movie.getMovieTrailer());
-			statement.setString(5, movie.getMovieType());
+		
+			statement.setString(1, movie.getMovieTitle());
+			statement.setString(2, movie.getMovieImgUrl());
+			statement.setString(3, movie.getMovieTrailer());
+			statement.setString(4, movie.getMovieType());
 
 			// Execute the query
 			int rows = statement.executeUpdate();
@@ -65,7 +65,6 @@ public class MovieDAO {
 			// Iterate through the result set and populate the movieList
 			while (rs.next()) {
 				Movie movie = new Movie();
-				movie.setMovieRating(rs.getInt("movie_rating"));
 				movie.setMovieTitle(rs.getString("movie_title"));
 				movie.setMovieImgUrl(rs.getString("movie_image_url"));
 				movie.setMovieId(rs.getInt("movie_id"));
@@ -100,7 +99,33 @@ public class MovieDAO {
 			throw new DAOException(e);
 		}
 	}
+ 
+	public List<Movie> movieFilter(String movieType) throws DAOException {
+		System.out.println(movieType);
+		List<Movie> movieList = new ArrayList<>();
+		String selectQuery = "SELECT movie_trailer, movie_title, movie_image_url,movie_id FROM movies WHERE movie_type = ?";
+		try (Connection connection = ConnectionUtil.getConnection();
+				PreparedStatement statement = connection.prepareStatement(selectQuery);
+				ResultSet rs = statement.executeQuery()) {
+			    statement.setString(1,movieType);
 
+			
+			while (rs.next()) {
+				Movie movie = new Movie();
+				movie.setMovieTrailer(rs.getString("movie_trailer"));
+				movie.setMovieTitle(rs.getString("movie_title"));
+				movie.setMovieImgUrl(rs.getString("movie_image_url"));
+				movie.setMovieId(rs.getInt("movie_id"));
+				movie.setMovieType(rs.getString("movie_type"));
+
+				movieList.add(movie);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		}
+		return movieList;
+	}
+ 
 	/**
 	 * Updates information about a Movie in the database.
 	 *
@@ -109,18 +134,17 @@ public class MovieDAO {
 	 * @throws DAOException If a database access error occurs.
 	 */
 	public boolean updateMovie(Movie movie) throws DAOException {
-		String updateQuery = "UPDATE movies SET movie_title = ?, movie_rating = ?, movie_image_url = ? , movie_trailer = ? , movie_type = ? WHERE movie_id = ?";
+		String updateQuery = "UPDATE movies SET movie_title = ?, movie_image_url = ? , movie_trailer = ? , movie_type = ? WHERE movie_id = ?";
 		try (
 				// Get connection
 				Connection connection = ConnectionUtil.getConnection();
 				// Prepare SQL statement
 				PreparedStatement statement = connection.prepareStatement(updateQuery);) {
 			statement.setString(1, movie.getMovieTitle());
-			statement.setInt(2, movie.getMovieRating());
-			statement.setString(3, movie.getMovieImgUrl());
-			statement.setString(4, movie.getMovieTrailer());
-			statement.setString(5, movie.getMovieType());
-			statement.setInt(6, movie.getMovieId());
+			statement.setString(2, movie.getMovieImgUrl());
+			statement.setString(3, movie.getMovieTrailer());
+			statement.setString(4, movie.getMovieType());
+			statement.setInt(5, movie.getMovieId());
 			// Execute the query
 			int rows = statement.executeUpdate();
 			// Return successful or not
@@ -149,13 +173,14 @@ public class MovieDAO {
 
 			try (ResultSet rs = preparedStatement.executeQuery()) {
 				if (rs.next()) {
-					movie = new Movie();
-					movie.setMovieRating(rs.getInt("movie_rating"));
-					movie.setMovieTitle(rs.getString("movie_title"));
-					movie.setMovieImgUrl(rs.getString("movie_image_url"));
-					movie.setMovieId(rs.getInt("movie_id"));
-					movie.setMovieTrailer(rs.getString("movie_trailer"));
-					movie.setMovieType(rs.getString("movie_type"));
+				Movie movie1 = new Movie();
+				movie1.setMovieTitle(rs.getString("movie_title"));
+				movie1.setMovieImgUrl(rs.getString("movie_image_url"));
+				movie1.setMovieId(rs.getInt("movie_id"));
+				movie1.setMovieTrailer(rs.getString("movie_trailer"));
+				movie1.setMovieType(rs.getString("movie_type"));
+				
+				movie = movie1;
 				}
 			}
 
@@ -165,6 +190,7 @@ public class MovieDAO {
 		return movie;
 	}
 
+		
 	/**
 	 * Marks a Movie as inactive in the database.
 	 *

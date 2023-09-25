@@ -1,8 +1,8 @@
 -- Create the database if it doesn't exist
-CREATE DATABASE IF NOT EXISTS utchikanna_neelakandan_corejava_project;
+CREATE DATABASE IF NOT EXISTS cinephile;
 
 -- Use the database
-USE utchikanna_neelakandan_corejava_project;
+USE cinephile;
 
 -- Create the 'users' table
 CREATE TABLE IF NOT EXISTS users (
@@ -17,32 +17,34 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Create the 'movies' table
 CREATE TABLE IF NOT EXISTS movies (
-    movie_rating VARCHAR(20) NOT NULL,
     movie_title VARCHAR(50) NOT NULL,
     movie_id INT AUTO_INCREMENT PRIMARY KEY,
     movie_image_url VARCHAR(2048) NOT NULL,
-    isActive BOOLEAN NOT NULL DEFAULT TRUE
+    isActive BOOLEAN NOT NULL DEFAULT TRUE,
+    movie_trailer VARCHAR(2048) NOT NULL,
+    movie_type VARCHAR(50) NOT NULL 
 );
- ALTER TABLE `utchikanna_neelakandan_corejava_project`.`movies` 
-ADD COLUMN `movie_trailer` VARCHAR(2048) NOT NULL AFTER `isActive`,
-ADD COLUMN `movie_type` VARCHAR(50) NOT NULL AFTER `movie_trailer`;
 -- Create the 'comments' table
 CREATE TABLE IF NOT EXISTS comments (
     comment_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
     comment VARCHAR(500) NOT NULL,
     movie_id INT,
+	user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (movie_id) REFERENCES movies (movie_id)
 );
 
 -- Create the 'ratings' table
-CREATE TABLE IF NOT EXISTS ratings (
-    rating_id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS `ratings` (
+    rating_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    movie_id INT NOT NULL,
     rating INT NOT NULL,
-    movie_id INT,
-    user_id INT,
-    FOREIGN KEY (user_id) REFERENCES users (user_id),
-    FOREIGN KEY (movie_id) REFERENCES movies (movie_id)
+    UNIQUE KEY unique_user_book (user_id , movie_id),
+    FOREIGN KEY (user_id)
+        REFERENCES users (user_id),
+    FOREIGN KEY (movie_id)
+        REFERENCES movies (movie_id)
 );
 
 -- Create the 'feedbacks' table
@@ -60,21 +62,22 @@ CREATE TABLE IF NOT EXISTS movieDetails (
 	award_name VARCHAR(255),       -- Award name
     award_wiki VARCHAR(2048),      -- URL for award details
     movie_link VARCHAR(2048),      -- URL for watching the movie
+	director_name VARCHAR(255),    -- Director's name
+	director_wiki VARCHAR(2048),   -- URL for director's Wikipedia page
 	FOREIGN KEY (movie_id) REFERENCES movies (movie_id)
     );
     
-    CREATE TABLE IF NOT EXISTS castAndCrew (
+    CREATE TABLE IF NOT EXISTS casts (
     cast_id INT AUTO_INCREMENT PRIMARY KEY,
     movie_id INT,
-	director_name VARCHAR(255),    -- Director's name
-    music_director_name VARCHAR(255),   -- Music director's name
-    director_wiki VARCHAR(2048),   -- URL for director's Wikipedia page
-    music_director_wiki VARCHAR(2048),  -- URL for music director's Wikipedia page
     actor_wiki VARCHAR(2048),     -- URL for actor 1's Wikipedia page
     actor_img VARCHAR(2048),      -- URL for actor 1's image
     actor_name VARCHAR(255),      -- Actor 1's name
 	FOREIGN KEY (movie_id) REFERENCES movies (movie_id)
     );
+    
+    
+    
     
 
 -- Insert sample records into the 'user' table

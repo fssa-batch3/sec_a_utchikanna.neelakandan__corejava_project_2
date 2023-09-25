@@ -22,7 +22,7 @@ class TestMovieService {
 	void testAddMovieSuccess() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
+		Movie movie = new Movie("Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
 		try {
 			assertTrue(movieService.createMovie(movie));
 		} catch (ServiceException e) {
@@ -42,7 +42,7 @@ class TestMovieService {
 	void testUpdateMovieSuccess() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie("Leo", 7, 2, "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
+		Movie movie = new Movie("Leo", 7,"https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
 		try {
 			assertTrue(movieService.updateMovie(movie));
 		} catch (ServiceException e) {
@@ -61,7 +61,6 @@ class TestMovieService {
 	void testUpdateMovieInvalidDetails() {
 		Movie movie = new Movie();
 		movie.setMovieImgUrl(null);
-		movie.setMovieRating(0);
 		movie.setMovieTitle(null);
 		MovieService movieService = new MovieService();
 		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.updateMovie(movie));
@@ -73,7 +72,7 @@ class TestMovieService {
 
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie(3, "Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
+		Movie movie = new Movie("Leo", "https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
 		try {
 			assertTrue(movieService.readMovie(movie));
 		} catch (ServiceException e) {
@@ -93,7 +92,6 @@ class TestMovieService {
 	void testReadMovieInvalidDetails() {
 		Movie movie = new Movie();
 		movie.setMovieImgUrl(null);
-		movie.setMovieRating(0);
 		movie.setMovieTitle(null);
 		MovieService movieService = new MovieService();
 		ServiceException exception = assertThrows(ServiceException.class, () -> movieService.readMovie(movie));
@@ -106,6 +104,19 @@ class TestMovieService {
 		MovieService movieService = new MovieService();
 		try {
 			movieService.listAllMovies();
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+	
+	@Test
+	void testGetMovieFilterSuccess() {
+
+		MovieService movieService = new MovieService();
+		String movieType = "kollywood"; 
+		try {
+			movieService.movieFilter(movieType);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			fail();
@@ -139,7 +150,7 @@ class TestMovieService {
 		MovieService movieService = new MovieService();
 
 		try {
-			Movie retrievedMovie = movieService.getMovieById(2);
+			Movie retrievedMovie = movieService.getMovieById(1);
 			assertNotNull(retrievedMovie);
 		} catch (ServiceException e) {
 			e.printStackTrace();
