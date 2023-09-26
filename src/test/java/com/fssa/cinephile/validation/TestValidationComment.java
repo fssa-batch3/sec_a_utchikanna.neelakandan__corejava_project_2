@@ -28,7 +28,7 @@ public class TestValidationComment {
 	}
 
 	@Test
-	void testInvalidRating() {
+	void testInvalidComment() {
 		comments.setComment("");
 		ValidationException result = assertThrows(ValidationException.class,
 				() -> commentsValidation.validateComment(comments));

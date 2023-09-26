@@ -12,13 +12,13 @@ public class WatchlistService {
 	
 	private WatchlistDAO watchlistDAO = new WatchlistDAO();
 	
-	public boolean addwatchlist(Watchlist watchlist) throws ServiceException{
+	public boolean addWatchlist(Watchlist watchlist) throws ServiceException{
 		
 		try {
 			if (watchlist == null) {
 				throw new ServiceException("An error occurred while attempting to adding watchlist");
 			}
-			return watchlistDAO.AddWatchlist(watchlist);
+			return watchlistDAO.addWatchlist(watchlist);
 		}catch (DAOException e) {
 			throw new ServiceException(e.getMessage());
 		}

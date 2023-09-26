@@ -16,11 +16,11 @@ public class TestWatchlistService {
 
 	
 	@Test
-    void testAddWatchlisttSuccess() {
+    void testAddWatchlistSuccess() {
 	   
 		Watchlist Watchlist = new Watchlist(1,2);
         try {
-            assertTrue(watchlisttService.addwatchlist(Watchlist));
+            assertTrue(watchlisttService.addWatchlist(Watchlist));
         } catch (ServiceException e) {
             e.printStackTrace();
             fail();
@@ -28,13 +28,13 @@ public class TestWatchlistService {
     }
 
     @Test
-    void testAddCommentNullDetails() {
-        ServiceException exception = assertThrows(ServiceException.class, () -> watchlisttService.addwatchlist(null));
+    void testAddWatchlistNullDetails() {
+        ServiceException exception = assertThrows(ServiceException.class, () -> watchlisttService.addWatchlist(null));
         assertEquals("An error occurred while attempting to adding watchlist", exception.getMessage());
     }
 
     @Test
-    void testDeleteCommentSuccess() {
+    void testDeleteWatchlistSuccess() {
         int watchlistId = 1;
         try {
             assertTrue(watchlisttService.removeWatchlist(watchlistId));
@@ -45,7 +45,7 @@ public class TestWatchlistService {
     }
 
     @Test
-    void testDeleteCommentInvalidComment() {
+    void testDeleteWatchlistInvalidComment() {
         int commentId = 999; 
         ServiceException exception = assertThrows(ServiceException.class, () -> watchlisttService.removeWatchlist(commentId));
         assertEquals("An error occurred while attempting to delete watchlist", exception.getMessage());

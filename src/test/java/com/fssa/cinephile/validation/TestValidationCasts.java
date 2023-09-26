@@ -53,7 +53,7 @@ public class TestValidationCasts {
 	
 
 	@Test
-	void testValidMovieImageUrl() {
+	void testValidActorLink() {
 		try {
 			assertTrue(castsValidation.validateActorLink("https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large"));
 	
@@ -64,7 +64,7 @@ public class TestValidationCasts {
 	}
 
 	@Test
-	void testInvalidMovieImageUrl() {
+	void testInvalidActorLink() {
 		ValidationException result = assertThrows(ValidationException.class,
 				() -> castsValidation.validateActorLink("httpspbs.twimg.com/media/FoDdg2WXEAomzQX"));
 		assertEquals("actor link is not found", result.getMessage());

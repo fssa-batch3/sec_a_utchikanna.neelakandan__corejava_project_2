@@ -45,7 +45,7 @@ public class TestCommentService {
         int movieId = 1;
         int userId = 1;
         try {
-            String rating = commentService.getRatingByMovieAndUser(movieId, userId);
+            String rating = commentService.getCommentByMovieAndUser(movieId, userId);
             assertNotNull(rating);
         } catch (ServiceException e) {
             e.printStackTrace();

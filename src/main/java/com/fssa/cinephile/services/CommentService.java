@@ -31,7 +31,7 @@ public class CommentService {
 		}
 	}
 	
-	 public String getRatingByMovieAndUser(int movieId, int userId) throws ServiceException {
+	 public String getCommentByMovieAndUser(int movieId, int userId) throws ServiceException {
 	        try {
 	            return commentDAO.getCommentByMovieAndUser(movieId, userId);
 	        } catch (DAOException e) {

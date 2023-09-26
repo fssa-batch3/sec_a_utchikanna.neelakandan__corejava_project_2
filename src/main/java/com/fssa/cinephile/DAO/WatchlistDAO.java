@@ -14,7 +14,7 @@ import com.fssa.cinephile.util.ConnectionUtil;
 
 public class WatchlistDAO {
 
-	public boolean AddWatchlist(Watchlist watchlist) throws DAOException {
+	public boolean addWatchlist(Watchlist watchlist) throws DAOException {
 
 		String query = "INSERT INTO watchlists (user_id , movie_id) VALUES (?,?)";
 

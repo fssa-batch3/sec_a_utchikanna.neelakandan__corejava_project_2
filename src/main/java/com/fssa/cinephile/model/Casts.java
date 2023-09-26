@@ -2,35 +2,35 @@ package com.fssa.cinephile.model;
 
 public class Casts {
 
-	private String actorName;
-	private String actorLink;
-	private String actorImage;
+	private String actor_name;
+	private String actor_link;
+	private String actor_image;
 	private int casts_id;
 	private int movie_id;
 	
 	
 	@Override
 	public String toString() {
-		return "Casts [actorName=" + actorName + ", actorLink=" + actorLink + ", actorImage=" + actorImage
+		return "Casts [actorName=" + actor_name + ", actorLink=" + actor_link + ", actorImage=" + actor_image
 				+ ", casts_id=" + casts_id + ", movie_id=" + movie_id + "]";
 	}
 	public String getActorName() {
-		return actorName;
+		return actor_name;
 	}
 	public void setActorName(String actorName) {
-		this.actorName = actorName;
+		this.actor_name = actorName;
 	}
 	public String getActorLink() {
-		return actorLink;
+		return actor_link;
 	}
 	public void setActorLink(String actorLink) {
-		this.actorLink = actorLink;
+		this.actor_link = actorLink;
 	}
 	public String getActorImage() {
-		return actorImage;
+		return actor_image;
 	}
 	public void setActorImage(String actorImage) {
-		this.actorImage = actorImage;
+		this.actor_image = actorImage;
 	}
 	public int getCastsId() {
 		return casts_id;

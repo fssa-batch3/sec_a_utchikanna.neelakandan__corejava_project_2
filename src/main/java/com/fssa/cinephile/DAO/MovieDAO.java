@@ -101,29 +101,31 @@ public class MovieDAO {
 	}
  
 	public List<Movie> movieFilter(String movieType) throws DAOException {
-		System.out.println(movieType);
-		List<Movie> movieList = new ArrayList<>();
-		String selectQuery = "SELECT movie_trailer, movie_title, movie_image_url,movie_id FROM movies WHERE movie_type = ?";
-		try (Connection connection = ConnectionUtil.getConnection();
-				PreparedStatement statement = connection.prepareStatement(selectQuery);
-				ResultSet rs = statement.executeQuery()) {
-			    statement.setString(1,movieType);
-
-			
-			while (rs.next()) {
-				Movie movie = new Movie();
-				movie.setMovieTrailer(rs.getString("movie_trailer"));
-				movie.setMovieTitle(rs.getString("movie_title"));
-				movie.setMovieImgUrl(rs.getString("movie_image_url"));
-				movie.setMovieId(rs.getInt("movie_id"));
-				movie.setMovieType(rs.getString("movie_type"));
-
-				movieList.add(movie);
-			}
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		}
-		return movieList;
+	    List<Movie> movieList = new ArrayList<>();
+	    String selectQuery = "SELECT movie_trailer, movie_title, movie_image_url, movie_id FROM movies WHERE movie_type = ?";
+	    
+	    try (Connection connection = ConnectionUtil.getConnection();
+	         PreparedStatement statement = connection.prepareStatement(selectQuery)) {
+	        
+	        statement.setString(1, movieType); 
+	        
+	        try (ResultSet rs = statement.executeQuery()) {
+	            while (rs.next()) {
+	                Movie movie = new Movie();
+	                movie.setMovieTrailer(rs.getString("movie_trailer"));
+	                movie.setMovieTitle(rs.getString("movie_title"));
+	                movie.setMovieImgUrl(rs.getString("movie_image_url"));
+	                movie.setMovieId(rs.getInt("movie_id"));
+	                movie.setMovieType(movieType); // Set the movieType here
+	                
+	                movieList.add(movie);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        throw new DAOException(e);
+	    }
+	    
+	    return movieList;
 	}
  
 	/**
