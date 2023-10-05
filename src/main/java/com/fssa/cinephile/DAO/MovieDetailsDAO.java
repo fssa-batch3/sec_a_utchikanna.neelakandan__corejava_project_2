@@ -64,12 +64,13 @@ public class MovieDetailsDAO {
 	                "md.movie_details_id, md.story, md.release_date, md.award_name, md.award_wiki, md.movie_link, md.director_name, md.director_wiki," +
 	                "m.movie_title, m.movie_image_url, m.movie_trailer, m.movie_type, m.movie_id " +
 	                "FROM movieDetails md " +
-	                "INNER JOIN movies m ON md.movie_id = m.movie_id";
+	                "INNER JOIN movies m ON md.movie_id = m.movie_id WHERE md.movie_id = ?";
 
 	        try (Connection connection = ConnectionUtil.getConnection();
 	             PreparedStatement preparedStatement = connection.prepareStatement(query);
-	             ResultSet rs = preparedStatement.executeQuery()) {
-
+	             ) {
+	        	preparedStatement.setInt(1, movieId);
+	        	ResultSet rs = preparedStatement.executeQuery();
 	            while (rs.next()) {
 	                MovieDetails movieDetails = new MovieDetails();
 	                movieDetails.setMovieDetailsId(rs.getInt("movie_details_id"));

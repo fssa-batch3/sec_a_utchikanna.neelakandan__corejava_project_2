@@ -38,16 +38,18 @@ public class CommentsDAO {
 	public List<Comments> getMoviesComments(int movieId) throws DAOException {
 		List<Comments> commentsList = new ArrayList<>();
 		String query = "SELECT " +
-                "c.comment_id, c.comment, c.user_id, u.first_name, u.email, c.movie_id, m.movie_id " +
-                "FROM comments c " +
-                "INNER JOIN users u ON c.user_id = u.user_id " +
-                "INNER JOIN movies m ON c.movie_id = m.movie_id";
+	               "c.comment_id, c.comment, c.user_id, u.first_name, u.email, c.movie_id, m.movie_id " +
+	               "FROM comments c " +
+	               "INNER JOIN users u ON c.user_id = u.user_id " +
+	               "INNER JOIN movies m ON c.movie_id = m.movie_id " + 
+	               "WHERE c.movie_id = ?";
+
 
 
 		 try (Connection connection = ConnectionUtil.getConnection();
-	             PreparedStatement preparedStatement = connection.prepareStatement(query);
-	             ResultSet rs = preparedStatement.executeQuery()) {
-
+	             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			 preparedStatement.setInt(1, movieId);
+			 ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				Comments getComments = new Comments();
 				getComments.setComment(rs.getString("comment"));
