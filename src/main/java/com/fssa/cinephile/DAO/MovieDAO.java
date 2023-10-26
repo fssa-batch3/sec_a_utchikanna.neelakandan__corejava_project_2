@@ -27,9 +27,7 @@ public class MovieDAO {
 	public boolean addMovie(Movie movie) throws DAOException {
 		String insertQuery = "INSERT INTO movies (movie_title, movie_image_url,movie_trailer,movie_type) VALUES (?, ?, ?, ?)";
 		try (
-				// Get connection
 				Connection connection = ConnectionUtil.getConnection();
-				// Prepare SQL statement
 				PreparedStatement statement = connection.prepareStatement(insertQuery);) {
 		
 			statement.setString(1, movie.getMovieTitle());
@@ -37,9 +35,8 @@ public class MovieDAO {
 			statement.setString(3, movie.getMovieTrailer());
 			statement.setString(4, movie.getMovieType());
 
-			// Execute the query
+
 			int rows = statement.executeUpdate();
-			// Return successful or not
 			return (rows > 0);
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -62,7 +59,6 @@ public class MovieDAO {
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				ResultSet rs = preparedStatement.executeQuery()) {
 
-			// Iterate through the result set and populate the movieList
 			while (rs.next()) {
 				Movie movie = new Movie();
 				movie.setMovieTitle(rs.getString("movie_title"));
@@ -138,18 +134,18 @@ public class MovieDAO {
 	public boolean updateMovie(Movie movie) throws DAOException {
 		String updateQuery = "UPDATE movies SET movie_title = ?, movie_image_url = ? , movie_trailer = ? , movie_type = ? WHERE movie_id = ?";
 		try (
-				// Get connection
+		
 				Connection connection = ConnectionUtil.getConnection();
-				// Prepare SQL statement
+			
 				PreparedStatement statement = connection.prepareStatement(updateQuery);) {
 			statement.setString(1, movie.getMovieTitle());
 			statement.setString(2, movie.getMovieImgUrl());
 			statement.setString(3, movie.getMovieTrailer());
 			statement.setString(4, movie.getMovieType());
 			statement.setInt(5, movie.getMovieId());
-			// Execute the query
+		
 			int rows = statement.executeUpdate();
-			// Return successful or not
+		
 			return (rows > 0);
 		} catch (SQLException e) {
 			throw new DAOException(e);

@@ -15,11 +15,11 @@ import com.fssa.cinephile.util.ConnectionUtil;
 /**
  * Data Access Object for interacting with User entities in the database.
  * 
- * @author UtchikannaNeelakandan
+ * 
+ * @author UtchikannaNeelakanda
  */
 public class UserDAO {
 
-	// Connect to database
 
 	/**
 	 * Checks if a user with the given email and password exists in the database.
@@ -38,7 +38,7 @@ public class UserDAO {
 			statement.setString(1, email);
 
 			try (ResultSet rs = statement.executeQuery()) {
-				if (rs.next()) { // Move the cursor to the first row
+				if (rs.next()) { 
 					user = new User();
 					user.setEmail(rs.getString("email"));
 					user.setPassword(rs.getString("password"));
@@ -61,9 +61,9 @@ public class UserDAO {
 	public boolean updateUser(User user) throws DAOException {
 	    String updateQuery = "UPDATE users SET  phone_no = ? ,first_name = ?, last_name = ?  WHERE email = ?";
 	    try (
-	        // Get connection
+	     
 	        Connection connection = ConnectionUtil.getConnection();
-	        // Prepare SQL statement
+	        
 	        PreparedStatement statement = connection.prepareStatement(updateQuery);
 	    ) {
 	     
@@ -71,9 +71,9 @@ public class UserDAO {
 	        statement.setString(2, user.getFirstName());
 	        statement.setString(3, user.getLastName());
 	        statement.setString(4, user.getEmail());
-	        // Execute the query
+	    
 	        int rows = statement.executeUpdate();
-	        // Return successful or not
+	      
 	        return (rows > 0);
 	    } catch (SQLException e) {
 	        throw new DAOException(e);
@@ -127,10 +127,10 @@ public class UserDAO {
 		String insertQuery = "INSERT INTO users (email, password, first_name, last_name, phone_no) VALUES (?, ?, ?, ?, ?)";
 
 		try (
-				// Get connection
+	
 				Connection connection = ConnectionUtil.getConnection();
 
-				// Prepare SQL statement
+			
 				PreparedStatement statement = connection.prepareStatement(insertQuery)) {
 			statement.setString(1, user.getEmail());
 			statement.setString(2, user.getPassword());
@@ -138,10 +138,10 @@ public class UserDAO {
 			statement.setString(4, user.getLastName());
 			statement.setLong(5, user.getPhoneNo());
 
-			// Execute the query
+	
 			int rows = statement.executeUpdate();
 
-			// Return successful or not
+		
 			return (rows == 1);
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -165,7 +165,7 @@ public class UserDAO {
 			pst.setString(1, email);
 
 			try (ResultSet rs = pst.executeQuery()) {
-				return rs.next(); // If a row is found, the user exists
+				return rs.next(); 
 			}
 
 		} catch (SQLException e) {

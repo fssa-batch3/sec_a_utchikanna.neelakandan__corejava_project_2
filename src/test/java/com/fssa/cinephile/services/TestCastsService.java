@@ -70,7 +70,7 @@ public class TestCastsService {
 	@Test
 	void testDeleteCastsSuccess() {
 		try {
-			boolean isDelete = castsService.deleteCasts(2);
+			boolean isDelete = castsService.deleteCasts(39);
 			assertTrue(isDelete);
 		} catch (ServiceException e) {
 			e.printStackTrace();

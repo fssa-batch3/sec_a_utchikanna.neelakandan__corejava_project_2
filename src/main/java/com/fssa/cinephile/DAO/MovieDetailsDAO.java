@@ -16,8 +16,10 @@ import com.fssa.cinephile.util.ConnectionUtil;
  * Data Access Object for interacting with MovieDetails entities in the
  * database.
  * 
- * @author [Your Name]
+ * @author UtchikannaNeelakandan
  */
+
+
 public class MovieDetailsDAO {
 	/**
 	 * Adds new movie details to the database.
@@ -29,9 +31,8 @@ public class MovieDetailsDAO {
 	public boolean addMovieDetails(MovieDetails movieDetails) throws DAOException {
 		String insertQuery = "INSERT INTO movieDetails (story, release_date, award_name, award_wiki, movie_link, director_name, director_wiki, movie_id) VALUES (?, ?, ?, ?, ?, ?, ? , ?)";
 		try (
-				// Get connection
+	
 				Connection connection = ConnectionUtil.getConnection();
-				// Prepare SQL statement
 				PreparedStatement statement = connection.prepareStatement(insertQuery);) {
 			statement.setString(1, movieDetails.getStory());
 			statement.setString(2, movieDetails.getReleaseDate());
@@ -42,9 +43,9 @@ public class MovieDetailsDAO {
 			statement.setString(7, movieDetails.getDirectorWiki());
 			statement.setInt(8, movieDetails.getMovie().getMovieId());
 
-			// Execute the query
+	
 			int rows = statement.executeUpdate();
-			// Return successful or not
+	
 			return (rows > 0);
 		} catch (SQLException e) {
 			throw new DAOException(e);
@@ -109,9 +110,9 @@ public class MovieDetailsDAO {
 	public boolean updateMovieDetails(MovieDetails movieDetails) throws DAOException {
 		String updateQuery = "UPDATE movieDetails SET story = ?, release_date = ?, award_name = ?, award_wiki = ?, movie_link = ?, director_name = ?, director_wiki = ? WHERE movie_details_id = ?";
 		try (
-				// Get connection
+		
 				Connection connection = ConnectionUtil.getConnection();
-				// Prepare SQL statement
+			
 				PreparedStatement statement = connection.prepareStatement(updateQuery);) {
 			statement.setString(1, movieDetails.getStory());
 			statement.setString(2, movieDetails.getReleaseDate());
@@ -122,9 +123,9 @@ public class MovieDetailsDAO {
 			statement.setString(7, movieDetails.getDirectorWiki());
 			statement.setInt(8, movieDetails.getMovieDetailsId());
 
-			// Execute the query
+			
 			int rows = statement.executeUpdate();
-			// Return successful or not
+		
 			return (rows > 0);
 		} catch (SQLException e) {
 			throw new DAOException(e);

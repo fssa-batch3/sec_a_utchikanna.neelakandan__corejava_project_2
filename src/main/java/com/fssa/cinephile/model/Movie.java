@@ -13,7 +13,7 @@ public class Movie {
 	@Override
 	public String toString() {
 		return "Movie [title=" + title + ", movieId=" + movieId + ", imageUrl=" + imageUrl + ", movieTrailer="
-				+ movieTrailer + ", movieType=" + movieType + ", watchlist_id=" + watchlist_id + "]";
+				+ movieTrailer + ", movieType=" + movieType + ", watchlist_id=" + watchlistId + "]";
 	}
 
 	private String title;
@@ -21,14 +21,14 @@ public class Movie {
 	private String imageUrl;
 	private String movieTrailer;
 	private String movieType;
-	private int watchlist_id;
+	private int watchlistId;
 
 	public int getWatchlistId() {
-		return watchlist_id;
+		return watchlistId;
 	}
 
 	public void setWatchlistId(int watchlist_id) {
-		this.watchlist_id = watchlist_id;
+		this.watchlistId = watchlist_id;
 	}
 
 	/**

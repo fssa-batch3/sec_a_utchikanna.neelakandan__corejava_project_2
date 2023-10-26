@@ -86,7 +86,7 @@ public class TestCommentService {
 
     @Test
     void testDeleteCommentSuccess() {
-        int commentId = 1;
+        int commentId = 6;
         try {
             assertTrue(commentService.deleteComment(commentId));
         } catch (ServiceException e) {

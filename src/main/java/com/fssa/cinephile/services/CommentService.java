@@ -68,6 +68,7 @@ public class CommentService {
 			try {
 				
 				boolean comment = commentDAO.deleteComment(commentId); 
+				
 				if (!comment) {
 					throw new ServiceException("An error occurred while attempting to delete comment");
 				}

@@ -136,7 +136,7 @@ public class UserValidator {
 			System.out.println("The email address is valid.");
 		} else {
 			throw new ValidationException(
-					"The provided email Invalid. A valid email should look like this: Kanna@gmail.com");
+					"Bad credentials");
 		}
 		return isMatch;
 	}
