@@ -6,4 +6,4 @@
 
 ## ER Diagram
 
-[![HDDkFwX.md.png](https://iili.io/HDDkFwX.md.png)](https://freeimage.host/i/HDDkFwX)
+[![HDDkFwX.md.png](https://iili.io/HDDkFwX.md.png)](https://drive.google.com/file/d/1hmMDJFUTARFsZIC6FfcVaKZ2a-8vV13c/view?usp=drive_link)
