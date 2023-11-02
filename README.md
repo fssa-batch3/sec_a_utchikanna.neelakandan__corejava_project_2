@@ -6,4 +6,4 @@
 
 ## ER Diagram
 
-[![HDDkFwX.md.png](https://drive.google.com/drive/folders/1a28wmv3N6BaJTGIbRlhleDmqeS0ecLAL)](https://drive.google.com/file/d/1hmMDJFUTARFsZIC6FfcVaKZ2a-8vV13c/view?usp=drive_link)
+[![HDDkFwX.md.png](https://freeimage.host/i/Jq9M07a)](https://drive.google.com/file/d/1hmMDJFUTARFsZIC6FfcVaKZ2a-8vV13c/view?usp=drive_link)
