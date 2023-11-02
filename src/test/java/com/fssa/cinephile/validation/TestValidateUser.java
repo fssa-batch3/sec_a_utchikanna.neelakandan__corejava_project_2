@@ -51,7 +51,7 @@ class TestValidateUser {
 	void testInvalidEmail() {
 		ValidationException result = assertThrows(ValidationException.class,
 				() -> userValidator.validateEmail("utchi.com"));
-		assertEquals("The provided email Invalid. A valid email should look like this: Kanna@gmail.com",
+		assertEquals("Bad credentials",
 				result.getMessage());
 	}
 

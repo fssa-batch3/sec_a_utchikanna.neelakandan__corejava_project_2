@@ -16,6 +16,7 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
  * @author UtchikannaNeelakandan
  */
 
+
 public class MovieService {
 	/**
 	 * Add a new movie.

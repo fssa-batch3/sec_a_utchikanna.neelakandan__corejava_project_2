@@ -5,6 +5,7 @@ package com.fssa.cinephile.model;
  * 
  * @author UtchikannaNeelakanda
  */
+
 public class Comments {
 
     private int commentId;  

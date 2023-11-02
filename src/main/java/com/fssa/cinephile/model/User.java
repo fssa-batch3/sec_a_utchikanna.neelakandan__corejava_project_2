@@ -7,6 +7,7 @@ package com.fssa.cinephile.model;
  * 
  * @author UtchikannaNeelakanda
  */
+
 public class User {
 
 	

@@ -11,7 +11,8 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
  * This class provides services related to movie details management, such as adding,
  * reading, updating, and deleting movie details.
  *
- * @author [Your Name]
+ *@author UtchikannaNeelakanda
+ *
  */
 public class MovieDetailsService {
     /**

@@ -32,7 +32,7 @@ class TestRatingService {
 	void testInvalidGiveRating() {
 		RatingService ratingService = new RatingService();
 		ServiceException exception = assertThrows(ServiceException.class, () -> ratingService.submitRating(null));
-		assertEquals("Rating object cannot be null", exception.getMessage());
+		assertEquals("An error occurred while attempting to add rating", exception.getMessage());
 	}
 
 	
@@ -61,7 +61,7 @@ class TestRatingService {
 
 	@Test
 	void testValidGetAvgRating() {
-		int ratingId = 15;
+		int ratingId = 7;
 
 	
 

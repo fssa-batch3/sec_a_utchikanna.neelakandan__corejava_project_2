@@ -42,7 +42,7 @@ class TestMovieService {
 	void testUpdateMovieSuccess() {
 		MovieService movieService = new MovieService();
 
-		Movie movie = new Movie("Leo", 7,"https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
+		Movie movie = new Movie("Leo", 5,"https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large","https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY","Kollywood");
 		try {
 			assertTrue(movieService.updateMovie(movie));
 		} catch (ServiceException e) {
@@ -126,7 +126,7 @@ class TestMovieService {
 	@Test
 	void testDeleteMovieSuccess() {
 		MovieService movieService = new MovieService();
-		int movieId = 1;
+		int movieId = 8;
 
 		try {
 			boolean isDelete = movieService.deleteMovie(movieId);

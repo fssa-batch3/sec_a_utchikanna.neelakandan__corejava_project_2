@@ -19,7 +19,6 @@ import com.fssa.cinephile.util.ConnectionUtil;
  * @author UtchikannaNeelakandan
  */
 
-
 public class MovieDetailsDAO {
 	/**
 	 * Adds new movie details to the database.

@@ -20,7 +20,6 @@ import com.fssa.cinephile.util.ConnectionUtil;
  */
 
 public class CommentsDAO {
-
     /**
      * Adds a new comment to a movie.
      * 

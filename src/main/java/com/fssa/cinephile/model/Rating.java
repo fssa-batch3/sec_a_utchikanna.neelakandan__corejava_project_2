@@ -6,6 +6,7 @@ package com.fssa.cinephile.model;
  * @author UtchikannaNeelakanda
  * 
  */
+
 public class Rating {
 
     private int ratingId;    

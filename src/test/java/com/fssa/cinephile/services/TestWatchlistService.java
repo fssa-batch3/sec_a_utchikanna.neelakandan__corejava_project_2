@@ -18,7 +18,7 @@ public class TestWatchlistService {
 	@Test
     void testAddWatchlistSuccess() {
 	   
-		Watchlist Watchlist = new Watchlist(1,2);
+		Watchlist Watchlist = new Watchlist(2,3);
         try {
             assertTrue(watchlisttService.addWatchlist(Watchlist));
         } catch (ServiceException e) {
@@ -35,7 +35,7 @@ public class TestWatchlistService {
 
     @Test
     void testDeleteWatchlistSuccess() {
-        int watchlistId = 1;
+        int watchlistId = 4;
         try {
             assertTrue(watchlisttService.removeWatchlist(watchlistId));
         } catch (ServiceException e) {
@@ -66,7 +66,7 @@ public class TestWatchlistService {
 	@Test
 	void testInvalidGetAllWatchlistByUser() {
 		ServiceException exception = assertThrows(ServiceException.class, () -> watchlisttService.getMoviesInWatchlist(0));
-		assertEquals("Rating object is null", exception.getMessage());
+		assertEquals("Watchlist is null", exception.getMessage());
 	}
 	
 	

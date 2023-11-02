@@ -35,7 +35,6 @@ public class CastsValidation {
 	public boolean validateActorLink(String actorLink) throws ValidationException {
 		try {
 			URL val = new URL(actorLink);
-			System.out.println(val + " actor link is found");
 			return true;
 		} catch (MalformedURLException e) {
 			throw new ValidationException("actor link is not found");
@@ -45,7 +44,6 @@ public class CastsValidation {
 	public boolean validateActorImage(String actorImage) throws ValidationException {
 		try {
 			URL val = new URL(actorImage);
-			System.out.println(val + " actor image is found");
 			return true;
 		} catch (MalformedURLException e) {
 			throw new ValidationException("actor image is not found");

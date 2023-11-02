@@ -10,6 +10,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 
 public class WatchlistService {
 	
+	
 	private WatchlistDAO watchlistDAO = new WatchlistDAO();
 	
 	public boolean addWatchlist(Watchlist watchlist) throws ServiceException{
@@ -26,7 +27,12 @@ public class WatchlistService {
 	
 	 public List<Movie> getMoviesInWatchlist(int userId) throws ServiceException {
 	        try {
-	            return watchlistDAO.getMoviesInUserWatchlist(userId);
+	        	List<Movie> watchlist = watchlistDAO.getMoviesInUserWatchlist(userId);
+	             if(watchlist == null) {
+	            	 throw new ServiceException("Watchlist is null");
+	            }else {
+	            	return watchlist;
+	            }
 	        } catch (DAOException e) {
 	            throw new ServiceException(e.getMessage());
 	        }
@@ -35,9 +41,9 @@ public class WatchlistService {
 
 	 public boolean removeWatchlist(int watchlistsId) throws ServiceException {
 			try {
-				System.out.println(watchlistsId);
+		
 				boolean watchlist = watchlistDAO.removeWatchlist(watchlistsId); 
-				System.out.println(watchlist);
+		
 				if (!watchlist) {
 					throw new ServiceException("An error occurred while attempting to delete watchlist");
 				}

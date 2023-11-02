@@ -8,6 +8,7 @@ import java.util.Date;
  * 
  * @author UtchikannaNeelakanda
  */
+
 public class MovieDetails {
 
     private int movieDetailsId; 

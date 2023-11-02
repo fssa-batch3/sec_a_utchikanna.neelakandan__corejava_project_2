@@ -22,7 +22,6 @@ public class TestValidationComment {
 			comments.setComment("Good Movie");
 			assertTrue(commentsValidation.validateComment(comments));
 		} catch (ValidationException e) {
-			System.out.println(e.getMessage());
 			fail();
 		}
 	}
@@ -32,6 +31,6 @@ public class TestValidationComment {
 		comments.setComment("");
 		ValidationException result = assertThrows(ValidationException.class,
 				() -> commentsValidation.validateComment(comments));
-		assertEquals("Invalid comment value", result.getMessage());
+		assertEquals("The User Comment cannot be empty", result.getMessage());
 	}
 }

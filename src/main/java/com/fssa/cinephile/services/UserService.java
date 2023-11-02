@@ -13,6 +13,7 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
  * 
  * @author UtchikannaNeelakandan
  */
+
 public class UserService {
 
 	UserDAO userDAO = new UserDAO();
@@ -101,6 +102,9 @@ public class UserService {
 		try {
 			userValidator.validateLogIn(user);
 			User fromDb = userDAO.checkUserLogin(user.getEmail());
+			if (fromDb == null) {
+				throw new DAOException("Bad credentials");	
+			}
 			if (!PasswordUtil.checkPassword(user.getPassword(),fromDb.getPassword())) {
 				throw new DAOException("Bad credentials");	
 			}

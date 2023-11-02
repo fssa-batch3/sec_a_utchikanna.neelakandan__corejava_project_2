@@ -132,14 +132,13 @@ public class UserValidator {
 
 		String regex = "^.*@.*\\..*$";
 		isMatch = Pattern.compile(regex).matcher(email).matches();
-		if (isMatch) {
-			System.out.println("The email address is valid.");
-		} else {
+		if (!isMatch) {
 			throw new ValidationException(
 					"Bad credentials");
 		}
 		return isMatch;
 	}
+	
 
 	/**
 	 * Validates a phone number.
@@ -156,9 +155,7 @@ public class UserValidator {
 		String strNumber = String.valueOf(phoneNo);
 		String regex = "^\\d{10}$";
 		isMatch = Pattern.matches(regex, strNumber);
-		if (isMatch) {
-			System.out.println("The phone number is valid.");
-		} else {
+		if (!isMatch) {
 			throw new ValidationException(
 					"The provided phone number is invalid. A valid phone number should consist of 10 digits.");
 		}

@@ -20,7 +20,7 @@ import com.fssa.cinephile.util.ConnectionUtil;
 
 public class CastsDAO {
 	
-	
+
 	/**
 	 * Adds cast information to the database.
 	 *

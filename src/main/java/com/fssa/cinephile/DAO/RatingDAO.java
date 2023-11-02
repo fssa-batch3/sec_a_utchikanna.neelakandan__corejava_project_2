@@ -17,6 +17,7 @@ import com.fssa.cinephile.util.ConnectionUtil;
  * 
  * @author UtchikannaNeelakanda
  */
+
 public class RatingDAO {
 
     private static final String INSERT_OR_UPDATE_RATING_QUERY =

@@ -18,6 +18,7 @@ import com.fssa.cinephile.util.ConnectionUtil;
  * @author UtchikannaNeelakanda
  * 
  */
+
 public class WatchlistDAO {
 
     /**

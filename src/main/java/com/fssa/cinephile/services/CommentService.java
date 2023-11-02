@@ -10,6 +10,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
 import com.fssa.cinephile.validation.CommentsValidation;
 import com.fssa.cinephile.validation.exceptions.ValidationException;
 
+
 public class CommentService {
 	private CommentsDAO commentDAO = new CommentsDAO();
 	public boolean addComment(Comments comments) throws ServiceException {

@@ -25,8 +25,13 @@ public class RatingService {
 		try {
 			RatingValidation ratingValidator = new RatingValidation();
 			ratingValidator.validateRating(rating);
-
-			return ratingDAO.addRating(rating);
+			boolean add = ratingDAO.addRating(rating);
+			if(!add) {
+        		throw new ServiceException("An error occurred while attempting to add rating");
+        	}else {
+            return add;
+        	}
+		
 
 		} catch (ValidationException | DAOException e) {
 			throw new ServiceException(e.getMessage());
@@ -35,7 +40,12 @@ public class RatingService {
 	
     public Map<String, Object> getAverageRatingAndCountByMovie(int movieId) throws ServiceException {
         try {
-            return ratingDAO.getRatingByMovie(movieId);
+        	Map<String, Object> rating = ratingDAO.getRatingByMovie(movieId);
+        	if(rating == null) {
+        		throw new ServiceException("Rating list is null");
+        	}else {
+            return rating;
+        	}
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         }
@@ -43,7 +53,12 @@ public class RatingService {
 
     public int getRatingByMovieAndUser(int movieId, int userId) throws ServiceException {
         try {
-            return ratingDAO.getRatingByMovieAndUser(movieId, userId);
+        	int avg = ratingDAO.getRatingByMovieAndUser(movieId, userId);
+        	if(avg < 0) {
+        		throw new ServiceException("Rating object is null");
+        	}else {
+            return avg;
+        	} 
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         }

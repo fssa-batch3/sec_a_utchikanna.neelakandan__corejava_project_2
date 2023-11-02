@@ -23,7 +23,7 @@ public class TestCommentService {
 	
 	@Test
     void testAddCommentSuccess() {
-	   movie.setMovieId(1);
+	   movie.setMovieId(4);
 	   user.setUserId(1);
 		Comments comments = new Comments("Good",movie,user);
         try {
@@ -42,7 +42,7 @@ public class TestCommentService {
 
     @Test
     void testGetRatingByMovieAndUserSuccess() {
-        int movieId = 1;
+        int movieId = 4;
         int userId = 1;
         try {
             String rating = commentService.getCommentByMovieAndUser(movieId, userId);
@@ -55,7 +55,7 @@ public class TestCommentService {
 
     @Test
     void testGetAllCommentByMovieSuccess() {
- 	   int movieId = 1;
+ 	   int movieId = 5;
         try {
             List<Comments> commentList = commentService.getAllCommentByMovie(movieId);
             assertNotNull(commentList);
@@ -67,7 +67,7 @@ public class TestCommentService {
 
     @Test
     void testUpdateCommentSuccess() {
- 	   movie.setMovieId(1);
+ 	   movie.setMovieId(5);
  	  user.setUserId(1);
  		Comments comments = new Comments("Good",movie,user);
         try {
@@ -86,7 +86,7 @@ public class TestCommentService {
 
     @Test
     void testDeleteCommentSuccess() {
-        int commentId = 6;
+        int commentId = 16;
         try {
             assertTrue(commentService.deleteComment(commentId));
         } catch (ServiceException e) {

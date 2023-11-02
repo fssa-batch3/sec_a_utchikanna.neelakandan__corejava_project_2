@@ -27,7 +27,7 @@ public class TestCastsService {
 		
 		casts.setActorImage("https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		casts.setActorLink("https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY");
-		casts.setMovieId(1);
+		casts.setMovieId(7);
 		casts.setActorName("Vijay");
 		
 		try {
@@ -51,7 +51,7 @@ public class TestCastsService {
 		casts.setActorImage("https://pbs.twimg.com/media/FoDdg2WXEAomzQX?format=jpg&name=large");
 		casts.setActorLink("https://www.youtube.com/embed/qN3wfuPYTI4?si=sTD-qk1ZBuOsUkUY");
 		casts.setActorName("Vijay");
-		casts.setMovieId(1);
+		casts.setMovieId(5);
 		try {
 			assertTrue(castsService.updateCasts(casts));
 		}catch (ServiceException e) {
@@ -70,7 +70,7 @@ public class TestCastsService {
 	@Test
 	void testDeleteCastsSuccess() {
 		try {
-			boolean isDelete = castsService.deleteCasts(39);
+			boolean isDelete = castsService.deleteCasts(43);
 			assertTrue(isDelete);
 		} catch (ServiceException e) {
 			e.printStackTrace();

@@ -26,7 +26,7 @@ class TestMovieDetailsService {
     void testCreateMovieDetailsSuccess() {
         MovieDetailsService movieDetailsService = new MovieDetailsService();
         Movie movie = new Movie();
-      		movie.setMovieId(1);
+      		movie.setMovieId(7);
               MovieDetails movieDetails = new MovieDetails("Updated story", "2023-09-20", "Updated Award",
                       "https://example.com/updated-award", "https://example.com/updated-movie",movie,"https://example.com/updated-award","Atlee");
         
@@ -50,7 +50,7 @@ class TestMovieDetailsService {
     void testUpdateMovieDetailsSuccess() {
         MovieDetailsService movieDetailsService = new MovieDetailsService();
         Movie movie = new Movie();
-		movie.setMovieId(1);
+		movie.setMovieId(5);
 		  MovieDetails movieDetails = new MovieDetails("Updated story", "2023-09-20", "Updated Award",
                   "https://example.com/updated-award", "https://example.com/updated-movie",movie,"https://example.com/updated-award","Atlee");
         try {
@@ -86,15 +86,14 @@ class TestMovieDetailsService {
     @Test
     void testGetMovieDetailsByIdInvalid() {
         MovieDetailsService movieDetailsService = new MovieDetailsService();
-        int invalidId = 999; // Assuming this ID does not exist
-        ServiceException exception = assertThrows(ServiceException.class, () -> movieDetailsService.getMovieDetailsById(invalidId));
+        ServiceException exception = assertThrows(ServiceException.class, () -> movieDetailsService.getMovieDetailsById(0));
         assertEquals("Movie Details not found", exception.getMessage());
     }
 
     @Test
     void testDeleteMovieDetailsSuccess() {
         MovieDetailsService movieDetailsService = new MovieDetailsService();
-        int movieDetailsId = 1;
+        int movieDetailsId = 12;
 
         try {
             boolean isDeleted = movieDetailsService.deleteMovieDetails(movieDetailsId);
