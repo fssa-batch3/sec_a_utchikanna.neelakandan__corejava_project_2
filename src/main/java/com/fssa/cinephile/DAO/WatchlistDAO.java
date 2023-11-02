@@ -79,7 +79,6 @@ public class WatchlistDAO {
      * @throws DAOException If there is an issue with the database operation.
      */
     public boolean removeWatchlist(int watchlistId) throws DAOException {
-        System.out.println(watchlistId);
         String query = "DELETE FROM watchlists WHERE watchlist_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
              PreparedStatement pst = connection.prepareStatement(query);) {

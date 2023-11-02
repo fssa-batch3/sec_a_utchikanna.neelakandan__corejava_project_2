@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fssa.cinephile.validation.exceptions.ValidationException;
 
-public class TestValidateMovieDetails {
+class TestValidateMovieDetails {
 
 	@Test
 	void testValidMovieStory() {

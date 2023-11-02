@@ -18,7 +18,7 @@ import com.fssa.cinephile.services.exceptions.ServiceException;
  * 
  * @author UtchikannaNeelakandan
  */
-public class TestCastsService {
+class TestCastsService {
 
 	private CastsService castsService = new CastsService();
 	private Casts casts = new Casts();

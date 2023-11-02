@@ -3,7 +3,6 @@ package com.fssa.cinephile.services;
 import java.util.List;
 
 import com.fssa.cinephile.DAO.CommentsDAO;
-import com.fssa.cinephile.DAO.MovieDAO;
 import com.fssa.cinephile.DAO.exceptions.DAOException;
 import com.fssa.cinephile.model.Comments;
 import com.fssa.cinephile.services.exceptions.ServiceException;

@@ -11,7 +11,7 @@ import com.fssa.cinephile.model.Comments;
 import com.fssa.cinephile.model.Rating;
 import com.fssa.cinephile.validation.exceptions.ValidationException;
 
-public class TestValidationComment {
+class TestValidationComment {
 
 	private Comments comments = new Comments();
 	private CommentsValidation commentsValidation = new CommentsValidation();

@@ -99,7 +99,7 @@ public class MovieDetailsValidation {
             throw new ValidationException("The award wiki URL cannot be empty");
         }
         try {
-			URL val = new URL(awardWiki);
+			new URL(awardWiki);
 			return true;
 		} catch (MalformedURLException e) {
 			throw new ValidationException("URL is not found");
@@ -117,7 +117,7 @@ public class MovieDetailsValidation {
             throw new ValidationException("The movie link URL cannot be empty");
         }
         try {
-			URL val = new URL(movieLink);
+			new URL(movieLink);
 			return true;
 		} catch (MalformedURLException e) {
 			throw new ValidationException("URL is not found");

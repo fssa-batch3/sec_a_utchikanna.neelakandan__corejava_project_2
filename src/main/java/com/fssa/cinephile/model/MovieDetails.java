@@ -1,7 +1,5 @@
 package com.fssa.cinephile.model;
 
-import java.util.Date;
-
 /**
  * The {@code MovieDetails} class represents details about a movie entity in the application.
  * It includes information such as the movie's story, release date, award details, and movie links.

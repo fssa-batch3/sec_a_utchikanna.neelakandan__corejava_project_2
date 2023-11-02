@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import com.fssa.cinephile.model.Watchlist;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 
-public class TestWatchlistService {
+class TestWatchlistService {
 	
 	private WatchlistService watchlisttService = new WatchlistService();
 

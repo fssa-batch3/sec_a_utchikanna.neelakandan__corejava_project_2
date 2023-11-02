@@ -72,7 +72,6 @@ public class UserService {
      *                          or if the updated user information is invalid.
      */
     public boolean updateUser(User user) throws ServiceException {
-        UserDAO userDAO = new UserDAO();
        
         try {
             if (user == null) {
@@ -123,7 +122,6 @@ public class UserService {
 	 */
 	public boolean deleteUser(int userId) throws ServiceException {
 	    try {
-	        UserDAO userDAO = new UserDAO();
 	        
 	        // Call the DAO method to delete the user by their unique identifier
 	        boolean userDeleted = userDAO.deleteUser(userId);

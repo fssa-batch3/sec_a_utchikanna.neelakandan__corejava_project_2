@@ -68,12 +68,9 @@ public class MovieValidation {
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(movieType);
 		match = m.matches();
-		if (match) {
-			System.out.println("The movie Type is valid");
-		} else {
+		if (!match) {
 			throw new ValidationException("The movie Type is not valid");
 		}
-
 		return match;
 	}
 
@@ -86,8 +83,7 @@ public class MovieValidation {
 	 */
 	public boolean validateMovieImageUrl(String imageUrl) throws ValidationException {
 		try {
-			URL val = new URL(imageUrl);
-			System.out.println(val + " image is found");
+			new URL(imageUrl);
 			return true;
 		} catch (MalformedURLException e) {
 			throw new ValidationException("Image is not found");
@@ -103,8 +99,7 @@ public class MovieValidation {
 	 */
 	public boolean validateMovieTrailer(String movieTrailer) throws ValidationException {
 		try {
-			URL val = new URL(movieTrailer);
-			System.out.println(val + " trailer is found");
+			new URL(movieTrailer);
 			return true;
 		} catch (MalformedURLException e) {
 			throw new ValidationException("trailer is not found");

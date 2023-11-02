@@ -15,7 +15,7 @@ import com.fssa.cinephile.model.Movie;
 import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 
-public class TestCommentService {
+class TestCommentService {
 	
 	private CommentService commentService = new CommentService();
 	private Movie movie = new Movie();

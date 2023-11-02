@@ -28,11 +28,7 @@ public class ConnectionUtil {
 		final String dbUser;
 		final String dbPassword;
 
-//      Cloud DB
 
-//     	dbUrl = System.getenv("DATABASE_HOST");
-//		dbUser = System.getenv("DATABASE_USERNAME");
-//		dbPassword = System.getenv("DATABASE_PASSWORD");
 
 //		Local Host
 
