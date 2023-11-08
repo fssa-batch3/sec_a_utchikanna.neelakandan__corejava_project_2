@@ -20,12 +20,10 @@ public class CommentService {
 			}
 			CommentsValidation commentsValidation = new CommentsValidation();
 			commentsValidation.validateComment(comments);
-			if (commentDAO.addComment(comments)) {
-				return true;
-			} else {
+			if (!commentDAO.addComment(comments)) {
 				return false;
-			}
-
+			} 
+			return true;
 		} catch (DAOException | ValidationException e) {
 			throw new ServiceException(e.getMessage());
 		}

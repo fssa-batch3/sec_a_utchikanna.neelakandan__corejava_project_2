@@ -16,7 +16,7 @@ public class RatingValidation {
 	 * @return true if the rating is valid (between 1 and 5), false otherwise.
 	 * @throws ValidationException if the rating is not within the valid range.
 	 */
-	public static boolean validateRating(Rating rating) throws ValidationException {
+	public boolean validateRating(Rating rating) throws ValidationException {
 		int minRating = 1;
 		int maxRating = 5;
 		int ratingValue = rating.getRating();

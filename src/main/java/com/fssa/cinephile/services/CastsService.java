@@ -22,11 +22,10 @@ public class CastsService {
 				throw new ServiceException("casts object cannot be null");
 			}
 			castsValidation.validateCasts(casts);
-			if(castsDAO.addCasts(casts)) {
-				return true;
-			} else {
+			if(!castsDAO.addCasts(casts)) {
 				return false;
 			}
+			return true;
 			
 		}catch (DAOException | ValidationException e) {
 			throw new ServiceException(e.getMessage());

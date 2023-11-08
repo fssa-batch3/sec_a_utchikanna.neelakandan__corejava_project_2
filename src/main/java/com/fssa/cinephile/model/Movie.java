@@ -28,8 +28,8 @@ public class Movie {
 		return watchlistId;
 	}
 
-	public void setWatchlistId(int watchlist_id) {
-		this.watchlistId = watchlist_id;
+	public void setWatchlistId(int watchlistId) {
+		this.watchlistId = watchlistId;
 	}
 
 	/**
