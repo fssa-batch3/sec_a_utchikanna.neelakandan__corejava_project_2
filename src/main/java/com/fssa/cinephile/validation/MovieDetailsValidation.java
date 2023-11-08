@@ -1,13 +1,13 @@
 package com.fssa.cinephile.validation;
 
-import com.fssa.cinephile.model.MovieDetails;
-import com.fssa.cinephile.validation.exceptions.ValidationException;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.fssa.cinephile.model.MovieDetails;
+import com.fssa.cinephile.validation.exceptions.ValidationException;
 
 /**
  * Utility class for validating MovieDetails objects.

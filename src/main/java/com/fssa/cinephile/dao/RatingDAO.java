@@ -1,5 +1,4 @@
-
-package com.fssa.cinephile.DAO;
+package com.fssa.cinephile.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fssa.cinephile.DAO.exceptions.DAOException;
+import com.fssa.cinephile.dao.exception.DAOException;
 import com.fssa.cinephile.model.Rating;
 import com.fssa.cinephile.util.ConnectionUtil;
 

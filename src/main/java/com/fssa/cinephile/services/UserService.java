@@ -1,7 +1,7 @@
 package com.fssa.cinephile.services;
 
-import com.fssa.cinephile.DAO.UserDAO;
-import com.fssa.cinephile.DAO.exceptions.DAOException;
+import com.fssa.cinephile.dao.UserDAO;
+import com.fssa.cinephile.dao.exception.DAOException;
 import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 import com.fssa.cinephile.util.PasswordUtil;

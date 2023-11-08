@@ -2,8 +2,8 @@ package com.fssa.cinephile.services;
 
 import java.util.List;
 
-import com.fssa.cinephile.DAO.WatchlistDAO;
-import com.fssa.cinephile.DAO.exceptions.DAOException;
+import com.fssa.cinephile.dao.WatchlistDAO;
+import com.fssa.cinephile.dao.exception.DAOException;
 import com.fssa.cinephile.model.Movie;
 import com.fssa.cinephile.model.Watchlist;
 import com.fssa.cinephile.services.exceptions.ServiceException;

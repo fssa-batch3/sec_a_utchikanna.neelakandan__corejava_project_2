@@ -5,8 +5,8 @@ package com.fssa.cinephile.services;
 
 import java.util.Map;
 
-import com.fssa.cinephile.DAO.RatingDAO;
-import com.fssa.cinephile.DAO.exceptions.DAOException;
+import com.fssa.cinephile.dao.RatingDAO;
+import com.fssa.cinephile.dao.exception.DAOException;
 import com.fssa.cinephile.model.Rating;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 import com.fssa.cinephile.validation.RatingValidation;

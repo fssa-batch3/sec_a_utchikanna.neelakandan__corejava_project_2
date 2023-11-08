@@ -1,4 +1,4 @@
-package com.fssa.cinephile.DAO;
+package com.fssa.cinephile.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fssa.cinephile.DAO.exceptions.DAOException;
+import com.fssa.cinephile.dao.exception.DAOException;
 import com.fssa.cinephile.model.Movie;
 import com.fssa.cinephile.util.ConnectionUtil;
 
@@ -18,6 +18,13 @@ import com.fssa.cinephile.util.ConnectionUtil;
  */
 public class MovieDAO {
 	
+	private static final String MOVIE_TYPE = "movie_type";
+	private static final String MOVIE_TRAILER = "movie_trailer";
+	private static final String MOVIE_ID = "movie_id";
+	private static final String MOVIE_IMAGE_URL = "movie_image_url";
+	private static final String MOVIE_TITLE = "movie_title";
+
+
 	/**
 	 * Adds a new Movie to the database.
 	 *
@@ -62,11 +69,11 @@ public class MovieDAO {
 
 			while (rs.next()) {
 				Movie movie = new Movie();
-				movie.setMovieTitle(rs.getString("movie_title"));
-				movie.setMovieImgUrl(rs.getString("movie_image_url"));
-				movie.setMovieId(rs.getInt("movie_id"));
-				movie.setMovieTrailer(rs.getString("movie_trailer"));
-				movie.setMovieType(rs.getString("movie_type"));
+				movie.setMovieTitle(rs.getString(MOVIE_TITLE));
+				movie.setMovieImgUrl(rs.getString(MOVIE_IMAGE_URL));
+				movie.setMovieId(rs.getInt(MOVIE_ID));
+				movie.setMovieTrailer(rs.getString(MOVIE_TRAILER));
+				movie.setMovieType(rs.getString(MOVIE_TYPE));
 
 				movieList.add(movie);
 			}
@@ -109,10 +116,10 @@ public class MovieDAO {
 	        try (ResultSet rs = statement.executeQuery()) {
 	            while (rs.next()) {
 	                Movie movie = new Movie();
-	                movie.setMovieTrailer(rs.getString("movie_trailer"));
-	                movie.setMovieTitle(rs.getString("movie_title"));
-	                movie.setMovieImgUrl(rs.getString("movie_image_url"));
-	                movie.setMovieId(rs.getInt("movie_id"));
+	                movie.setMovieTrailer(rs.getString(MOVIE_TRAILER));
+	                movie.setMovieTitle(rs.getString(MOVIE_TITLE));
+	                movie.setMovieImgUrl(rs.getString(MOVIE_IMAGE_URL));
+	                movie.setMovieId(rs.getInt(MOVIE_ID));
 	                movie.setMovieType(movieType); // Set the movieType here
 	                
 	                movieList.add(movie);
@@ -173,11 +180,11 @@ public class MovieDAO {
 			try (ResultSet rs = preparedStatement.executeQuery()) {
 				if (rs.next()) {
 				Movie movie1 = new Movie();
-				movie1.setMovieTitle(rs.getString("movie_title"));
-				movie1.setMovieImgUrl(rs.getString("movie_image_url"));
-				movie1.setMovieId(rs.getInt("movie_id"));
-				movie1.setMovieTrailer(rs.getString("movie_trailer"));
-				movie1.setMovieType(rs.getString("movie_type"));
+				movie1.setMovieTitle(rs.getString(MOVIE_TITLE));
+				movie1.setMovieImgUrl(rs.getString(MOVIE_IMAGE_URL));
+				movie1.setMovieId(rs.getInt(MOVIE_ID));
+				movie1.setMovieTrailer(rs.getString(MOVIE_TRAILER));
+				movie1.setMovieType(rs.getString(MOVIE_TYPE));
 				
 				movie = movie1;
 				}

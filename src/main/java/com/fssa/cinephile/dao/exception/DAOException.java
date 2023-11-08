@@ -1,4 +1,4 @@
-package com.fssa.cinephile.DAO.exceptions;
+package com.fssa.cinephile.dao.exception;
 
 public class DAOException extends Exception {
 

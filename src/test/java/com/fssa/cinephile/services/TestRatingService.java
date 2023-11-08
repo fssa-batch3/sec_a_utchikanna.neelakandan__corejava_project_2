@@ -7,9 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import com.fssa.cinephile.model.Movie;
 import com.fssa.cinephile.model.Rating;
-import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 
 class TestRatingService {

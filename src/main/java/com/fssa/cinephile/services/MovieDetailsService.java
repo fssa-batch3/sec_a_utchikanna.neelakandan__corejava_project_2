@@ -1,7 +1,7 @@
 package com.fssa.cinephile.services;
 
-import com.fssa.cinephile.DAO.MovieDetailsDAO;
-import com.fssa.cinephile.DAO.exceptions.DAOException;
+import com.fssa.cinephile.dao.MovieDetailsDAO;
+import com.fssa.cinephile.dao.exception.DAOException;
 import com.fssa.cinephile.model.MovieDetails;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 import com.fssa.cinephile.validation.MovieDetailsValidation;

@@ -2,6 +2,7 @@ package com.fssa.cinephile.validation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import com.fssa.cinephile.model.User;
 import com.fssa.cinephile.validation.exceptions.ValidationException;
 
@@ -13,7 +14,7 @@ import com.fssa.cinephile.validation.exceptions.ValidationException;
 public class UserValidator {
 	
 	public UserValidator(){
-		
+		// Default constructor
 	}
 
 	/**
@@ -130,7 +131,7 @@ public class UserValidator {
 			throw new ValidationException("Email cannot be empty");			
 		}
 
-		String regex = "^.*@.*\\..*$";
+		String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
 		isMatch = Pattern.compile(regex).matcher(email).matches();
 		if (!isMatch) {
 			throw new ValidationException(

@@ -31,21 +31,27 @@ public class ConnectionUtil {
 
 
 //		Local Host
-
-		dbUrl = "jdbc:mysql://localhost:3306/cinephile";
-		dbUser = "root";
-		dbPassword = "123456";
+		dbUrl = System.getenv("dbUrl");
+		dbUser = System.getenv("dbUser");
+		dbPassword = System.getenv("dbPassword");
+		
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 		} catch (SQLException e) {
 
-			throw new RuntimeException("Unable to connect data base", e);
+			throw new RuntimeException("Unable to connect database", e);
 		} catch (ClassNotFoundException e) {
 
 			throw new RuntimeException("data base Driver class not found", e);
 		}
 
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(getConnection());
+	}
+	
+	
 }

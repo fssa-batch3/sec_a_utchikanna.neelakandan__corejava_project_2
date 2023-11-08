@@ -3,8 +3,8 @@ package com.fssa.cinephile.services;
 
 import java.util.List;
 
-import com.fssa.cinephile.DAO.CastsDAO;
-import com.fssa.cinephile.DAO.exceptions.DAOException;
+import com.fssa.cinephile.dao.CastsDAO;
+import com.fssa.cinephile.dao.exception.DAOException;
 import com.fssa.cinephile.model.Casts;
 import com.fssa.cinephile.services.exceptions.ServiceException;
 import com.fssa.cinephile.validation.CastsValidation;
